@@ -1,14 +1,32 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="pt-BR">
 <head>
-  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
-  <link rel="stylesheet" href="styles/style.css"/>
-  <title>Hello, World!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ache-me</title>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-  <h1>
-    Hello, World!
-  </h1>
+    <header>
+        <h1>Bem-vindo ao Ache-me</h1>
+    </header>
+    
+    <main>
+        <section id="busca-container">
+            <p>Pesquise um produto:</p>
+            <div id="busca-form">
+                <input type="text" id="campoBusca" placeholder="Digite o nome do produto..." />
+                <button id="btnPesquisar">Pesquisar</button>
+            </div>
+            <div id="mensagem-busca"></div>
+            <div id="loading" style="display:none;">
+                <img src="imagem/loading.gif" alt="Carregando..." />
+            </div>
+        </section>
+
+        <div id="resultado-produto"></div>
+    </main>
+
+    <script type="module" src="scripts/script.js"></script>
 </body>
 </html>
