@@ -46,42 +46,61 @@ body {
 #lobby {
   position: fixed;
   inset: 0;
-  width: 100vw;
-  height: 100vh;
-
+  background: #1e3c72; /* fundo azul */
   display: flex;
   justify-content: center;
   align-items: center;
-
-  background: #1e3c72;
   z-index: 999;
 }
 
-/* Container do lobby */
-#lobby .container {
-  width: 100%;
-  max-width: 420px;
-
+/* CONTEÚDO CENTRAL */
+.lobby-content {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 22px;
+}
+
+/* IMAGEM CIRCULAR */
+.logo-circulo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: #2ecc71; /* verde */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-circulo img {
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+}
+
+/* NOME */
+#siteNomeLobby {
+  color: #000;
+  font-size: 2.2rem;
+  font-weight: bold;
   text-align: center;
 }
 
-/* URL acima do nome */
-.lobby-url {
-  font-size: 14px;
-  color: #000;
-  margin-bottom: 6px;
-  word-break: break-all;
+/* BOTÃO */
+#btnIniciar {
+  width: 240px;
+  height: 60px;
+  background: #2ecc71; /* verde */
+  color: #000;        /* texto preto */
+  border: none;
+  border-radius: 999px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-/* Nome do site */
-.lobby-nome {
-  font-size: 34px;
-  font-weight: bold;
-  color: #000;
-  margin-bottom: 22px;
+#btnIniciar:hover {
+  transform: scale(1.05);
 }
 
 /* =========================================================
