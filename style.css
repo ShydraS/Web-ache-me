@@ -135,7 +135,7 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   cursor: pointer;
 
-  margin-top: 500px; /* DESCE O BOTÃO */
+  margin-top: 480px; /* DESCE O BOTÃO */
 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
