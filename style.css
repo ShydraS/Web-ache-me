@@ -115,9 +115,9 @@ body {
 
 /* botão */
 #lobby button {
-  width: 79%;
+  width: 84%;
   max-width: 270px;
-  height: 50px;
+  height: 80px;
   
   background: rgba(255, 255, 255, 0.9);
   color: #1e3c72;
