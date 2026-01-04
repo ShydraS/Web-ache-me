@@ -65,13 +65,8 @@ html, body {
 
 /* IMAGEM CIRCULAR */
 .logo-circulo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: #2ecc71;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background: transparent;
+  box-shadow: none;
 }
 
 .logo-circulo img {
