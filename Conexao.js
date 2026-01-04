@@ -1,7 +1,7 @@
 /* ================= CONEXÃO COM GOOGLE SHEETS ================= */
 
-// URL do Apps Script (Web App)
-const URL_SHEETS = "https://script.google.com/macros/s/AKfycbwuoF07UHuw3ViUWvQ9me5-Xvgbd8Omuy6fJUB7TpeVIK1y55cFYuy5RfjEJAFip3JbeA/exec";
+// URL do Apps Script ou SheetsBest
+const URL_SHEETS = "https://api.sheetbest.com/sheets/a7b8674b-9876-4a84-a253-2aed62610ae2";
 
 /* ================= UTIL ================= */
 
@@ -18,10 +18,11 @@ function fetchComTimeout(url, options = {}, timeout = 15000) {
 }
 
 /**
- * Garante que sempre retornamos um array válido
+ * Normaliza os dados da planilha para o formato usado pelo site
  */
 function normalizarProdutos(data) {
   if (!Array.isArray(data)) return [];
+
   return data.map(p => ({
     id: p.id ?? Date.now(),
     nome: p.nome ?? "",
@@ -30,26 +31,17 @@ function normalizarProdutos(data) {
     corredor: p.corredor ?? "",
     codigo: p.codigo ?? "",
     descricao: p.descricao ?? "",
-    imagem: p.imagem ?? "",
-    visivel: p.visivel !== false
+    imagem: p.imagem ?? "https://via.placeholder.com/200",
+    visivel: p.visivel !== false && p.visivel !== "off"
   }));
 }
 
 /* ================= BUSCAR PRODUTOS ================= */
-
-/**
- * Busca todos os produtos da planilha
- * @returns {Promise<Array>}
- */
 async function fetchProdutos() {
   try {
-    const response = await fetchComTimeout(
-      `${URL_SHEETS}?acao=listar`
-    );
+    const response = await fetchComTimeout(URL_SHEETS);
 
-    if (!response.ok) {
-      throw new Error("Resposta inválida do servidor");
-    }
+    if (!response.ok) throw new Error("Resposta inválida do servidor");
 
     const data = await response.json();
     return normalizarProdutos(data);
@@ -62,25 +54,15 @@ async function fetchProdutos() {
 }
 
 /* ================= ADICIONAR PRODUTO ================= */
-
-/**
- * Adiciona um novo produto na planilha
- * @param {Object} produto
- */
 async function addProduto(produto) {
   try {
-    const response = await fetchComTimeout(
-      `${URL_SHEETS}?acao=adicionar`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(produto)
-      }
-    );
+    const response = await fetchComTimeout(URL_SHEETS, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(produto)
+    });
 
-    if (!response.ok) {
-      throw new Error("Falha ao adicionar produto");
-    }
+    if (!response.ok) throw new Error("Falha ao adicionar produto");
 
     const data = await response.json();
     return data;
@@ -93,25 +75,15 @@ async function addProduto(produto) {
 }
 
 /* ================= EDITAR PRODUTO ================= */
-
-/**
- * Edita um produto existente na planilha
- * @param {Object} produto
- */
 async function editProduto(produto) {
   try {
-    const response = await fetchComTimeout(
-      `${URL_SHEETS}?acao=editar`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(produto)
-      }
-    );
+    const response = await fetchComTimeout(URL_SHEETS, {
+      method: "PUT", // Alguns endpoints usam PUT para atualizar
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(produto)
+    });
 
-    if (!response.ok) {
-      throw new Error("Falha ao editar produto");
-    }
+    if (!response.ok) throw new Error("Falha ao editar produto");
 
     const data = await response.json();
     return data;
@@ -121,5 +93,4 @@ async function editProduto(produto) {
     alert("Não foi possível salvar as alterações.");
     return null;
   }
-  }
-
+}
