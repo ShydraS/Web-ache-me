@@ -36,11 +36,10 @@ body {
   justify-content: center;
   align-items: flex-end;
 
-  padding-bottom: 8vh;
+  padding-bottom: 6vh;
 
   width: 100vw;
-  max-width: 480px;
-  margin: 0 auto;
+  height: 100vh;
 
   background-image: url("../imagem/1.jpg");
   background-size: cover;
@@ -50,7 +49,6 @@ body {
   z-index: 999;
 }
 
-/* camada escura */
 #lobby::before {
   content: "";
   position: absolute;
@@ -59,14 +57,15 @@ body {
   z-index: 0;
 }
 
-/* container lobby */
 #lobby .container {
   position: relative;
   z-index: 1;
 
+  width: 100%;
+  max-width: 480px;
+
   display: flex;
   justify-content: center;
-  width: 100%;
 }
 
 /* botão lobby */
