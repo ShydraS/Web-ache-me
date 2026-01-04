@@ -10,27 +10,45 @@
 
 <!-- ================= LOBBY ================= -->
 <div id="lobby">
-  <!-- container interno para NÃO quebrar o layout -->
   <div class="container glass-card">
-    <h1 id="siteNomeLobby">Web Ache-me</h1>
+
+    <!-- URL acima do nome -->
+    <div class="lobby-url">
+      https://web-ache-me.github.io
+    </div>
+
+    <!-- Nome do site -->
+    <div class="lobby-nome">
+      Web Ache-me
+    </div>
+
+    <!-- Logo carrinho em círculo verde -->
+    <div class="logo-circulo">
+      <img src="carrinho.png" alt="Carrinho">
+    </div>
+
+    <!-- Botão iniciar -->
     <button id="btnIniciar">Iniciar</button>
+
   </div>
 </div>
 
 <!-- ================= APP ================= -->
 <div id="app" class="hidden container">
   
-    <!-- PRODUTOS ALEATÓRIOS NO TOPO -->
+  <!-- PRODUTOS ALEATÓRIOS NO TOPO -->
   <div id="produtosAleatoriosADM" class="hidden"></div>
   
   <!-- HEADER -->
   <header>
+
     <!-- TÍTULO ADM -->
-  <h1 id="tituloADM" class="hidden">ADM</h1>
+    <h1 id="tituloADM" class="hidden">ADM</h1>
     
-      <!-- BOTÃO DE SAIR DO ADM -->
-  <div id="sairADM" class="hidden">←</div>
+    <!-- BOTÃO DE SAIR DO ADM -->
+    <div id="sairADM" class="hidden">←</div>
     
+    <!-- Nome do site no topo -->
     <h1 id="siteNomeTopo">Ache-me</h1>
 
     <div class="search-wrapper">
@@ -115,7 +133,7 @@
 
 </div>
 
-<!-- ================= FORMULÁRIO DE CADASTRO DE PRODUTO (ADM) ================= -->
+<!-- ================= FORMULÁRIO NOVO PRODUTO (ADM) ================= -->
 <div id="formNovoProduto" class="hidden container">
 
   <h3>Adicionar Produto</h3>
@@ -132,7 +150,9 @@
   <button id="btnCancelarNovo">Cancelar</button>
 
 </div>
+
 <div class="overlay"></div>
+
 <!-- ================= SCRIPTS ================= -->
 <script src="conexao.js"></script>
 <script src="script.js"></script>
