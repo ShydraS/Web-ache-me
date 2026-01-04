@@ -1,5 +1,4 @@
-/* ================= RESET GLOBAL ================= */
-* {
+/* ================= RESET GLOBAL ================*/ {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -116,7 +115,7 @@ body {
 /* botão */
 #lobby button {
   width: 84%;
-  max-width: 270px;
+  max-width: 380px;
   height: 80px;
   
   background: rgba(255, 255, 255, 0.9);
