@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Ache-me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Style/style.css">
+</head>
+<body>
+
+<!-- ================= LOBBY ================= -->
+<div id="lobby">
+  <!-- container interno para NÃO quebrar o layout -->
+  <div class="container glass-card">
+    <h1 id="siteNomeLobby">Web Ache-me</h1>
+    <button id="btnIniciar">Iniciar</button>
+  </div>
+</div>
+
+<!-- ================= APP ================= -->
+<div id="app" class="hidden container">
+  
+    <!-- PRODUTOS ALEATÓRIOS NO TOPO -->
+  <div id="produtosAleatoriosADM" class="hidden"></div>
+  
+  <!-- HEADER -->
+  <header>
+    <!-- TÍTULO ADM -->
+  <h1 id="tituloADM" class="hidden">ADM</h1>
+    
+      <!-- BOTÃO DE SAIR DO ADM -->
+  <div id="sairADM" class="hidden">←</div>
+    
+    <h1 id="siteNomeTopo">Ache-me</h1>
+
+    <div class="search-wrapper">
+      <input
+        type="text"
+        id="pesquisa"
+        placeholder="Pesquisar nome, código ou setor"
+        autocomplete="off"
+      >
+    </div>
+  </header>
+
+  <!-- LISTA DE PRODUTOS -->
+  <main>
+    <div id="listaProdutos"></div>
+  </main>
+
+  <!-- ================= PAINEL ADM ================= -->
+  <div id="painelADM" class="hidden">
+
+    <!-- CONFIGURAÇÕES DO SITE -->
+    <section class="admin-section">
+      <h3>Configurações do site</h3>
+
+      <input id="nomeSiteInput" placeholder="Nome do site">
+      <input id="fundoSiteInput" placeholder="URL da imagem de fundo (opcional)">
+      <button id="salvarConfigBtn">Salvar configurações</button>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section class="admin-section">
+      <h3>Produtos</h3>
+      <button id="btnNovoProduto">Adicionar produto</button>
+      <div id="listaADM"></div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ================= DETALHES DO PRODUTO ================= -->
+<div id="detalhesProduto" class="hidden container">
+
+  <button id="btnVoltar">← Voltar</button>
+
+  <div class="detalhes-container">
+
+    <!-- IMAGEM -->
+    <img id="detalheImagem" alt="Produto">
+
+    <!-- VISUALIZAÇÃO -->
+    <div class="detalhes-info" id="visualizacaoProduto">
+      <h2 id="detalheNome"></h2>
+
+      <p><strong>Setor:</strong> <span id="detalheSetor"></span></p>
+      <p><strong>Valor:</strong> R$ <span id="detalheValor"></span></p>
+      <p><strong>Corredor:</strong> <span id="detalheCorredor"></span></p>
+
+      <p id="detalheDescricao"></p>
+
+      <button id="btnEditarProduto" class="hidden">Editar produto</button>
+    </div>
+
+    <!-- EDIÇÃO (ADM) -->
+    <div class="detalhes-info hidden" id="edicaoProduto">
+      <input id="editNome" placeholder="Nome">
+      <input id="editSetor" placeholder="Setor">
+      <input id="editValor" placeholder="Valor">
+      <input id="editCorredor" placeholder="Corredor">
+      <textarea id="editDescricao" placeholder="Descrição"></textarea>
+
+      <button id="btnSalvarEdicao">Salvar</button>
+      <button id="btnCancelarEdicao">Cancelar</button>
+    </div>
+
+  </div>
+
+  <!-- SUGESTÕES -->
+  <div id="areaSugestoes" class="hidden">
+    <h3>Sugestões do mesmo setor</h3>
+    <div id="sugestoes"></div>
+  </div>
+
+</div>
+
+<!-- ================= FORMULÁRIO DE CADASTRO DE PRODUTO (ADM) ================= -->
+<div id="formNovoProduto" class="hidden container">
+
+  <h3>Adicionar Produto</h3>
+
+  <input id="novoNome" placeholder="Nome do produto" required>
+  <input id="novoSetor" placeholder="Setor" required>
+  <input id="novoValor" placeholder="Valor" required>
+  <input id="novoCorredor" placeholder="Corredor" required>
+  <input id="novoCodigo" placeholder="Código" required>
+  <textarea id="novoDescricao" placeholder="Descrição (opcional)"></textarea>
+  <input id="novoImagem" placeholder="URL da imagem">
+
+  <button id="btnSalvarNovo">Salvar Produto</button>
+  <button id="btnCancelarNovo">Cancelar</button>
+
+</div>
+<div class="overlay"></div>
+<!-- ================= SCRIPTS ================= -->
+<script src="Script/conexao.js"></script>
+<script src="Script/script.js"></script>
+
+</body>
+</html>
