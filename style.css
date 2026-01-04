@@ -80,7 +80,7 @@ body {
 
 /* NOME */
 #siteNomeLobby {
-  color: #000;
+  color: #ffffff; /* branco */
   font-size: 2.2rem;
   font-weight: bold;
   text-align: center;
