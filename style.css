@@ -49,8 +49,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
 
-  z-index: 999;
-
   /* IMAGEM DE FUNDO */
   background-image: url("1.jpg");
   background-size: cover;
