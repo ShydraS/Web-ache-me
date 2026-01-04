@@ -1,96 +1,122 @@
-/* ================= CONEXÃO COM GOOGLE SHEETS ================= */
+/* =====================================================
+   CONEXAO.JS
+   BANCO DE DADOS SIMULADO (JS PURO)
+===================================================== */
 
-// URL do Apps Script ou SheetsBest
-const URL_SHEETS = "https://api.sheetbest.com/sheets/a7b8674b-9876-4a84-a253-2aed62610ae2";
+/* =====================================================
+   1️⃣ PROTÓTIPO DE PRODUTO (MODELO)
+   → usado como base para criação e edição
+===================================================== */
 
-/* ================= UTIL ================= */
+const produtoPrototipo = {
+  id: 0,              // 0 a 999
+  nome: "",           // string
+  setor: "",          // string
+  valor: 0,           // number
+  corredor: "",       // string
+  codigo: "",         // string
+  descricao: "",      // string
+  imagem: ""          // url ou base64
+};
 
-/**
- * Função auxiliar para timeout (evita travar app se o Sheets cair)
- */
-function fetchComTimeout(url, options = {}, timeout = 15000) {
-  return Promise.race([
-    fetch(url, options),
-    new Promise((_, reject) =>
-      setTimeout(() => reject(new Error("Tempo de conexão excedido")), timeout)
-    )
-  ]);
+/* =====================================================
+   2️⃣ LISTA VAZIA (USA O PROTÓTIPO)
+===================================================== */
+
+let produtos = [];
+
+/* =====================================================
+   3️⃣ PRODUTOS INICIAIS (CRIADOS A PARTIR DO PROTÓTIPO)
+===================================================== */
+
+const produtosBase = [
+  {
+    ...produtoPrototipo,
+    id: 1,
+    nome: "Arroz Branco",
+    setor: "Alimentos",
+    valor: 25.90,
+    corredor: "A1",
+    codigo: "001",
+    descricao: "Arroz branco tipo 1 – 5kg",
+    imagem: ""
+  },
+  {
+    ...produtoPrototipo,
+    id: 2,
+    nome: "Feijão Carioca",
+    setor: "Alimentos",
+    valor: 8.50,
+    corredor: "A1",
+    codigo: "002",
+    descricao: "Feijão carioca selecionado",
+    imagem: ""
+  },
+  {
+    ...produtoPrototipo,
+    id: 3,
+    nome: "Açúcar Refinado",
+    setor: "Alimentos",
+    valor: 4.20,
+    corredor: "A2",
+    codigo: "003",
+    descricao: "Açúcar refinado 1kg",
+    imagem: ""
+  }
+];
+
+/* =====================================================
+   4️⃣ INICIALIZAÇÃO
+===================================================== */
+
+if (produtos.length === 0) {
+  produtos = [...produtosBase];
 }
 
-/**
- * Normaliza os dados da planilha para o formato usado pelo site
- */
-function normalizarProdutos(data) {
-  if (!Array.isArray(data)) return [];
+/* =====================================================
+   5️⃣ FUNÇÕES DO "BANCO"
+===================================================== */
 
-  return data.map(p => ({
-    id: p.id ?? Date.now(),
-    nome: p.nome ?? "",
-    setor: p.setor ?? "",
-    valor: p.valor ?? "",
-    corredor: p.corredor ?? "",
-    codigo: p.codigo ?? "",
-    descricao: p.descricao ?? "",
-    imagem: p.imagem ?? "https://via.placeholder.com/200",
-    visivel: p.visivel !== false && p.visivel !== "off"
-  }));
+// 🔍 LISTAR
+function listarProdutos() {
+  return produtos;
 }
 
-/* ================= BUSCAR PRODUTOS ================= */
-async function fetchProdutos() {
-  try {
-    const response = await fetchComTimeout(URL_SHEETS);
+// ➕ CRIAR (usa protótipo)
+function adicionarProduto(dados) {
+  const novoProduto = {
+    ...produtoPrototipo,
+    ...dados,
+    id: Math.floor(Math.random() * 1000) // 0 a 999
+  };
 
-    if (!response.ok) throw new Error("Resposta inválida do servidor");
+  produtos.push(novoProduto);
+}
 
-    const data = await response.json();
-    return normalizarProdutos(data);
-
-  } catch (err) {
-    console.error("❌ Erro ao buscar produtos:", err);
-    alert("Erro ao carregar produtos. Verifique sua conexão.");
-    return [];
+// ✏️ EDITAR
+function editarProduto(id, novosDados) {
+  const index = produtos.findIndex(p => p.id === id);
+  if (index !== -1) {
+    produtos[index] = {
+      ...produtos[index],
+      ...novosDados
+    };
   }
 }
 
-/* ================= ADICIONAR PRODUTO ================= */
-async function addProduto(produto) {
-  try {
-    const response = await fetchComTimeout(URL_SHEETS, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(produto)
-    });
-
-    if (!response.ok) throw new Error("Falha ao adicionar produto");
-
-    const data = await response.json();
-    return data;
-
-  } catch (err) {
-    console.error("❌ Erro ao adicionar produto:", err);
-    alert("Não foi possível adicionar o produto.");
-    return null;
-  }
+// ❌ REMOVER
+function removerProduto(id) {
+  produtos = produtos.filter(p => p.id !== id);
 }
 
-/* ================= EDITAR PRODUTO ================= */
-async function editProduto(produto) {
-  try {
-    const response = await fetchComTimeout(URL_SHEETS, {
-      method: "PUT", // Alguns endpoints usam PUT para atualizar
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(produto)
-    });
+/* =====================================================
+   6️⃣ EXPOSIÇÃO GLOBAL
+===================================================== */
 
-    if (!response.ok) throw new Error("Falha ao editar produto");
-
-    const data = await response.json();
-    return data;
-
-  } catch (err) {
-    console.error("❌ Erro ao editar produto:", err);
-    alert("Não foi possível salvar as alterações.");
-    return null;
-  }
-}
+window.DB = {
+  produtoPrototipo,
+  listarProdutos,
+  adicionarProduto,
+  editarProduto,
+  removerProduto
+};
