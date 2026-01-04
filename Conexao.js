@@ -1,9 +1,4 @@
 /* =====================================================
-   CONEXAO.JS
-   BANCO DE DADOS SIMULADO (JS PURO)
-===================================================== */
-
-/* =====================================================
    1️⃣ PROTÓTIPO DE PRODUTO (MODELO)
    → usado como base para criação e edição
 ===================================================== */
@@ -20,103 +15,47 @@ const produtoPrototipo = {
 };
 
 /* =====================================================
-   2️⃣ LISTA VAZIA (USA O PROTÓTIPO)
+   CONEXAO.JS
+   SOMENTE LEITURA (CATÁLOGO FIXO)
 ===================================================== */
 
-let produtos = [];
-
-/* =====================================================
-   3️⃣ PRODUTOS INICIAIS (CRIADOS A PARTIR DO PROTÓTIPO)
-===================================================== */
-
-const produtosBase = [
+const produtos = [
   {
-    ...produtoPrototipo,
     id: 1,
-    nome: "Arroz Branco",
+    nome: "Arroz",
     setor: "Alimentos",
-    valor: 25.90,
+    valor: "25.90",
     corredor: "A1",
     codigo: "001",
-    descricao: "Arroz branco tipo 1 – 5kg",
-    imagem: ""
+    descricao: "Arroz branco 5kg",
+    imagem: "https://via.placeholder.com/200",
+    visivel: true
   },
   {
-    ...produtoPrototipo,
     id: 2,
-    nome: "Feijão Carioca",
+    nome: "Feijão",
     setor: "Alimentos",
-    valor: 8.50,
+    valor: "8.50",
     corredor: "A1",
     codigo: "002",
-    descricao: "Feijão carioca selecionado",
-    imagem: ""
+    descricao: "Feijão carioca",
+    imagem: "https://via.placeholder.com/200",
+    visivel: true
   },
   {
-    ...produtoPrototipo,
     id: 3,
-    nome: "Açúcar Refinado",
-    setor: "Alimentos",
-    valor: 4.20,
-    corredor: "A2",
-    codigo: "003",
-    descricao: "Açúcar refinado 1kg",
-    imagem: ""
+    nome: "Detergente",
+    setor: "Limpeza",
+    valor: "3.20",
+    corredor: "B2",
+    codigo: "010",
+    descricao: "Detergente neutro",
+    imagem: "https://via.placeholder.com/200",
+    visivel: true
   }
 ];
 
-/* =====================================================
-   4️⃣ INICIALIZAÇÃO
-===================================================== */
-
-if (produtos.length === 0) {
-  produtos = [...produtosBase];
+/* FUNÇÃO DE LEITURA */
+function fetchProdutos() {
+  return Promise.resolve(produtos);
 }
-
-/* =====================================================
-   5️⃣ FUNÇÕES DO "BANCO"
-===================================================== */
-
-// 🔍 LISTAR
-function listarProdutos() {
-  return produtos;
-}
-
-// ➕ CRIAR (usa protótipo)
-function adicionarProduto(dados) {
-  const novoProduto = {
-    ...produtoPrototipo,
-    ...dados,
-    id: Math.floor(Math.random() * 1000) // 0 a 999
-  };
-
-  produtos.push(novoProduto);
-}
-
-// ✏️ EDITAR
-function editarProduto(id, novosDados) {
-  const index = produtos.findIndex(p => p.id === id);
-  if (index !== -1) {
-    produtos[index] = {
-      ...produtos[index],
-      ...novosDados
-    };
-  }
-}
-
-// ❌ REMOVER
-function removerProduto(id) {
-  produtos = produtos.filter(p => p.id !== id);
-}
-
-/* =====================================================
-   6️⃣ EXPOSIÇÃO GLOBAL
-===================================================== */
-
-window.DB = {
-  produtoPrototipo,
-  listarProdutos,
-  adicionarProduto,
-  editarProduto,
-  removerProduto
-};
