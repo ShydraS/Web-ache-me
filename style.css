@@ -14,6 +14,9 @@ html, body {
 
 body {
   background: linear-gradient(135deg, #1e3c72, #2a5298);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ================= UTIL ================= */
@@ -24,10 +27,10 @@ body {
 .container {
   width: 100%;
   max-width: 480px;
-  margin: 0 auto;
+  margin: auto;
 }
 
-/* ================= LOBBY ================= */
+/* ===== LOBBY ===== */
 #lobby {
   position: fixed;
   inset: 0;
@@ -47,16 +50,8 @@ body {
   background-repeat: no-repeat;
 
   z-index: 999;
-}
 
-#lobby::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 0;
-  
-/* IMAGEM DE FUNDO */
+  /* IMAGEM DE FUNDO */
   background-image: url("1.jpg");
   background-size: cover;
   background-position: center;
@@ -65,6 +60,44 @@ body {
   z-index: 999;
 }
 
+/* CAMADA ESCURA PARA LEGIBILIDADE */
+#lobby::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
+
+/* CONTEÚDO DO LOBBY */
+/* ===== LOBBY ===== */
+#lobby {
+  position: fixed;
+  inset: 0;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-image: url("../imagem/1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  z-index: 999;
+}
+
+/* camada escura */
+#lobby::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 0;
+}
+
+/* container do lobby */
 #lobby .container {
   position: relative;
   z-index: 1;
@@ -76,17 +109,22 @@ body {
   justify-content: center;
 }
 
-/* botão lobby */
+/* remove o título (como você pediu) */
+#lobby h1 {
+  display: none;
+}
+
+/* botão */
 #lobby button {
   width: 73%;
   max-width: 270px;
   height: 59px;
-
-  background: #1e3c72;
-  color: #ffffff;
+  
+  background: rgba(255, 255, 255, 0.9);
+  color: #1e3c72;
 
   border: none;
-  border-radius: 999px;
+  border-radius: 20px;
 
   font-size: 1.4rem;
   font-weight: bold;
@@ -95,31 +133,43 @@ body {
   align-items: center;
   justify-content: center;
 
-  box-shadow: 0 12px 30px rgba(30, 60, 114, 0.45);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
   cursor: pointer;
 
-  transition: transform 0.2s ease;
+  margin-top: 470px; /* DESCE O BOTÃO */
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #lobby button:hover {
   transform: scale(1.05);
 }
 
+/* 🔒 PREVENÇÃO: impede botão subir */
+#lobby > * {
+  position: static !important;
+}
+
+/* ===== BOTÃO DO LOBBY AZUL ===== */
+#lobby button {
+  background: #1e3c72;        /* azul principal */
+  color: #ffffff;             /* texto branco */
+  border-radius: 999px;       /* bem arredondado */
+
+  box-shadow: 0 12px 30px rgba(30, 60, 114, 0.45);
+}
+
 /* ================= APP ================= */
 #app {
-  background: #ffffff;
+  background: #fff;
   min-height: 100vh;
   border-radius: 18px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-
-  width: 100vw;
-  max-width: 480px;
-  margin: 0 auto;
 }
 
-/* ================= HEADER ================= */
+/* ================= HEADER / PESQUISA ================= */
 header {
   background: #1e3c72;
   padding: 20px;
@@ -129,7 +179,7 @@ header {
 header h1 {
   font-size: 30px;
   margin-bottom: 12px;
-  text-align: center;
+  text-align: center; /* centraliza horizontalmente */
 }
 
 #pesquisa {
@@ -168,14 +218,12 @@ header h1 {
 }
 
 #btnVoltar {
-  background-color: #1e90ff;
-  color: white;
-  font-size: 18px;
-  padding: 10px 18px;
-  border-radius: 12px;
+  background: none;
   border: none;
+  color: #1e3c72;
+  font-size: 16px;
+  margin-bottom: 10px;
   cursor: pointer;
-  margin-bottom: 15px;
 }
 
 .detalhes-container {
@@ -246,24 +294,30 @@ header h1 {
   font-weight: bold;
 }
 
-/* ================= FORM NOVO PRODUTO (MODAL) ================= */
+/* ================= LISTA ADM ================= */
+#listaADM {
+  margin-top: 10px;
+}
+
+.adm-item {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+/* ================= FORM NOVO PRODUTO ================= */
 #formNovoProduto {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 2000;
-
-  width: 90%;
-  max-width: 480px;
   background: #fff;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  padding: 15px;
+  margin: 15px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  /* 🔒 CRÍTICO: impede abrir lateral */
+  position: relative;
+  width: auto;
+  max-width: 100%;
 }
 
 #formNovoProduto input,
@@ -271,6 +325,7 @@ header h1 {
 #formNovoProduto button {
   width: 100%;
   padding: 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
   border: 1px solid #ccc;
 }
@@ -282,41 +337,7 @@ header h1 {
   font-weight: bold;
 }
 
-/* ================= TOPO ADM ================= */
-#topoADM {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #1e3c72;
-  z-index: 1000;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0;
-  gap: 15px;
-}
-
-#tituloADM {
-  font-size: 2.5rem;
-  font-weight: bold;
-  text-align: center;
-  color: white;
-}
-
-#sairADM {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 2rem;
-  background: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-/* ================= MOBILE ================= */
+/* ================= MOBILE SAFE ================= */
 @media (max-width: 480px) {
   .detalhes-container {
     flex-direction: column;
@@ -327,3 +348,108 @@ header h1 {
     height: 180px;
   }
 }
+/* ================= TOPO ADM FIXO ================= */
+#topoADM {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #1e3c72; /* azul */
+  z-index: 1000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  gap: 15px;
+}
+
+/* Título ADM centralizado */
+#tituloADM {
+  font-size: 2.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  width: 100%;
+}
+
+/* Botão de sair do ADM */
+#sairADM {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 2.0rem;
+  color: white;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Barra de pesquisa dentro do topo */
+#topoADM #pesquisa {
+  width: 90%;
+  max-width: 400px;
+  border-radius: 12px;
+  border: none;
+  padding: 10px 12px;
+}
+
+/* Produtos aleatórios abaixo da pesquisa */
+#produtosAleatoriosADM {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Cards dos produtos aleatórios */
+.aleatorio-adm {
+  background-color: rgba(255,255,255,0.9);
+  color: #1e3c72;
+  padding: 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 160px;
+  text-align: center;
+}
+
+/* Botão voltar maior e visível */
+#btnVoltar {
+  background-color: #1e90ff;
+  color: white;
+  font-size: 18px;
+  padding: 10px 18px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+/* Ajusta formulário de novo produto para ficar centralizado */
+#formNovoProduto {
+  width: 90%;
+  max-width: 480px;
+  margin: 15px auto;
+  left: 0;
+  right: 0;
+}
+/* ================= FORMULÁRIO NOVO PRODUTO CENTRALIZADO ================= */
+#formNovoProduto {
+  position: fixed;           /* Fixa sobre a tela */
+  top: 50%;                  /* Centraliza vertical */
+  left: 50%;                 /* Centraliza horizontal */
+  transform: translate(-50%, -50%); /* Ajusta o centro */
+  z-index: 2000;             /* Sempre acima de tudo */
+
+  width: 90%;                /* largura responsiva */
+  max-width: 480px;          /* largura máxima */
+  background: #fff;          /* fundo branco */
+  padding: 20px;             /* espaço interno */
+  border-radius: 18px;       /* borda arredondada */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25); /* sombra bonita */
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
