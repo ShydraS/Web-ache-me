@@ -55,8 +55,7 @@ body {
   inset: 0;
   background: rgba(0, 0, 0, 0.55);
   z-index: 0;
-}
-
+  
 /* IMAGEM DE FUNDO */
   background-image: url("1.jpg");
   background-size: cover;
