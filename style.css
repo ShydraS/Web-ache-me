@@ -16,6 +16,12 @@ html, body {
   overflow: hidden; /* 🔒 trava rolagem lateral e vertical */
 }
 
+#lobby {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
 /* =========================================================
    UTILITÁRIOS
 ========================================================= */
