@@ -1,600 +1,500 @@
-
 /* ============================================================
-   VARIÁVEIS TÉCNICAS E PALETA DE CORES
+   1. RESET E VARIÁVEIS GLOBAIS
    ============================================================ */
 :root {
-    --primary-blue: #1e3a6a;      /* Azul Profundo do Header */
-    --accent-green: #2ecc71;      /* Verde do Lobby/Preços */
-    --soft-white: #f8f9fa;        /* Fundo da Página */
-    --pure-white: #ffffff;        /* Fundo dos Cards */
-    --text-dark: #2d3436;         /* Cor principal do texto */
-    --text-light: #636e72;        /* Texto secundário/setores */
-    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-bold: 0 8px 24px rgba(0, 0, 0, 0.15);
-    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Paleta de Cores Profissional */
+    --primary-navy: #1a2a44;       /* Azul Escuro Sofisticado */
+    --accent-emerald: #27ae60;     /* Verde Sucesso */
+    --bg-light: #f8f9fa;           /* Cinza de Fundo App */
+    --pure-white: #ffffff;
+    --text-main: #2d3436;          /* Texto Quase Preto */
+    --text-muted: #636e72;         /* Texto Secundário */
+    --error-red: #d63031;
+    
+    /* Sombras e Efeitos */
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --shadow-medium: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-inner: inset 0 2px 4px rgba(0,0,0,0.06);
+    --transition-fast: 0.2s ease;
+    --border-radius-lg: 20px;
+    --border-radius-md: 12px;
 }
 
-/* ============================================================
-   RESET E CONFIGURAÇÕES DE BASE
-   ============================================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    -webkit-tap-highlight-color: transparent;
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent; /* Remove brilho azul ao clicar no mobile */
 }
 
 body {
-    background-color: var(--soft-white);
-    color: var(--text-dark);
+    background-color: var(--bg-light);
+    color: var(--text-main);
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-.hidden { display: none !important; }
+/* Utilitários de Visibilidade */
+.view-hidden { display: none !important; }
+.view-active { display: block !important; }
 
 /* ============================================================
-   TELA LOBBY (DESIGN IMPACTANTE)
+   2. TELA DE LOBBY (INTRODUÇÃO)
    ============================================================ */
-#lobby {
+#tela-lobby {
     height: 100vh;
-    width: 100%;
-    background: linear-gradient(135deg, var(--primary-blue) 0%, #0d1f3d 100%);
     display: flex;
     justify-content: center;
     align-items: center;
+    background: radial-gradient(circle at top left, var(--primary-navy), #0a111a);
+    padding: 30px;
 }
 
-.lobby-container-central {
+.lobby-wrapper {
     text-align: center;
-    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.circulo-logo-principal {
-    width: 150px;
-    height: 150px;
-    background-color: var(--accent-green);
-    border-radius: 50%;
+.logo-animada {
+    width: 140px;
+    height: 140px;
+    background: var(--accent-emerald);
+    border-radius: 40px;
     margin: 0 auto 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-    border: 4px solid rgba(255,255,255,0.2);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transform: rotate(-5deg);
 }
 
-.circulo-logo-principal img {
-    width: 85px;
-    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
+.logo-animada img {
+    width: 80px;
+    filter: brightness(0) invert(1);
 }
 
-.logo-texto-principal {
+.marca-titulo {
     color: var(--pure-white);
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-weight: 800;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
+    margin-bottom: 8px;
+}
+
+.marca-slogan {
+    color: #a0aec0;
+    font-size: 1.1rem;
     margin-bottom: 40px;
 }
 
-.botao-iniciar-verde {
-    background: var(--accent-green);
-    color: var(--pure-white);
+.btn-principal {
+    background: var(--accent-emerald);
+    color: white;
     border: none;
-    padding: 20px 80px;
-    border-radius: 50px;
-    font-size: 1.4rem;
+    width: 100%;
+    padding: 20px;
+    border-radius: var(--border-radius-md);
+    font-size: 1.1rem;
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
-    transition: var(--transition-smooth);
+    box-shadow: 0 10px 20px rgba(39, 174, 96, 0.3);
+    transition: var(--transition-fast);
 }
 
-.botao-iniciar-verde:active {
-    transform: scale(0.95);
-    background: #27ae60;
+.btn-principal:active {
+    transform: scale(0.96);
+}
+
+.feedback-versao {
+    margin-top: 25px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 1px;
 }
 
 /* ============================================================
-   NOVA ESTRUTURA DE TOP BAR (A FAIXA AZUL MODIFICADA)
+   3. NAVEGAÇÃO E HEADER (APP PRINCIPAL)
    ============================================================ */
-
-/* 1. A barra azul de ponta a ponta */
-.header-principal-azul {
-    background-color: var(--primary-blue);
-    width: 100%;
+.navbar-topo {
+    background: var(--primary-navy);
+    padding: 20px 20px 30px;
+    border-radius: 0 0 30px 30px;
     position: sticky;
     top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column; /* Organiza em linhas para não encavalar */
+    z-index: 100;
+    box-shadow: var(--shadow-medium);
 }
 
-/* 2. Seta isolada no topo (Linha 1) */
-.header-navegacao-interna {
-    width: 100%;
-    height: 50px;
+.navbar-controle {
     display: flex;
     align-items: center;
-    padding: 0 15px;
-}
-
-.btn-seta-voltar-preta {
-    background: none;
-    border: none;
-    font-size: 2.5rem;
-    color: var(--pure-white); /* Branca para destacar no azul */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-}
-
-/* 3. Título Centralizado (Linha 2 - ADM ou Web Ache-me) */
-.container-titulos-centralizados {
-    width: 100%;
-    padding: 5px 0 15px 0;
-    display: flex;
     justify-content: center;
-    align-items: center;
+    margin-bottom: 20px;
+    min-height: 45px;
 }
 
-.titulo-centralizado-header {
-    color: var(--pure-white);
-    font-size: 1.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+.navbar-branding {
     text-align: center;
+    color: white;
 }
 
-/* Barra de Pesquisa (Linha 3) */
-.container-barra-pesquisa {
-    padding: 0 15px 20px 15px;
+#nome-projeto {
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+#badge-adm {
+    display: block;
+    background: #e74c3c;
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    margin-top: 4px;
+}
+
+.btn-circular {
+    position: absolute;
+    left: 20px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* CAMPO DE BUSCA */
+.barra-busca-container {
     max-width: 600px;
     margin: 0 auto;
-    width: 100%;
 }
 
-.wrapper-input-busca {
-    position: relative;
-    box-shadow: var(--shadow-bold);
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-#pesquisa {
-    width: 100%;
-    padding: 15px 50px 15px 20px;
-    border: none;
-    font-size: 1.1rem;
+.input-wrapper {
     background: var(--pure-white);
-    outline: none;
+    border-radius: 16px;
+    padding: 4px 15px;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--shadow-inner);
 }
 
-.icone-lupa-busca {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 1.2rem;
+.lupa { margin-right: 12px; font-size: 1.2rem; }
+
+#campo-pesquisa {
+    border: none;
+    width: 100%;
+    padding: 14px 0;
+    font-size: 1rem;
+    outline: none;
+    color: var(--text-main);
 }
 
 /* ============================================================
-   DESIGN DOS CARDS (CLIENTE)
+   4. GRIDS E LISTAGENS
    ============================================================ */
-.conteudo-dinamico {
-    padding: 20px 15px;
+.conteudo-scrollable {
+    padding: 20px;
     max-width: 800px;
     margin: 0 auto;
 }
 
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+}
+
+/* Cards de Produto Estilo Cliente */
 .card-item-cliente {
-    background-color: var(--pure-white);
-    margin-bottom: 15px;
+    background: var(--pure-white);
     padding: 20px;
-    border-radius: 16px;
-    box-shadow: var(--shadow-light);
-    display: flex;
-    flex-direction: column;
-    border-left: 6px solid var(--primary-blue);
-    transition: var(--transition-smooth);
-    animation: slideUp 0.4s ease forwards;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(0,0,0,0.03);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
 }
 
 .card-item-cliente:active {
-    transform: scale(0.98);
+    transform: scale(0.95);
+    background: #f1f2f6;
 }
 
 .card-item-cliente strong {
-    font-size: 1.25rem;
-    color: var(--text-dark);
+    display: block;
+    font-size: 1rem;
+    color: var(--primary-navy);
     margin-bottom: 5px;
+    line-height: 1.2;
 }
 
-.card-item-cliente .card-preco {
-    color: var(--accent-green);
+.card-item-cliente small {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.card-preco-cliente {
+    display: block;
+    margin-top: 12px;
+    color: var(--accent-emerald);
     font-weight: 800;
     font-size: 1.2rem;
 }
 
-/* ============================================================
-   DESIGN MODO ADM
-   ============================================================ */
-.item-lista-adm {
-    background: var(--pure-white);
-    padding: 18px;
-    margin-bottom: 12px;
-    border-radius: 14px;
+/* Painel ADM */
+.lista-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-adm-card {
+    background: white;
+    padding: 15px;
+    border-radius: var(--border-radius-md);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: var(--shadow-light);
-    border: 1px solid rgba(0,0,0,0.03);
+    box-shadow: var(--shadow-soft);
 }
 
-.item-oculto {
-    background-color: #f1f2f6;
-    opacity: 0.7;
-    border-left: 4px solid #ff4757;
-}
-
-.btn-controle-visibilidade {
-    padding: 10px 18px;
-    border-radius: 10px;
-    border: none;
-    background: var(--soft-white);
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition-smooth);
+.item-off {
+    opacity: 0.5;
+    background: #f1f2f6;
+    border-left: 4px solid var(--error-red);
 }
 
 /* ============================================================
-   TELA DE DETALHES (DESIGN REFORMULADO)
+   5. PÁGINA DE DETALHES (FULLSCREEN)
    ============================================================ */
-#detalhesProduto {
-    background-color: var(--pure-white);
-    min-height: 100vh;
+#tela-detalhes {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--bg-light);
+    z-index: 1000;
+    overflow-y: auto;
 }
 
-/* Barra superior da tela de detalhes */
-/* O Retângulo Azul de ponta a ponta usando sua variável */
-.barra-voltar-detalhes {
-    width: 100% !important;
-    height: 65px !important;
-    background-color: var(--primary-blue) !important; /* Azul da sua variável */
-    display: flex !important;
-    align-items: center !important;
-    padding: 0 15px !important;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-/* A Seta Preta com contorno para não sumir no azul */
-.btn-seta-voltar-detalhe {
-    color: #000000 !important; /* SETA PRETA */
-    background: none !important;
-    border: none !important;
-    font-size: 3rem !important;
-    cursor: pointer !important;
-    /* Adicionando um leve contorno branco para ela aparecer no azul escuro */
-    filter: drop-shadow(0px 0px 2px rgba(255, 255, 255, 0.8)); 
-}
-
-
-.card-detalhes-completo {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 25px 50px 25px;
-}
-
-.imagem-detalhe-wrapper {
-    width: 100%;
-    background: #fdfdfd;
-    border-radius: 24px;
-    padding: 30px;
-    margin-bottom: 25px;
+.navbar-detalhes {
+    background: var(--primary-navy);
+    padding: 15px 20px;
+    color: white;
     display: flex;
-    justify-content: center;
-    box-shadow: inset 0 0 15px rgba(0,0,0,0.03);
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-.imagem-detalhe-wrapper img {
+.btn-voltar-app {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-right: 15px;
+}
+
+.tag-topo { font-size: 0.8rem; font-weight: 300; letter-spacing: 2px; }
+
+/* Hero Card */
+.card-detalhe-hero {
+    background: var(--pure-white);
+    margin: 20px;
+    padding: 30px 20px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: var(--shadow-medium);
+}
+
+.moldura-img-produto {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.moldura-img-produto img {
+    max-height: 100%;
     max-width: 100%;
-    height: auto;
-    max-height: 250px;
     object-fit: contain;
 }
 
-.nome-produto-detalhe {
-    font-size: 2.4rem;
-    font-weight: 800;
-    color: var(--text-dark);
-    line-height: 1.1;
-    margin-bottom: 10px;
-}
-
-.preco-destaque-detalhe {
-    font-size: 2.6rem;
-    color: var(--accent-green);
+.preco-destaque {
+    font-size: 2.5rem;
     font-weight: 900;
-    margin-bottom: 30px;
-    display: block;
+    color: var(--accent-emerald);
 }
 
-/* ============================================================
-   DESIGN DO CARD DE INFORMAÇÕES (Fica dentro de #detalhesProduto)
-   ============================================================ */
-
-/* O container que segura os cards */
-.tabela-info-tecnica {
-    display: flex !important;
-    flex-wrap: wrap !important;     /* Permite que os cards fiquem um do lado do outro */
-    gap: 12px !important;            /* Espaço entre os cartões */
-    background: transparent !important; /* Remove o fundo antigo */
-    padding: 0 !important;
-    border: none !important;
+/* Info Grid (Cards Brancos) */
+.info-grid-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 20px;
 }
 
-/* Cada "Linha" vira um Card Branco igual ao da imagem */
-.linha-info {
-    background: #ffffff !important;   /* Fundo branco puro */
-    border-radius: 12px !important;   /* Bordas arredondadas */
-    padding: 18px 20px !important;    /* Espaço interno */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04) !important; /* Sombra bem leve */
-    display: flex !important;
-    flex-direction: column !important; /* Texto um embaixo do outro */
-    border: none !important;
-}
-
-/* Ajuste de tamanho dos Cards para o Grid da Imagem */
-.linha-info:nth-child(1) { 
-    flex: 1 1 100% !important;        /* O primeiro card (Setor) ocupa a linha toda */
-} 
-
-.linha-info:nth-child(2), 
-.linha-info:nth-child(3) { 
-    flex: 1 1 calc(50% - 6px) !important; /* Corredor e Código dividem a linha (50% cada) */
-}
-
-/* Estilo do Texto dentro do Card */
-.linha-info strong {
-    color: #95a5a6 !important;        /* Cinza claro para o rótulo (ex: SETOR) */
-    font-size: 0.8rem !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    margin-bottom: 6px !important;
-}
-
-.linha-info span {
-    font-weight: 800 !important;      /* Texto em negrito pesado */
-    color: #2c3e50 !important;        /* Azul bem escuro para o valor */
-    font-size: 1.1rem !important;
-}
-
-.descricao-longa-produto {
-    margin-top: 35px;
-}
-
-.descricao-longa-produto h3 {
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    color: var(--text-dark);
-    margin-bottom: 12px;
-}
-
-.descricao-longa-produto p {
-    color: var(--text-light);
-    line-height: 1.8;
-}
-
-/* ============================================================
-   ANIMAÇÕES
-   ============================================================ */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (min-width: 768px) {
-    .grid-lista-produtos {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 20px;
-    }
-}
-/;
-    margin-top: auto !important;
-}
-
-/* Estilo do Rodapé de Sugestão de Texto (Deseja sugerir algo?) */
-.container-sugestao {
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 15px;
-    text-align: center;
-}
-
-.container-sugestao h3 {
-    font-size: 1.1rem;
-    color: var(--primary-blue);
-    margin-bottom: 15px;
-}
-
-#input-sugestao {
-    width: 100%;
-    background-color: #f1f2f6;
-    border: none;
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 0.9rem;
-    color: #636e72;
-}
-
-.btn-enviar-sugestao {
-    width: 100%;
-    background-color: #4cd137;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 10px;
-    font-weight: 800;
-    font-size: 1rem;
-    margin-top: 10px;
-    cursor: pointer;
-                           }
-/* ============================================================
-   ESTILIZAÇÃO DA TELA DE DETALHES E VITRINE
-   ============================================================ */
-
-/* Container Principal de Detalhes */
-#detalhesProduto {
-    padding: 20px;
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Área da Imagem Principal do Produto */
-.area-imagem-detalhe {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto 20px auto;
+.info-card {
     background: white;
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    border-bottom: 3px solid transparent;
+    transition: 0.3s;
 }
 
-.area-imagem-detalhe img {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
-    object-fit: contain; /* Impede que o ícone fique cortado */
+.info-card:first-child {
+    grid-column: span 2;
+    border-bottom-color: var(--primary-navy);
 }
 
-/* Títulos e Textos */
-.info-principal h2 {
-    color: #333;
+.info-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 800;
     margin-bottom: 5px;
 }
 
-.preco-detalhe {
-    color: #27ae60;
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: block;
-    margin-bottom: 20px;
+.info-card strong {
+    font-size: 1.1rem;
+    color: var(--primary-navy);
 }
 
-/* Grid de Sugestões (O famoso 3x3) */
-#listaSugestoes {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
-    gap: 10px;
-    margin-top: 15px;
+/* Descrição */
+.bloco-descricao {
+    padding: 30px 20px;
 }
 
-/* Card Individual da Sugestão Mini */
-.card-sugestao-mini {
+.bloco-descricao h4 {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+.bloco-descricao p {
     background: white;
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    cursor: pointer;
-    transition: transform 0.2s;
-    border: 1px solid #eee;
-}
-
-.card-sugestao-mini:hover {
-    transform: translateY(-3px);
-}
-
-/* CORREÇÃO DAS IMAGENS GIGANTES NAS SUGESTÕES */
-.area-imagem-mini {
-    width: 100%;
-    height: 60px; /* Altura fixa para o quadradinho */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.area-imagem-mini img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* O segredo para o ícone caber no quadrado */
-}
-
-/* Textos das Sugestões Mini */
-.nome-produto-mini {
-    display: block;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #555;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Corta o texto com ... se for muito longo */
-}
-
-.valor-produto-mini {
-    display: block;
-    font-size: 0.85rem;
-    color: #27ae60;
-    font-weight: bold;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 0.95rem;
+    color: var(--text-main);
 }
 
 /* ============================================================
-   SEÇÃO "DESEJA SUGERIR ALGO?" (IGUAL À IMAGEM)
+   6. GRID DE SUGESTÕES 3X3
    ============================================================ */
-
-.secao-sugestao-usuario {
-    margin-top: 30px;
+.secao-sugestoes {
+    padding: 30px 20px;
     background: white;
-    padding: 20px;
-    border-radius: 15px 15px 0 0;
-    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    border-radius: 40px 40px 0 0;
+    box-shadow: 0 -10px 30px rgba(0,0,0,0.03);
+}
+
+.sugestao-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tag-grid {
+    background: #f1f2f6;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    font-weight: 800;
+}
+
+.layout-sugestoes-3x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.card-mini-sugestao {
+    text-align: center;
+    padding: 10px;
+    background: var(--bg-light);
+    border-radius: 15px;
+    transition: 0.2s;
+}
+
+.card-mini-sugestao img {
+    width: 100%;
+    height: 50px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.card-mini-sugestao strong {
+    display: block;
+    font-size: 0.65rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+}
+
+.card-mini-sugestao span {
+    font-size: 0.8rem;
+    color: var(--accent-emerald);
+    font-weight: 800;
+}
+
+/* ============================================================
+   7. FOOTER E ANIMAÇÕES
+   ============================================================ */
+.footer-interativo {
+    padding: 40px 20px;
+    background: #f8f9fa;
     text-align: center;
 }
 
-.secao-sugestao-usuario h3 {
-    color: #1a3a5a;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
+.form-sugestao {
+    margin-top: 20px;
 }
 
-.secao-sugestao-usuario input {
+#feedback-input {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f1f3f5;
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px solid #eee;
     margin-bottom: 15px;
     outline: none;
-    box-sizing: border-box; /* Garante que o padding não quebre a largura */
 }
 
-.btn-enviar-sugestao {
+.btn-enviar-feedback {
     width: 100%;
-    padding: 12px;
-    background-color: #4caf50; /* Verde da sua imagem */
+    background: var(--primary-navy);
     color: white;
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
+    padding: 15px;
+    border-radius: 12px;
+    font-weight: 700;
 }
 
-.btn-enviar-sugestao:hover {
-    background-color: #43a047;
+/* Animações Keyframes */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-/* Auxiliares */
-.hidden {
-    display: none !important;
+/* Media Query para Telas Maiores (Desktop) */
+@media (min-width: 768px) {
+    .grid-layout { grid-template-columns: repeat(3, 1fr); }
+    .detalhes-container { max-width: 600px; margin: 0 auto; }
 }
