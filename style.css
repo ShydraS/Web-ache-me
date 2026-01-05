@@ -402,76 +402,7 @@ body {
         gap: 20px;
     }
 }
-/* ============================================================
-   AJUSTE FINAL: VITRINE DE SUGESTÕES (ESTILO IDENTICO À FOTO)
-   ============================================================ */
-
-/* 1. O Título da seção */
-.titulo-sessao-detalhe {
-    font-size: 1rem;
-    font-weight: 800;
-    color: var(--primary-blue);
-    margin: 25px 0 15px 0;
-    text-align: left;
-}
-
-/* 2. O Container Grid (Garante as 3 colunas) */
-.grid-sugestoes-9 {
-    display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important; 
-    gap: 10px !important;
-    width: 100% !important;
-}
-
-/* 3. O Quadrado Branco (Card) */
-.card-sugestao-mini {
-    background: #ffffff !important;
-    border-radius: 12px !important;
-    padding: 12px 8px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
-    border: 1px solid #f0f0f0 !important;
-    aspect-ratio: 1 / 1.3; /* Mantém o formato de cartão vertical */
-    overflow: hidden;
-}
-
-/* 4. A FOTO (Aqui está o segredo para não quebrar o site) */
-.area-imagem-mini {
-    width: 100% !important;
-    height: 60px !important; /* Tamanho fixo para a imagem não crescer */
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    margin-bottom: 8px !important;
-}
-
-.area-imagem-mini img {
-    max-width: 50px !important; /* Limita a largura da foto */
-    max-height: 50px !important; /* Limita a altura da foto */
-    object-fit: contain !important; /* Não distorce a imagem */
-}
-
-/* 5. Nome do Produto (Pequeno e centralizado) */
-.nome-produto-mini {
-    font-size: 0.7rem !important;
-    font-weight: 700 !important;
-    color: #333 !important;
-    margin-bottom: 2px !important;
-    text-align: center !important;
-    display: block !important;
-    line-height: 1.2 !important;
-}
-
-/* 6. O VALOR (VERDE IGUAL À FOTO) */
-.valor-produto-mini {
-    font-size: 0.9rem !important;
-    font-weight: 800 !important;
-    color: #2ecc71 !important; /* VERDE DA REFERÊNCIA */
-    text-align: center !important;
-    display: block !important;
+/;
     margin-top: auto !important;
 }
 
@@ -512,4 +443,158 @@ body {
     margin-top: 10px;
     cursor: pointer;
                            }
-   
+/* ============================================================
+   ESTILIZAÇÃO DA TELA DE DETALHES E VITRINE
+   ============================================================ */
+
+/* Container Principal de Detalhes */
+#detalhesProduto {
+    padding: 20px;
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Área da Imagem Principal do Produto */
+.area-imagem-detalhe {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 20px auto;
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.area-imagem-detalhe img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain; /* Impede que o ícone fique cortado */
+}
+
+/* Títulos e Textos */
+.info-principal h2 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.preco-detalhe {
+    color: #27ae60;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Grid de Sugestões (O famoso 3x3) */
+#listaSugestoes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+    gap: 10px;
+    margin-top: 15px;
+}
+
+/* Card Individual da Sugestão Mini */
+.card-sugestao-mini {
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: transform 0.2s;
+    border: 1px solid #eee;
+}
+
+.card-sugestao-mini:hover {
+    transform: translateY(-3px);
+}
+
+/* CORREÇÃO DAS IMAGENS GIGANTES NAS SUGESTÕES */
+.area-imagem-mini {
+    width: 100%;
+    height: 60px; /* Altura fixa para o quadradinho */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.area-imagem-mini img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* O segredo para o ícone caber no quadrado */
+}
+
+/* Textos das Sugestões Mini */
+.nome-produto-mini {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Corta o texto com ... se for muito longo */
+}
+
+.valor-produto-mini {
+    display: block;
+    font-size: 0.85rem;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+/* ============================================================
+   SEÇÃO "DESEJA SUGERIR ALGO?" (IGUAL À IMAGEM)
+   ============================================================ */
+
+.secao-sugestao-usuario {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.secao-sugestao-usuario h3 {
+    color: #1a3a5a;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.secao-sugestao-usuario input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f1f3f5;
+    margin-bottom: 15px;
+    outline: none;
+    box-sizing: border-box; /* Garante que o padding não quebre a largura */
+}
+
+.btn-enviar-sugestao {
+    width: 100%;
+    padding: 12px;
+    background-color: #4caf50; /* Verde da sua imagem */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-enviar-sugestao:hover {
+    background-color: #43a047;
+}
+
+/* Auxiliares */
+.hidden {
+    display: none !important;
+}
