@@ -1,27 +1,22 @@
-/* ======================================================
-   CONFIGURAÇÕES GERAIS
-====================================================== */
-const CHAVE_ADM = "123";
-
-/* ======================================================
-   BANCO DE DADOS (75 PRODUTOS)
-====================================================== */
-const produtos = [
-    // MERCEARIA (15)
-    { id: 1, nome: "Arroz Agulhinha 5kg", setor: "Mercearia", valor: "29,90", corredor: "M-01", visivel: true, codigo: "MER001", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029236.png", descricao: "Arroz tipo 1, grãos selecionados e polidos." },
-    { id: 2, nome: "Feijão Carioca 1kg", setor: "Mercearia", valor: "8,50", corredor: "M-01", visivel: true, codigo: "MER002", imagem: "https://cdn-icons-png.flaticon.com/512/8153/8153839.png", descricao: "Feijão novo de cozimento rápido e caldo grosso." },
-    { id: 3, nome: "Macarrão Espaguete", setor: "Mercearia", valor: "4,20", corredor: "M-02", visivel: true, codigo: "MER003", imagem: "https://cdn-icons-png.flaticon.com/512/2718/2718224.png", descricao: "Massa de sêmola com ovos, ideal para almoços em família." },
-    { id: 4, nome: "Óleo de Soja 900ml", setor: "Mercearia", valor: "6,90", corredor: "M-03", visivel: true, codigo: "MER004", imagem: "https://cdn-icons-png.flaticon.com/512/1206/1206103.png", descricao: "Óleo vegetal refinado de alta qualidade." },
+/* ============================================================
+   BANCO DE DADOS DE PRODUTOS (ESTRUTURA COMPLETA)
+   ============================================================ */
+let db_produtos = [
+     // MERCEARIA (15)
+    { id: 1, nome: "Arroz Agulhinha 5kg", setor: "Mercearia", valor: "29,90", corredor: "M-01", visivel: true, codigo: "MER001", imagem: "https://cdn-icons-png.flaticon.com/512/3504/3504803.png", descricao: "Arroz tipo 1, grãos selecionados e polidos." },
+    { id: 2, nome: "Feijão Carioca 1kg", setor: "Mercearia", valor: "8,50", corredor: "M-01", visivel: true, codigo: "MER002", imagem: "https://cdn-icons-png.flaticon.com/512/4815/4815349.png", descricao: "Feijão novo de cozimento rápido e caldo grosso." },
+    { id: 3, nome: "Macarrão Espaguete", setor: "Mercearia", valor: "4,20", corredor: "M-02", visivel: true, codigo: "MER003", imagem: "https://cdn-icons-png.flaticon.com/512/3480/3480618.png", descricao: "Massa de sêmola com ovos, ideal para almoços em família." },
+    { id: 4, nome: "Óleo de Soja 900ml", setor: "Mercearia", valor: "6,90", corredor: "M-03", visivel: true, codigo: "MER004", imagem: "https://cdn-icons-png.flaticon.com/512/3014/3014603.png", descricao: "Óleo vegetal refinado de alta qualidade." },
     { id: 5, nome: "Açúcar Refinado 1kg", setor: "Mercearia", valor: "4,80", corredor: "M-04", visivel: true, codigo: "MER005", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029280.png", descricao: "Açúcar branco extra fino de alta pureza." },
-    { id: 6, nome: "Café Torrado 500g", setor: "Mercearia", valor: "18,90", corredor: "M-05", visivel: true, codigo: "MER006", imagem: "https://cdn-icons-png.flaticon.com/512/924/924514.png", descricao: "Café extra forte moído com aroma intenso." },
+    { id: 6, nome: "Café Torrado 500g", setor: "Mercearia", valor: "18,90", corredor: "M-05", visivel: true, codigo: "MER006", imagem: "https://cdn-icons-png.flaticon.com/512/2935/2935413.png", descricao: "Café extra forte moído com aroma intenso." },
     { id: 7, nome: "Sal Refinado 1kg", setor: "Mercearia", valor: "2,50", corredor: "M-04", visivel: true, codigo: "MER007", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029278.png", descricao: "Sal iodado tipo 1 essencial para cozinha." },
-    { id: 8, nome: "Extrato de Tomate", setor: "Mercearia", valor: "3,75", corredor: "M-02", visivel: true, codigo: "MER008", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029264.png", descricao: "Concentrado de tomate puro sem conservantes." },
-    { id: 9, nome: "Farinha de Trigo 1kg", setor: "Mercearia", valor: "5,40", corredor: "M-04", visivel: true, codigo: "MER009", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029275.png", descricao: "Farinha tipo 1 enriquecida com ferro." },
+    { id: 8, nome: "Extrato de Tomate", setor: "Mercearia", valor: "3,75", corredor: "M-02", visivel: true, codigo: "MER008", imagem: "https://cdn-icons-png.flaticon.com/512/1202/1202125.png", descricao: "Concentrado de tomate puro sem conservantes." },
+    { id: 9, nome: "Farinha de Trigo 1kg", setor: "Mercearia", valor: "5,40", corredor: "M-04", visivel: true, codigo: "MER009", imagem: "https://cdn-icons-png.flaticon.com/512/2855/2855217.png", descricao: "Farinha tipo 1 enriquecida com ferro." },
     { id: 10, nome: "Maionese 500g", setor: "Mercearia", valor: "7,20", corredor: "M-03", visivel: true, codigo: "MER010", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029253.png", descricao: "Maionese cremosa com ovos de galinha caipira." },
-    { id: 11, nome: "Biscoito Recheado", setor: "Mercearia", valor: "3,50", corredor: "M-06", visivel: true, codigo: "MER011", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029240.png", descricao: "Sabor chocolate com recheio generoso de baunilha." },
-    { id: 12, nome: "Achocolatado Pó 400g", setor: "Mercearia", valor: "9,90", corredor: "M-05", visivel: true, codigo: "MER012", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029245.png", descricao: "Mistura para leite sabor chocolate com vitaminas." },
-    { id: 13, nome: "Milho para Pipoca", setor: "Mercearia", valor: "5,80", corredor: "M-06", visivel: true, codigo: "MER013", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029255.png", descricao: "Milho premium selecionado, estoura fácil." },
-    { id: 14, nome: "Sardinha em Lata", setor: "Mercearia", valor: "4,95", corredor: "M-02", visivel: true, codigo: "MER014", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029267.png", descricao: "Sardinha conservada ao óleo comestível." },
+    { id: 11, nome: "Biscoito Recheado", setor: "Mercearia", valor: "3,50", corredor: "M-06", visivel: true, codigo: "MER011", imagem: "https://cdn-icons-png.flaticon.com/512/3132/3132711.png", descricao: "Sabor chocolate com recheio generoso de baunilha." },
+    { id: 12, nome: "Achocolatado Pó 400g", setor: "Mercearia", valor: "9,90", corredor: "M-05", visivel: true, codigo: "MER012", imagem: "https://cdn-icons-png.flaticon.com/512/5225/5225547.png", descricao: "Mistura para leite sabor chocolate com vitaminas." },
+    { id: 13, nome: "Milho para Pipoca", setor: "Mercearia", valor: "5,80", corredor: "M-06", visivel: true, codigo: "MER013", imagem: "https://cdn-icons-png.flaticon.com/512/1155/1155197.png", descricao: "Milho premium selecionado, estoura fácil." },
+    { id: 14, nome: "Sardinha em Lata", setor: "Mercearia", valor: "4,95", corredor: "M-02", visivel: true, codigo: "MER014", imagem: "https://cdn-icons-png.flaticon.com/512/1904/1904321.png", descricao: "Sardinha conservada ao óleo comestível." },
     { id: 15, nome: "Fubá Mimoso 1kg", setor: "Mercearia", valor: "4,10", corredor: "M-04", visivel: true, codigo: "MER015", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029285.png", descricao: "Farinha de milho fina ideal para bolos e polenta." },
 
     // HORTIFRUTI (15)
@@ -76,44 +71,166 @@ const produtos = [
     { id: 60, nome: "Pão Italiano", setor: "Padaria", valor: "11,50", corredor: "P-01", visivel: true, codigo: "PAD015", imagem: "https://cdn-icons-png.flaticon.com/512/1342/1342082.png", descricao: "Pão de fermentação natural longa." },
 
     // LÍQUIDA (15)
-    { id: 61, nome: "Coca-Cola 2L", setor: "Líquida", valor: "9,50", corredor: "Q-01", visivel: true, codigo: "LIQ001", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405479.png", descricao: "Refrigerante gaseificado original." },
-    { id: 62, nome: "Água Mineral 500ml", setor: "Líquida", valor: "2,00", corredor: "Q-02", visivel: true, codigo: "LIQ002", imagem: "https://cdn-icons-png.flaticon.com/512/824/824231.png", descricao: "Água sem gás extraída da fonte." },
-    { id: 63, nome: "Cerveja Lata 350ml", setor: "Líquida", valor: "3,80", corredor: "Q-03", visivel: true, codigo: "LIQ003", imagem: "https://cdn-icons-png.flaticon.com/512/918/918431.png", descricao: "Cerveja pilsen pura malte." },
-    { id: 64, nome: "Suco de Uva 1L", setor: "Líquida", valor: "14,00", corredor: "Q-04", visivel: true, codigo: "LIQ004", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405490.png", descricao: "Suco integral 100% fruta." },
-    { id: 65, nome: "Energético 250ml", setor: "Líquida", valor: "7,50", corredor: "Q-01", visivel: true, codigo: "LIQ005", imagem: "https://cdn-icons-png.flaticon.com/512/3050/3050181.png", descricao: "Bebida energética com cafeína." },
-    { id: 66, nome: "Guaraná Antartica", setor: "Líquida", valor: "8,20", corredor: "Q-01", visivel: true, codigo: "LIQ006", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405479.png", descricao: "Refrigerante de fruta amazônica." },
-    { id: 67, nome: "Vinho Tinto Suave", setor: "Líquida", valor: "25,00", corredor: "Q-05", visivel: true, codigo: "LIQ007", imagem: "https://cdn-icons-png.flaticon.com/512/920/920580.png", descricao: "Vinho de mesa tinto nacional." },
-    { id: 68, nome: "Néctar de Laranja", setor: "Líquida", valor: "6,40", corredor: "Q-04", visivel: true, codigo: "LIQ008", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405490.png", descricao: "Bebida de laranja adoçada." },
-    { id: 69, nome: "Água com Gás 500ml", setor: "Líquida", valor: "2,50", corredor: "Q-02", visivel: true, codigo: "LIQ009", imagem: "https://cdn-icons-png.flaticon.com/512/824/824231.png", descricao: "Água mineral levemente gaseificada." },
+    { id: 61, nome: "Coca-Cola 2L", setor: "Líquida", valor: "9,50", corredor: "Q-01", visivel: true, codigo: "LIQ001", imagem: "https://cdn-icons-png.flaticon.com/512/2722/2722527.png", descricao: "Refrigerante gaseificado original." },
+    { id: 62, nome: "Água Mineral 500ml", setor: "Líquida", valor: "2,00", corredor: "Q-02", visivel: true, codigo: "LIQ002", imagem: "https://cdn-icons-png.flaticon.com/512/3100/3100566.png", descricao: "Água sem gás extraída da fonte." },
+    { id: 63, nome: "Cerveja Lata 350ml", setor: "Líquida", valor: "3,80", corredor: "Q-03", visivel: true, codigo: "LIQ003", imagem: "https://cdn-icons-png.flaticon.com/512/761/761767.png", descricao: "Cerveja pilsen pura malte." },
+    { id: 64, nome: "Suco de Uva 1L", setor: "Líquida", valor: "14,00", corredor: "Q-04", visivel: true, codigo: "LIQ004", imagem: "https://cdn-icons-png.flaticon.com/512/1155/1155282.png", descricao: "Suco integral 100% fruta." },
+    { id: 65, nome: "Energético 250ml", setor: "Líquida", valor: "7,50", corredor: "Q-01", visivel: true, codigo: "LIQ005", imagem: "https://cdn-icons-png.flaticon.com/512/2722/2722471.png", descricao: "Bebida energética com cafeína." },
+    { id: 66, nome: "Guaraná Antartica", setor: "Líquida", valor: "8,20", corredor: "Q-01", visivel: true, codigo: "LIQ006", imagem: "https://cdn-icons-png.flaticon.com/512/2722/2722527.png", descricao: "Refrigerante de fruta amazônica." },
+    { id: 67, nome: "Vinho Tinto Suave", setor: "Líquida", valor: "25,00", corredor: "Q-05", visivel: true, codigo: "LIQ007", imagem: "https://cdn-icons-png.flaticon.com/512/3100/3100657.png", descricao: "Vinho de mesa tinto nacional." },
+    { id: 68, nome: "Néctar de Laranja", setor: "Líquida", valor: "6,40", corredor: "Q-04", visivel: true, codigo: "LIQ008", imagem: "https://cdn-icons-png.flaticon.com/512/1155/1155282.png", descricao: "Bebida de laranja adoçada." },
+    { id: 69, nome: "Água com Gás 500ml", setor: "Líquida", valor: "2,50", corredor: "Q-02", visivel: true, codigo: "LIQ009", imagem: "https://cdn-icons-png.flaticon.com/512/3100/3100566.png", descricao: "Água mineral levemente gaseificada." },
     { id: 70, nome: "Chá Gelado Limão", setor: "Líquida", valor: "5,90", corredor: "Q-04", visivel: true, codigo: "LIQ010", imagem: "https://cdn-icons-png.flaticon.com/512/935/935515.png", descricao: "Chá preto com toque de limão." },
-    { id: 71, nome: "Isotônico Laranja", setor: "Líquida", valor: "6,20", corredor: "Q-01", visivel: true, codigo: "LIQ011", imagem: "https://cdn-icons-png.flaticon.com/512/3050/3050181.png", descricao: "Repositor de eletrólitos." },
-    { id: 72, nome: "Aguardente 500ml", setor: "Líquida", valor: "12,00", corredor: "Q-05", visivel: true, codigo: "LIQ012", imagem: "https://cdn-icons-png.flaticon.com/512/920/920603.png", descricao: "Cachaça branca clássica." },
-    { id: 73, nome: "Soda Limonada 2L", setor: "Líquida", valor: "7,90", corredor: "Q-01", visivel: true, codigo: "LIQ013", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405479.png", descricao: "Refrigerante cítrico refrescante." },
+    { id: 71, nome: "Isotônico Laranja", setor: "Líquida", valor: "6,20", corredor: "Q-01", visivel: true, codigo: "LIQ011", imagem: "https://cdn-icons-png.flaticon.com/512/2722/2722471.png", descricao: "Repositor de eletrólitos." },
+    { id: 72, nome: "Aguardente 500ml", setor: "Líquida", valor: "12,00", corredor: "Q-05", visivel: true, codigo: "LIQ012", imagem: "https://cdn-icons-png.flaticon.com/512/3100/3100657.png", descricao: "Cachaça branca clássica." },
+    { id: 73, nome: "Soda Limonada 2L", setor: "Líquida", valor: "7,90", corredor: "Q-01", visivel: true, codigo: "LIQ013", imagem: "https://cdn-icons-png.flaticon.com/512/2722/2722527.png", descricao: "Refrigerante cítrico refrescante." },
     { id: 74, nome: "Leite de Coco 200ml", setor: "Líquida", valor: "4,80", corredor: "Q-04", visivel: true, codigo: "LIQ014", imagem: "https://cdn-icons-png.flaticon.com/512/1037/1037142.png", descricao: "Extrato de coco puro para cozinha." },
-    { id: 75, nome: "Vodka Destilada 1L", setor: "Líquida", valor: "45,00", corredor: "Q-05", visivel: true, codigo: "LIQ015", imagem: "https://cdn-icons-png.flaticon.com/512/920/920603.png", descricao: "Vodka premium de alta pureza." }
+    { id: 75, nome: "Vodka Destilada 1L", setor: "Líquida", valor: "45,00", corredor: "Q-05", visivel: true, codigo: "LIQ015", imagem: "https://cdn-icons-png.flaticon.com/512/3100/3100657.png", descricao: "Vodka premium de alta pureza." }
 ];
 
-/* ======================================================
-   ESTADOS DA APLICAÇÃO
-====================================================== */
-let admAtivo = false;
+const CHAVE_ADMINISTRADOR = "123";
+let modoAdministrador = false;
 
-/* ======================================================
-   MAPEAMENTO DO DOM
-====================================================== */
-const telaLobby = document.getElementById('lobby');
-const telaApp = document.getElementById('app');
-const telaDetalhes = document.getElementById('detalhesProduto');
-const inputBusca = document.getElementById('pesquisa');
-const containerProdutos = document.getElementById('listaProdutos');
-const containerADM = document.getElementById('listaADM');
-const painelADMSection = document.getElementById('painelADM');
-const btnSairADM = document.getElementById('sairADM');
-const tituloModoADM = document.getElementById('tituloADM');
-const logoNomeTopo = document.getElementById('siteNomeTopo');
+// Seletores Principais
+const el_pesquisa = document.getElementById("pesquisa");
+const el_listaCliente = document.getElementById("listaProdutos");
+const el_listaAdm = document.getElementById("listaADM");
+const el_painelAdm = document.getElementById("painelADM");
+const el_tituloSite = document.getElementById("siteNomeTopo");
+const el_tituloAdm = document.getElementById("tituloADM");
+const el_btnVoltarAdm = document.getElementById("topo-voltar-adm");
+const el_telaApp = document.getElementById("app");
+const el_lobby = document.getElementById("lobby");
+const el_telaDetalhes = document.getElementById("detalhesProduto");
+const el_containerSugestoes = document.getElementById("listaSugestoes");
 
-/* ======================================================
-   FUNÇÕES DE NAVEGAÇÃO
-====================================================== */
-document.getElementById('btnIniciar').addEventListener('click', () => {
-    telaLobby.classList.add('hidd
+/* ============================================================
+   NAVEGAÇÃO
+   ============================================================ */
+
+document.getElementById("btnIniciar").onclick = () => {
+    el_lobby.classList.add("hidden");
+    el_telaApp.classList.remove("hidden");
+    renderizarTelaCliente();
+};
+
+function voltarParaHome() {
+    el_telaDetalhes.classList.add("hidden");
+    el_telaApp.classList.remove("hidden");
+    window.scrollTo(0, 0);
+}
+
+// Listener de Pesquisa / /
+el_pesquisa.addEventListener("input", (e) => {
+    const termo = e.target.value.trim();
+    if (termo === CHAVE_ADMINISTRADOR) {
+        ativarModoADM();
+    } else {
+        modoAdministrador ? renderizarTelaAdministrador(termo.toLowerCase()) : renderizarTelaCliente(termo.toLowerCase());
+    }
+});
+
+function ativarModoADM() {
+    modoAdministrador = true;
+    el_pesquisa.value = "";
+    el_tituloSite.classList.add("hidden");
+    el_tituloAdm.classList.remove("hidden");
+    el_btnVoltarAdm.classList.remove("hidden");
+    el_listaCliente.classList.add("hidden");
+    el_painelAdm.classList.remove("hidden");
+    renderizarTelaAdministrador();
+}
+
+el_btnVoltarAdm.onclick = () => {
+    modoAdministrador = false;
+    el_tituloSite.classList.remove("hidden");
+    el_tituloAdm.classList.add("hidden");
+    el_btnVoltarAdm.classList.add("hidden");
+    el_painelAdm.classList.add("hidden");
+    el_listaCliente.classList.remove("hidden");
+    renderizarTelaCliente();
+};
+
+/* ============================================================
+   RENDERIZAÇÃO
+   ============================================================ */
+
+function renderizarTelaCliente(termo = "") {
+    el_listaCliente.innerHTML = "";
+    db_produtos.filter(p => p.visivel && p.nome.toLowerCase().includes(termo)).forEach(produto => {
+        const card = document.createElement("div");
+        card.className = "card-item-cliente";
+        card.innerHTML = `<strong>${produto.nome}</strong><small>${produto.setor}</small><span class="card-preco">R$ ${produto.valor}</span>`;
+        card.onclick = () => carregarPaginaDetalhes(produto);
+        el_listaCliente.appendChild(card);
+    });
+}
+
+function renderizarTelaAdministrador(termo = "") {
+    el_listaAdm.innerHTML = "";
+    db_produtos.filter(p => p.nome.toLowerCase().includes(termo)).forEach(produto => {
+        const div = document.createElement("div");
+        div.className = `item-lista-adm ${produto.visivel ? "" : "item-oculto"}`;
+        div.innerHTML = `
+            <div><strong>${produto.nome}</strong><br><small>${produto.codigo}</small></div>
+            <button onclick="alternarStatus(${produto.id}, event)">${produto.visivel ? "👁️ Ocultar" : "🙈 Mostrar"}</button>
+        `;
+        el_listaAdm.appendChild(div);
+    });
+}
+
+function alternarStatus(id, event) {
+    event.stopPropagation();
+    const p = db_produtos.find(i => i.id === id);
+    if (p) {
+        p.visivel = !p.visivel;
+        renderizarTelaAdministrador(el_pesquisa.value.toLowerCase());
+    }
+}
+
+/* ============================================================
+   PÁGINA DE DETALHES
+   ============================================================ */
+
+function carregarPaginaDetalhes(produto) {
+    // CORREÇÃO DOS IDS AQUI:
+    document.getElementById("detalheImagem").src = produto.imagem;
+    document.getElementById("detalheNome").innerText = produto.nome;
+    document.getElementById("detalhePreco").innerText = `R$ ${produto.valor}`; // Corrigido de detalheValor
+    document.getElementById("detalheSetor").innerText = produto.setor;
+    document.getElementById("detalheCorredor").innerText = produto.corredor;
+    document.getElementById("detalheCodigo").innerText = produto.codigo; // Corrigido de detalheCodigoDoc
+    document.getElementById("detalheDescricao").innerText = produto.descricao;
+
+    gerarVitrineSugestoes(produto);
+
+    el_telaApp.classList.add("hidden");
+    el_telaDetalhes.classList.remove("hidden");
+    window.scrollTo(0, 0);
+}
+
+function gerarVitrineSugestoes(produtoAtual) {
+    el_containerSugestoes.innerHTML = "";
+    const sugestoes = db_produtos
+        .filter(p => p.id !== produtoAtual.id && p.visivel)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 9);
+
+    sugestoes.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "card-sugestao-mini";
+        card.innerHTML = `
+            <div class="area-imagem-mini"><img src="${item.imagem}"></div>
+            <span class="nome-produto-mini">${item.nome}</span>
+            <span class="valor-produto-mini">R$ ${item.valor}</span>
+        `;
+        card.onclick = () => carregarPaginaDetalhes(item);
+        el_containerSugestoes.appendChild(card);
+    });
+}
+
+/* ============================================================
+   FINALIZAÇÃO
+   ============================================================ */
+console.log("Sistema Web Ache-me carregado com sucesso!");
+
