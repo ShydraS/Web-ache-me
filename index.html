@@ -3,86 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Web Ache-me - Sistema de busca e gerenciamento de inventário">
-    <title>Web Ache-me | Catálogo Inteligente</title>
+    <title>Web Ache-me | Sistema de Inventário Profissional</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <section id="lobby">
-        <div class="lobby-content">
-            <div class="logo-circulo">
-                <img src="https://w7.pngwing.com/pngs/748/380/png-transparent-shopping-cart-computer-icons-graphy-shopping-cart-blue-service-photography.png" alt="Logo Ache-me">
+    <section id="lobby" class="tela-fixa">
+        <div class="lobby-container-central">
+            <div class="circulo-logo-principal">
+                <img src="https://cdn-icons-png.flaticon.com/512/3737/3737372.png" alt="Logo Web Ache-me">
             </div>
-            <h1 id="siteNomeLobby">Web Ache-me</h1>
-            <p class="tagline">Localize seus produtos com facilidade</p>
-            <button id="btnIniciar">Iniciar Sistema</button>
+            
+            <h1 class="logo-texto-principal">Web Ache-me</h1>
+            
+            <button id="btnIniciar" class="botao-iniciar-verde">Iniciar</button>
         </div>
     </section>
 
-    <div id="app" class="hidden container">
-        <header>
-            <div id="header-content">
-                <div id="sairADM" class="hidden" title="Sair do Modo ADM">←</div>
-                <h1 id="tituloADM" class="hidden">PAINEL ADMINISTRATIVO</h1>
-                <h1 id="siteNomeTopo">Ache-me</h1>
+    <main id="app" class="hidden">
+        <header class="header-principal-azul">
+            <div class="header-navegacao-interna">
+                <button id="topo-voltar-adm" class="btn-seta-voltar-preta hidden">←</button>
+                <div class="container-titulos-centralizados">
+                    <h2 id="siteNomeTopo" class="titulo-centralizado-header">Web Ache-me</h2>
+                    <h2 id="tituloADM" class="titulo-centralizado-header hidden">ADM</h2>
+                </div>
             </div>
 
-            <div class="search-wrapper">
-                <input type="text" id="pesquisa" placeholder="Pesquisar por nome, código ou setor..." autocomplete="off">
-                <div class="search-icon">🔍</div>
+            <div class="container-barra-pesquisa">
+                <div class="wrapper-input-busca">
+                    <input type="text" id="pesquisa" placeholder="Pesquisar produto ou setor...">
+                    <span class="icone-lupa-busca">🔍</span>
+                </div>
             </div>
         </header>
 
-        <main id="main-content">
-            <div id="listaProdutos"></div>
+        <div class="conteudo-dinamico">
+            <div id="listaProdutos" class="grid-lista-produtos"></div>
 
-            <section id="painelADM" class="hidden">
-                <div class="adm-info-bar">
-                    <span>Modo de Gerenciamento Ativo</span>
-                    <small>Clique no olho para alternar visibilidade</small>
+            <div id="painelADM" class="container-painel-adm hidden">
+                <div class="informativo-adm">
+                    <h3>Painel de Visibilidade</h3>
+                    <p>Controle quais itens o cliente pode visualizar no inventário.</p>
                 </div>
-                <div id="listaADM"></div>
-            </section>
-        </main>
-    </div>
-
-    <section id="detalhesProduto" class="hidden container">
-        <div class="navigation-bar">
-            <button id="btnVoltar">← Voltar para a lista</button>
-        </div>
-
-        <div class="product-card-detail">
-            <div class="image-showcase">
-                <img id="detalheImagem" src="" alt="Imagem do Produto">
+                <div id="listaADM" class="lista-items-adm-vertical"></div>
             </div>
+        </div>
+    </main>
 
-            <div class="content-showcase">
-                <span id="detalheSetor" class="badge-category"></span>
-                <h2 id="detalheNome"></h2>
+    <section id="detalhesProduto" class="hidden">
+        <nav class="barra-voltar-detalhes">
+            <button id="btnVoltar" class="btn-seta-voltar-preta">←</button>
+        </nav>
 
-                <div class="specs-grid">
-                    <div class="spec-item">
-                        <span class="spec-label">Preço Sugerido</span>
-                        <div class="spec-value">R$ <span id="detalheValor"></span></div>
+        <article class="card-detalhes-completo">
+            <div class="imagem-detalhe-wrapper">
+                <img id="detalheImagem" src="" alt="Produto Selecionado">
+            </div>
+            
+            <div class="corpo-detalhes-info">
+                <h1 id="detalheNome" class="nome-produto-detalhe"></h1>
+                
+                <div class="preco-destaque-detalhe">
+                    <span id="detalheValor"></span>
+                </div>
+                
+                <div class="tabela-info-tecnica">
+                    <div class="linha-info">
+                        <strong>Setor</strong>
+                        <span id="detalheSetor"></span>
                     </div>
-                    <div class="spec-item">
-                        <span class="spec-label">Localização</span>
-                        <div class="spec-value">Corredor <span id="detalheCorredor"></span></div>
+                    <div class="linha-info">
+                        <strong>Corredor</strong>
+                        <span id="detalheCorredor"></span>
+                    </div>
+                    <div class="linha-info">
+                        <strong>Código</strong>
+                        <span id="detalheCodigoDoc"></span>
                     </div>
                 </div>
 
-                <div class="description-box">
-                    <h3>Sobre este item</h3>
+                <div class="descricao-longa-produto">
+                    <h3 style="border:none;">Descrição do Produto</h3>
                     <p id="detalheDescricao"></p>
                 </div>
-            </div>
-        </div>
 
-        <section id="areaSugestoes" class="hidden">
-            <h3 class="sugestoes-header">Outros itens de <span id="nomeSetorSugestao"></span></h3>
-            <div id="sugestoes" class="sugestoes-grid"></div>
-        </section>
+                <div class="secao-sugestoes">
+                    <h3 class="titulo-sessao-detalhe">Sugestões para você</h3>
+                    <div id="listaSugestoes" class="grid-sugestoes-9"></div>
+                </div>
+            </div> </article>
     </section>
 
     <script src="script.js"></script>
