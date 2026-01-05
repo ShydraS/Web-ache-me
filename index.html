@@ -51,50 +51,60 @@
         </div>
     </main>
 
-    <section id="detalhesProduto" class="hidden">
-        <nav class="barra-voltar-detalhes">
-            <button id="btnVoltar" class="btn-seta-voltar-preta">←</button>
-        </nav>
+  <section id="detalhesProduto" class="pagina-detalhes">
+    
+    <header class="header-navegacao">
+        <button onclick="voltarParaHome()" class="btn-voltar">
+            <i class="fas fa-arrow-left"></i> </button>
+        <h1>Web Ache-me</h1>
+    </header>
 
-        <article class="card-detalhes-completo">
-            <div class="imagem-detalhe-wrapper">
-                <img id="detalheImagem" src="" alt="Produto Selecionado">
+    <div class="area-imagem-detalhe">
+        <img id="detalheImagem" src="" alt="Imagem do Produto">
+    </div>
+
+    <div class="info-principal">
+        <h2 id="detalheNome">Nome do Produto</h2>
+        <span id="detalhePreco" class="preco-detalhe">R$ 0,00</span>
+        
+        <div class="badges-info">
+            <div class="badge">
+                <small>SETOR</small>
+                <p id="detalheSetor">-</p>
             </div>
-            
-            <div class="corpo-detalhes-info">
-                <h1 id="detalheNome" class="nome-produto-detalhe"></h1>
-                
-                <div class="preco-destaque-detalhe">
-                    <span id="detalheValor"></span>
-                </div>
-                
-                <div class="tabela-info-tecnica">
-                    <div class="linha-info">
-                        <strong>Setor</strong>
-                        <span id="detalheSetor"></span>
-                    </div>
-                    <div class="linha-info">
-                        <strong>Corredor</strong>
-                        <span id="detalheCorredor"></span>
-                    </div>
-                    <div class="linha-info">
-                        <strong>Código</strong>
-                        <span id="detalheCodigoDoc"></span>
-                    </div>
-                </div>
+            <div class="badge">
+                <small>CORREDOR</small>
+                <p id="detalheCorredor">-</p>
+            </div>
+            <div class="badge">
+                <small>CÓDIGO</small>
+                <p id="detalheCodigo">-</p>
+            </div>
+        </div>
 
-                <div class="descricao-longa-produto">
-                    <h3 style="border:none;">Descrição do Produto</h3>
-                    <p id="detalheDescricao"></p>
-                </div>
+        <div class="descricao-container">
+            <h3>DESCRIÇÃO DO PRODUTO</h3>
+            <p id="detalheDescricao">Descrição detalhada aqui...</p>
+        </div>
+    </div>
 
-                <div class="secao-sugestoes">
-                    <h3 class="titulo-sessao-detalhe">Sugestões para você</h3>
-                    <div id="listaSugestoes" class="grid-sugestoes-9"></div>
-                </div>
-            </div> </article>
+    <hr class="divisor">
+
+    <section class="secao-sugestoes">
+        <h3>Sugestões para você ☕</h3>
+        <div id="listaSugestoes">
+            </div>
     </section>
+
+    <footer class="secao-sugestao-usuario">
+        <h3>Deseja sugerir algo?</h3>
+        <input type="text" id="inputSugestao" placeholder="Ex: Produto fora de lugar, preço errado ou falta de estoque...">
+        <button onclick="enviarSugestao()" class="btn-enviar-sugestao">Enviar Sugestão</button>
+    </footer>
+
+</section>
 
     <script src="script.js"></script>
 </body>
 </html>
+
