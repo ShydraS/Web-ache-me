@@ -2,109 +2,123 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Ache-me | Sistema de Inventário Profissional</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Web Ache-me | Sistema de Inventário</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style/style.css">
+    
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3737/3737372.png">
 </head>
 <body>
 
-    <section id="lobby" class="tela-fixa">
-        <div class="lobby-container-central">
-            <div class="circulo-logo-principal">
+    <section id="tela-lobby" class="view-active">
+        <div class="lobby-wrapper">
+            <div class="logo-animada">
                 <img src="https://cdn-icons-png.flaticon.com/512/3737/3737372.png" alt="Logo Web Ache-me">
             </div>
+            <h1 class="marca-titulo">Web Ache-me</h1>
+            <p class="marca-slogan">Encontre o que precisa em instantes</p>
             
-            <h1 class="logo-texto-principal">Web Ache-me</h1>
-            
-            <button id="btnIniciar" class="botao-iniciar-verde">Iniciar</button>
+            <div class="acoes-lobby">
+                <button id="btn-entrar" class="btn-principal">INICIAR CONSULTA</button>
+                <p class="feedback-versao">Versão 2.0 - GitHub Stable</p>
+            </div>
         </div>
     </section>
 
-    <main id="app" class="hidden">
-        <header class="header-principal-azul">
-            <div class="header-navegacao-interna">
-                <button id="topo-voltar-adm" class="btn-seta-voltar-preta hidden">←</button>
-                <div class="container-titulos-centralizados">
-                    <h2 id="siteNomeTopo" class="titulo-centralizado-header">Web Ache-me</h2>
-                    <h2 id="tituloADM" class="titulo-centralizado-header hidden">ADM</h2>
+    <main id="tela-app" class="view-hidden">
+        <header class="navbar-topo">
+            <div class="navbar-controle">
+                <button id="btn-sair-adm" class="btn-circular hidden">←</button>
+                <div class="navbar-branding">
+                    <span id="nome-projeto">WEB ACHE-ME</span>
+                    <span id="badge-adm" class="hidden">MODO ADM</span>
                 </div>
             </div>
 
-            <div class="container-barra-pesquisa">
-                <div class="wrapper-input-busca">
-                    <input type="text" id="pesquisa" placeholder="Pesquisar produto ou setor...">
-                    <span class="icone-lupa-busca">🔍</span>
+            <div class="barra-busca-container">
+                <div class="input-wrapper">
+                    <span class="lupa">🔍</span>
+                    <input type="text" id="campo-pesquisa" placeholder="Busque por produto, setor ou corredor..." autocomplete="off">
                 </div>
             </div>
         </header>
 
-        <div class="conteudo-dinamico">
-            <div id="listaProdutos" class="grid-lista-produtos"></div>
-
-            <div id="painelADM" class="container-painel-adm hidden">
-                <div class="informativo-adm">
-                    <h3>Painel de Visibilidade</h3>
-                    <p>Controle quais itens o cliente pode visualizar no inventário.</p>
+        <section class="conteudo-scrollable">
+            <div id="grid-cliente" class="grid-layout">
                 </div>
-                <div id="listaADM" class="lista-items-adm-vertical"></div>
+
+            <div id="painel-adm" class="adm-layout hidden">
+                <div class="cabecalho-secao">
+                    <h3>Gerenciamento de Visibilidade</h3>
+                    <p>Itens desativados não aparecem para o cliente final.</p>
+                </div>
+                <div id="lista-adm-itens" class="lista-vertical">
+                    </div>
             </div>
-        </div>
+        </section>
     </main>
 
-  <section id="detalhesProduto" class="pagina-detalhes">
-    
-    <header class="header-navegacao">
-        <button onclick="voltarParaHome()" class="btn-voltar">
-            <i class="fas fa-arrow-left"></i> Voltar </button>
-        <h1>Web Ache-me</h1>
-    </header>
+    <section id="tela-detalhes" class="view-hidden">
+        <header class="navbar-detalhes">
+            <button onclick="navegarPara('tela-app')" class="btn-voltar-app">← VOLTAR</button>
+            <span class="tag-topo">DETALHES DO ITEM</span>
+        </header>
 
-    <div class="area-imagem-detalhe">
-        <img id="detalheImagem" src="" alt="Imagem do Produto">
-    </div>
+        <div class="detalhes-container">
+            <div class="card-detalhe-hero">
+                <div class="moldura-img-produto">
+                    <img id="img-detalhe" src="" alt="Produto">
+                </div>
+                <h2 id="nome-detalhe">Nome do Produto</h2>
+                <div id="preco-detalhe" class="preco-destaque">R$ 0,00</div>
+            </div>
 
-    <div class="info-principal">
-        <h2 id="detalheNome">Nome do Produto</h2>
-        <span id="detalhePreco" class="preco-detalhe">R$ 0,00</span>
-        
-        <div class="badges-info">
-            <div class="badge">
-                <small>SETOR</small>
-                <p id="detalheSetor">-</p>
+            <div class="info-grid-cards">
+                <div class="info-card">
+                    <span class="info-label">SETOR</span>
+                    <strong id="info-setor">-</strong>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">CORREDOR</span>
+                    <strong id="info-corredor">-</strong>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">CÓDIGO INTERNO</span>
+                    <strong id="info-codigo">-</strong>
+                </div>
             </div>
-            <div class="badge">
-                <small>CORREDOR</small>
-                <p id="detalheCorredor">-</p>
+
+            <div class="bloco-descricao">
+                <h4>CARACTERÍSTICAS</h4>
+                <p id="texto-descricao">Nenhuma descrição disponível para este item.</p>
             </div>
-            <div class="badge">
-                <small>CÓDIGO</small>
-                <p id="detalheCodigo">-</p>
+
+            <div class="secao-sugestoes">
+                <div class="sugestao-header">
+                    <h3>Veja também</h3>
+                    <span class="tag-grid">GRID 3X3</span>
+                </div>
+                <div id="grid-sugestoes" class="layout-sugestoes-3x3">
+                    </div>
             </div>
+
+            <footer class="footer-interativo">
+                <h3>Viu algum erro?</h3>
+                <p>Ajude-nos a manter o inventário atualizado.</p>
+                <div class="form-sugestao">
+                    <input type="text" id="feedback-input" placeholder="O que está errado?">
+                    <button class="btn-enviar-feedback" onclick="alert('Obrigado pelo aviso!')">ENVIAR</button>
+                </div>
+            </footer>
         </div>
-
-        <div class="descricao-container">
-            <h3>DESCRIÇÃO DO PRODUTO</h3>
-            <p id="detalheDescricao">Descrição detalhada aqui...</p>
-        </div>
-    </div>
-
-    <hr class="divisor">
-
-    <section class="secao-sugestoes">
-        <h3>Sugestões para você ☕</h3>
-        <div id="listaSugestoes">
-            </div>
     </section>
 
-    <footer class="secao-sugestao-usuario">
-        <h3>Deseja sugerir algo?</h3>
-        <input type="text" id="inputSugestao" placeholder="Ex: Produto fora de lugar, preço errado ou falta de estoque...">
-        <button onclick="enviarSugestao()" class="btn-enviar-sugestao">Enviar Sugestão</button>
-    </footer>
-
-</section>
-
-    <script src="script.js"></script>
+    <script src="script/script.js"></script>
 </body>
 </html>
 
