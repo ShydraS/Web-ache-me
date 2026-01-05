@@ -24,11 +24,6 @@ const listaADM = document.getElementById("listaADM");
 const detalhesProduto = document.getElementById("detalhesProduto");
 const btnVoltar = document.getElementById("btnVoltar");
 
-const btnNovoProduto = document.getElementById("btnNovoProduto");
-const formNovoProduto = document.getElementById("formNovoProduto");
-const btnSalvarNovo = document.getElementById("btnSalvarNovo");
-const btnCancelarNovo = document.getElementById("btnCancelarNovo");
-
 /* ================= NOVOS ELEMENTOS ADICIONADOS ================= */
 const sairADM = document.getElementById("sairADM"); // Botão de sair do ADM
 const tituloADM = document.getElementById("tituloADM"); // Título grande ADM
@@ -53,7 +48,6 @@ function esconderTudo() {
   app.classList.add("hidden");
   painelADM.classList.add("hidden");
   detalhesProduto.classList.add("hidden");
-  formNovoProduto.classList.add("hidden");
 
   // esconder elementos novos
   sairADM.classList.add("hidden");
@@ -115,8 +109,6 @@ function mostrarProdutosAleatorios() {
     div.onclick = () => abrirProduto(p.id);
     produtosAleatoriosADM.appendChild(div);
   });
-
-  produtosAleatoriosADM.classList.remove("hidden");
 }
 
 /* ================= NOVA FUNÇÃO: SAIR DO ADM ================= */
@@ -251,53 +243,11 @@ btnNovoProduto.onclick = () => {
   // ESCONDE PAINEL ADM
   painelADM.classList.add("hidden");
 
-  // MOSTRA FORM COMO TELA
-  formNovoProduto.classList.remove("hidden");
 };
-
-btnCancelarNovo.onclick = () => {
-  limparFormNovoProduto();
-
-  // FECHA FORM
-  formNovoProduto.classList.add("hidden");
 
   // VOLTA PARA O ADM
   painelADM.classList.remove("hidden");
 
-  produtoEmEdicao = null;
-};
-
-btnSalvarNovo.onclick = async () => {
-  const novoProduto = {
-    id: produtoEmEdicao?.id || Date.now(),
-    nome: novoNome.value.trim(),
-    setor: novoSetor.value.trim(),
-    valor: novoValor.value.trim(),
-    corredor: novoCorredor.value.trim(),
-    codigo: novoCodigo.value.trim(),
-    descricao: novoDescricao.value.trim(),
-    imagem: novoImagem.value.trim() || "https://via.placeholder.com/200",
-    visivel: true
-  };
-
-  if (!novoProduto.nome || !novoProduto.setor || !novoProduto.codigo) {
-    alert("Preencha todos os campos obrigatórios");
-    return;
-  }
-
-  if (produtoEmEdicao) {
-    await editProduto(novoProduto);
-  } else {
-    await addProduto(novoProduto);
-  }
-
-  produtos = await fetchProdutos();
-  listarADM();
-  listarProdutos();
-
-  limparFormNovoProduto();
-  formNovoProduto.classList.add("hidden");
-  btnNovoProduto.classList.remove("hidden");
   produtoEmEdicao = null;
 };
 
@@ -319,24 +269,6 @@ function listarADM() {
   });
 }
 
-function editarProdutoForm(id) {
-  const p = produtos.find(x => x.id === id);
-  if (!p) return;
-
-  produtoEmEdicao = p;
-
-  novoNome.value = p.nome;
-  novoSetor.value = p.setor;
-  novoValor.value = p.valor;
-  novoCorredor.value = p.corredor;
-  novoCodigo.value = p.codigo;
-  novoDescricao.value = p.descricao;
-  novoImagem.value = p.imagem;
-
-  formNovoProduto.classList.remove("hidden");
-  btnNovoProduto.classList.add("hidden");
-}
-
 async function toggleProduto(id) {
   const p = produtos.find(x => x.id === id);
   if (!p) return;
@@ -350,12 +282,4 @@ async function toggleProduto(id) {
 }
 
 /* ================= UTIL ================= */
-function limparFormNovoProduto() {
-  novoNome.value = "";
-  novoSetor.value = "";
-  novoValor.value = "";
-  novoCorredor.value = "";
-  novoCodigo.value = "";
-  novoDescricao.value = "";
-  novoImagem.value = "";
-}
+
