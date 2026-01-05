@@ -1,86 +1,91 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>Web Ache-me | Catálogo Interativo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Web Ache-me - Sistema de busca e gerenciamento de inventário">
+    <title>Web Ache-me | Catálogo Inteligente</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="lobby">
-  <div class="lobby-content">
-    <div class="logo-circulo">
-      <img
-        src="https://w7.pngwing.com/pngs/748/380/png-transparent-shopping-cart-computer-icons-graphy-shopping-cart-blue-service-photography.png"
-        alt="Logo"
-      >
-    </div>
-    <h1 id="siteNomeLobby">Web Ache-me</h1>
-    <button id="btnIniciar">Iniciar</button>
-  </div>
-</div>
-
-<div id="app" class="hidden container">
-  <header>
-    <div id="header-content">
-      <div id="sairADM" class="hidden">←</div>
-      <h1 id="tituloADM" class="hidden">MODO ADM</h1>
-      <h1 id="siteNomeTopo">Ache-me</h1>
-    </div>
-    <div class="search-wrapper">
-      <input type="text" id="pesquisa" placeholder="Pesquisar..." autocomplete="off">
-    </div>
-  </header>
-
-  <main>
-    <div id="listaProdutos"></div>
-    <div id="painelADM" class="hidden">
-      <div class="adm-header-info">
-        <h3>Painel de Visibilidade</h3>
-        <p>Alterne a visibilidade dos itens clicando no ícone do olho.</p>
-      </div>
-      <div id="listaADM"></div>
-    </div>
-  </main>
-</div>
-  
-<div id="detalhesProduto" class="hidden container">
-  <div class="detalhes-nav">
-    <button id="btnVoltar">← Voltar</button>
-  </div>
-
-  <div class="product-sheet">
-    <div class="product-visual">
-      <img id="detalheImagem" src="" alt="Produto">
-    </div>
-    <div class="product-body">
-      <span id="detalheSetor" class="setor-badge"></span>
-      <h2 id="detalheNome"></h2>
-      <div class="info-grid">
-        <div class="info-card">
-          <label>Preço</label>
-          <div class="value-text">R$ <span id="detalheValor"></span></div>
+    <section id="lobby">
+        <div class="lobby-content">
+            <div class="logo-circulo">
+                <img src="https://w7.pngwing.com/pngs/748/380/png-transparent-shopping-cart-computer-icons-graphy-shopping-cart-blue-service-photography.png" alt="Logo Ache-me">
+            </div>
+            <h1 id="siteNomeLobby">Web Ache-me</h1>
+            <p class="tagline">Localize seus produtos com facilidade</p>
+            <button id="btnIniciar">Iniciar Sistema</button>
         </div>
-        <div class="info-card">
-          <label>Corredor</label>
-          <div class="value-text"><span id="detalheCorredor"></span></div>
-        </div>
-      </div>
-      <div class="description-section">
-        <h4>Detalhes</h4>
-        <p id="detalheDescricao"></p>
-      </div>
+    </section>
+
+    <div id="app" class="hidden container">
+        <header>
+            <div id="header-content">
+                <div id="sairADM" class="hidden" title="Sair do Modo ADM">←</div>
+                <h1 id="tituloADM" class="hidden">PAINEL ADMINISTRATIVO</h1>
+                <h1 id="siteNomeTopo">Ache-me</h1>
+            </div>
+
+            <div class="search-wrapper">
+                <input type="text" id="pesquisa" placeholder="Pesquisar por nome, código ou setor..." autocomplete="off">
+                <div class="search-icon">🔍</div>
+            </div>
+        </header>
+
+        <main id="main-content">
+            <div id="listaProdutos"></div>
+
+            <section id="painelADM" class="hidden">
+                <div class="adm-info-bar">
+                    <span>Modo de Gerenciamento Ativo</span>
+                    <small>Clique no olho para alternar visibilidade</small>
+                </div>
+                <div id="listaADM"></div>
+            </section>
+        </main>
     </div>
-  </div>
 
-  <div id="areaSugestoes" class="hidden">
-    <h3 class="sugestoes-title">Explore mais deste setor</h3>
-    <div id="sugestoes" class="sugestoes-grid"></div>
-  </div>
-</div>
+    <section id="detalhesProduto" class="hidden container">
+        <div class="navigation-bar">
+            <button id="btnVoltar">← Voltar para a lista</button>
+        </div>
 
-<script src="script.js"></script>
+        <div class="product-card-detail">
+            <div class="image-showcase">
+                <img id="detalheImagem" src="" alt="Imagem do Produto">
+            </div>
+
+            <div class="content-showcase">
+                <span id="detalheSetor" class="badge-category"></span>
+                <h2 id="detalheNome"></h2>
+
+                <div class="specs-grid">
+                    <div class="spec-item">
+                        <span class="spec-label">Preço Sugerido</span>
+                        <div class="spec-value">R$ <span id="detalheValor"></span></div>
+                    </div>
+                    <div class="spec-item">
+                        <span class="spec-label">Localização</span>
+                        <div class="spec-value">Corredor <span id="detalheCorredor"></span></div>
+                    </div>
+                </div>
+
+                <div class="description-box">
+                    <h3>Sobre este item</h3>
+                    <p id="detalheDescricao"></p>
+                </div>
+            </div>
+        </div>
+
+        <section id="areaSugestoes" class="hidden">
+            <h3 class="sugestoes-header">Outros itens de <span id="nomeSetorSugestao"></span></h3>
+            <div id="sugestoes" class="sugestoes-grid"></div>
+        </section>
+    </section>
+
+    <script src="script.js"></script>
 </body>
 </html>
 
