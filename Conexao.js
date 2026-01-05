@@ -1,33 +1,28 @@
-/* =====================================================
-   1️⃣ PROTÓTIPO DE PRODUTO (MODELO)
-   → usado como base para criação e edição
-===================================================== */
+/* ================= BANCO LOCAL ================= */
 
-const produtoPrototipo = {
-  id: 0,              // 0 a 999
-  nome: "",           // string
-  setor: "",          // string
-  valor: 0,           // number
-  corredor: "",       // string
-  codigo: "",         // string
-  descricao: "",      // string
-  imagem: ""          // url ou base64
+// PROTÓTIPO (modelo)
+const PROTOTIPO_PRODUTO = {
+  id: 0,
+  nome: "",
+  setor: "",
+  valor: "",
+  corredor: "",
+  codigo: "",
+  descricao: "",
+  imagem: "",
+  visivel: true
 };
 
-/* =====================================================
-   CONEXAO.JS
-   SOMENTE LEITURA (CATÁLOGO FIXO)
-===================================================== */
-
-const produtos = [
+// PRODUTOS SALVOS
+const PRODUTOS_DB = [
   {
     id: 1,
-    nome: "Arroz",
+    nome: "Arroz 5kg",
     setor: "Alimentos",
-    valor: "25.90",
-    corredor: "A1",
-    codigo: "001",
-    descricao: "Arroz branco 5kg",
+    valor: "25.00",
+    corredor: "3",
+    codigo: "A001",
+    descricao: "Arroz tipo 1",
     imagem: "https://via.placeholder.com/200",
     visivel: true
   },
@@ -35,27 +30,21 @@ const produtos = [
     id: 2,
     nome: "Feijão",
     setor: "Alimentos",
-    valor: "8.50",
-    corredor: "A1",
-    codigo: "002",
+    valor: "9.50",
+    corredor: "3",
+    codigo: "F002",
     descricao: "Feijão carioca",
-    imagem: "https://via.placeholder.com/200",
-    visivel: true
-  },
-  {
-    id: 3,
-    nome: "Detergente",
-    setor: "Limpeza",
-    valor: "3.20",
-    corredor: "B2",
-    codigo: "010",
-    descricao: "Detergente neutro",
     imagem: "https://via.placeholder.com/200",
     visivel: true
   }
 ];
 
-/* FUNÇÃO DE LEITURA */
+/* ================= API FAKE ================= */
+
 function fetchProdutos() {
-  return Promise.resolve(produtos);
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve([...PRODUTOS_DB]);
+    }, 300);
+  });
 }
