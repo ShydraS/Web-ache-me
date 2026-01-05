@@ -4,46 +4,58 @@
   <meta charset="UTF-8">
   <title>Ache-me</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ================= LOBBY ================= -->
+<!-- ======================================================
+     LOBBY
+====================================================== -->
 <div id="lobby">
   <div class="lobby-content">
 
-    <!-- NOME -->
+    <!-- NOME DO SITE -->
     <h1 id="siteNomeLobby">Web Ache-me</h1>
 
-    <!-- IMAGEM EM CÍRCULO -->
+    <!-- LOGO -->
     <div class="logo-circulo">
-      <img src="https://w7.pngwing.com/pngs/748/380/png-transparent-shopping-cart-computer-icons-graphy-shopping-cart-blue-service-photography.png" alt="Carrinho">
+      <img
+        src="https://w7.pngwing.com/pngs/748/380/png-transparent-shopping-cart-computer-icons-graphy-shopping-cart-blue-service-photography.png"
+        alt="Carrinho"
+      >
     </div>
 
-    <!-- BOTÃO -->
+    <!-- BOTÃO INICIAR -->
     <button id="btnIniciar">Iniciar</button>
 
   </div>
 </div>
 
-<!-- ================= APP ================= -->
+<!-- ======================================================
+     APP PRINCIPAL
+====================================================== -->
 <div id="app" class="hidden container">
-  
-  <!-- PRODUTOS ALEATÓRIOS NO TOPO -->
+
+  <!-- PRODUTOS ALEATÓRIOS (ADM VISUAL) -->
   <div id="produtosAleatoriosADM" class="hidden"></div>
-  
-  <!-- HEADER -->
+
+  <!-- ====================================================
+       HEADER
+  ==================================================== -->
   <header>
 
     <!-- TÍTULO ADM -->
     <h1 id="tituloADM" class="hidden">ADM</h1>
-    
-    <!-- BOTÃO DE SAIR DO ADM -->
+
+    <!-- SAIR DO ADM -->
     <div id="sairADM" class="hidden">←</div>
-    
-    <!-- Nome do site no topo -->
+
+    <!-- NOME DO SITE NO TOPO -->
     <h1 id="siteNomeTopo">Ache-me</h1>
 
+    <!-- PESQUISA -->
     <div class="search-wrapper">
       <input
         type="text"
@@ -52,14 +64,19 @@
         autocomplete="off"
       >
     </div>
+
   </header>
 
-  <!-- LISTA DE PRODUTOS -->
+  <!-- ====================================================
+       LISTA DE PRODUTOS
+  ==================================================== -->
   <main>
     <div id="listaProdutos"></div>
   </main>
 
-  <!-- ================= PAINEL ADM ================= -->
+  <!-- ====================================================
+       PAINEL ADM (SOMENTE VISUAL)
+  ==================================================== -->
   <div id="painelADM" class="hidden">
 
     <!-- CONFIGURAÇÕES DO SITE -->
@@ -68,22 +85,34 @@
 
       <input id="nomeSiteInput" placeholder="Nome do site">
       <input id="fundoSiteInput" placeholder="URL da imagem de fundo (opcional)">
+
+      <!-- ❌ BOTÃO NÃO USADO NO JS ATUAL -->
+      <!--
       <button id="salvarConfigBtn">Salvar configurações</button>
+      -->
     </section>
 
-    <!-- PRODUTOS -->
+    <!-- PRODUTOS (VISUAL APENAS) -->
     <section class="admin-section">
       <h3>Produtos</h3>
+
+      <!-- ❌ BOTÃO REMOVIDO (SEM CRIAÇÃO DE PRODUTO) -->
+      <!--
       <button id="btnNovoProduto">Adicionar produto</button>
+      -->
+
       <div id="listaADM"></div>
     </section>
 
   </div>
 </div>
 
-<!-- ================= DETALHES DO PRODUTO ================= -->
+<!-- ======================================================
+     DETALHES DO PRODUTO
+====================================================== -->
 <div id="detalhesProduto" class="hidden container">
 
+  <!-- VOLTAR -->
   <button id="btnVoltar">← Voltar</button>
 
   <div class="detalhes-container">
@@ -93,15 +122,33 @@
 
     <!-- VISUALIZAÇÃO -->
     <div class="detalhes-info" id="visualizacaoProduto">
+
       <h2 id="detalheNome"></h2>
 
-      <p><strong>Setor:</strong> <span id="detalheSetor"></span></p>
-      <p><strong>Valor:</strong> R$ <span id="detalheValor"></span></p>
-      <p><strong>Corredor:</strong> <span id="detalheCorredor"></span></p>
+      <p>
+        <strong>Setor:</strong>
+        <span id="detalheSetor"></span>
+      </p>
+
+      <p>
+        <strong>Valor:</strong>
+        R$ <span id="detalheValor"></span>
+      </p>
+
+      <p>
+        <strong>Corredor:</strong>
+        <span id="detalheCorredor"></span>
+      </p>
 
       <p id="detalheDescricao"></p>
 
-  <!-- SUGESTÕES -->
+    </div>
+
+  </div>
+
+  <!-- ====================================================
+       SUGESTÕES
+  ==================================================== -->
   <div id="areaSugestoes" class="hidden">
     <h3>Sugestões do mesmo setor</h3>
     <div id="sugestoes"></div>
@@ -109,7 +156,18 @@
 
 </div>
 
-<!-- ================= SCRIPTS ================= -->
+<!-- ======================================================
+     FORMULÁRIOS / EDIÇÃO
+     ❌ DESATIVADOS NO SISTEMA ATUAL
+====================================================== -->
+<!--
+<div id="formNovoProduto"></div>
+<div id="edicaoProduto"></div>
+-->
+
+<!-- ======================================================
+     SCRIPT
+====================================================== -->
 <script type="module" src="script.js"></script>
 
 </body>
