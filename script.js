@@ -3,8 +3,8 @@ const CODIGO_ADM = "123";
 
 /* ================= ESTADO GLOBAL ================= */
 let produtos = [];
-let produtoEmEdicao = null;
 let modoADM = false;
+
 let config = {
   nomeSite: "Web Ache-me",
   fundo: ""
@@ -24,262 +24,302 @@ const listaADM = document.getElementById("listaADM");
 const detalhesProduto = document.getElementById("detalhesProduto");
 const btnVoltar = document.getElementById("btnVoltar");
 
-/* ================= NOVOS ELEMENTOS ADICIONADOS ================= */
-const sairADM = document.getElementById("sairADM"); // Botão de sair do ADM
-const tituloADM = document.getElementById("tituloADM"); // Título grande ADM
-const produtosAleatoriosADM = document.getElementById("produtosAleatoriosADM"); // Produtos aleatórios
+/* ================= ADM VISUAL ================= */
+const sairADM = document.getElementById("sairADM");
+const tituloADM = document.getElementById("tituloADM");
+const produtosAleatoriosADM = document.getElementById("produtosAleatoriosADM");
 
 /* ================= INICIALIZAÇÃO ================= */
 document.addEventListener("DOMContentLoaded", async () => {
+
   esconderTudo();
+
   lobby.classList.remove("hidden");
 
   try {
+
     produtos = await fetchProdutos();
+
+    if (!Array.isArray(produtos)) {
+      produtos = [];
+    }
+
     listarProdutos();
-  } catch (e) {
-    console.error("Erro ao carregar produtos:", e);
+
+  } catch (erro) {
+    console.error("Erro ao carregar produtos:", erro);
   }
+
 });
 
-/* ================= FUNÇÕES BASE ================= */
+/* ================= BASE ================= */
 function esconderTudo() {
+
   lobby.classList.add("hidden");
   app.classList.add("hidden");
   painelADM.classList.add("hidden");
   detalhesProduto.classList.add("hidden");
 
-  // esconder elementos novos
   sairADM.classList.add("hidden");
   tituloADM.classList.add("hidden");
   produtosAleatoriosADM.classList.add("hidden");
+
 }
 
 /* ================= LOBBY ================= */
 btnIniciar.onclick = () => {
+
   modoADM = false;
+
   pesquisa.value = "";
 
   lobby.classList.add("hidden");
   app.classList.remove("hidden");
+
   painelADM.classList.add("hidden");
   listaProdutos.classList.remove("hidden");
 
   aplicarConfig();
   listarProdutos();
+
 };
 
-/* ================= PESQUISA ================= */
+/* ================= PESQUISA / ADM ================= */
 pesquisa.oninput = () => {
+
   const valor = pesquisa.value.trim();
 
-  // só entra no modo ADM se o código for correto
+  /* === ENTRAR NO ADM === */
   if (!modoADM && valor === CODIGO_ADM) {
+
     modoADM = true;
 
-    // MOSTRAR ELEMENTOS DO ADM
     painelADM.classList.remove("hidden");
     listaProdutos.classList.add("hidden");
+
     tituloADM.classList.remove("hidden");
     sairADM.classList.remove("hidden");
 
-    // Listar produtos ADM normalmente
     listarADM();
-
-    // Listar produtos aleatórios no topo (máx 4)
     mostrarProdutosAleatorios();
+
+    return;
   }
 
-  // Se já estiver no modo ADM, não faz nada
+  /* === PESQUISA NORMAL === */
+  if (!modoADM) {
+    listarProdutos(valor);
+  }
+
 };
 
-/* ================= NOVA FUNÇÃO: MOSTRAR 4 PRODUTOS ALEATÓRIOS ================= */
-function mostrarProdutosAleatorios() {
-  produtosAleatoriosADM.innerHTML = "";
-  let visiveis = produtos.filter(p => p.visivel !== false);
-  let aleatorios = visiveis.sort(() => Math.random() - 0.5).slice(0, 4);
-
-  aleatorios.forEach(p => {
-    const div = document.createElement("div");
-    div.className = "card aleatorio-adm";
-    div.innerHTML = `
-      <strong>${p.nome}</strong>
-      <div>${p.setor || "Sem setor"} - R$ ${p.valor || "--"}</div>
-    `;
-    div.onclick = () => abrirProduto(p.id);
-    produtosAleatoriosADM.appendChild(div);
-  });
-}
-
-/* ================= NOVA FUNÇÃO: SAIR DO ADM ================= */
+/* ================= SAIR DO ADM ================= */
 sairADM.onclick = () => {
+
   modoADM = false;
+
   painelADM.classList.add("hidden");
   listaProdutos.classList.remove("hidden");
 
-  // esconder elementos ADM
   tituloADM.classList.add("hidden");
   sairADM.classList.add("hidden");
   produtosAleatoriosADM.classList.add("hidden");
 
+  detalhesProduto.classList.add("hidden");
+  app.classList.remove("hidden");
+
   pesquisa.value = "";
+
   listarProdutos();
+
 };
 
-/* ================= LISTAGEM DE PRODUTOS ================= */
+/* ================= LISTAGEM NORMAL ================= */
 function listarProdutos(filtro = "") {
-  if (modoADM) return;
+
+  if (modoADM) {
+    return;
+  }
 
   listaProdutos.innerHTML = "";
 
-  if (!Array.isArray(produtos)) return;
-
   produtos
-    .filter(p => p.visivel !== false)
-    .filter(p =>
-      p.nome?.toLowerCase().includes(filtro.toLowerCase()) ||
-      p.setor?.toLowerCase().includes(filtro.toLowerCase()) ||
-      p.codigo?.includes(filtro)
-    )
-    .forEach(p => {
+    .filter(produto => produto.visivel !== false)
+    .filter(produto => {
+
+      const nome = produto.nome || "";
+      const setor = produto.setor || "";
+      const codigo = produto.codigo || "";
+
+      return (
+        nome.toLowerCase().includes(filtro.toLowerCase()) ||
+        setor.toLowerCase().includes(filtro.toLowerCase()) ||
+        codigo.includes(filtro)
+      );
+
+    })
+    .forEach(produto => {
+
       const div = document.createElement("div");
       div.className = "card";
+
       div.innerHTML = `
-        <strong>${p.nome || "Produto sem nome"}</strong>
-        <div>${p.setor || "Sem setor"} - R$ ${p.valor || "--"}</div>
+        <strong>${produto.nome || "Sem nome"}</strong>
+        <div>${produto.setor || "Sem setor"} - R$ ${produto.valor || "--"}</div>
       `;
-      div.onclick = () => abrirProduto(p.id);
+
+      div.onclick = () => abrirProduto(produto.id);
+
       listaProdutos.appendChild(div);
+
     });
+
+}
+
+/* ================= ADM (SOMENTE VISUAL) ================= */
+function listarADM() {
+
+  listaADM.innerHTML = "";
+
+  produtos.forEach(produto => {
+
+    const div = document.createElement("div");
+    div.className = "adm-item";
+
+    div.innerHTML = `
+      <strong>${produto.nome || "Sem nome"}</strong>
+      <span>${produto.visivel !== false ? "Visível" : "Oculto"}</span>
+    `;
+
+    listaADM.appendChild(div);
+
+  });
+
+}
+
+/* ================= PRODUTOS ALEATÓRIOS ADM ================= */
+function mostrarProdutosAleatorios() {
+
+  produtosAleatoriosADM.innerHTML = "";
+
+  const visiveis = produtos.filter(p => p.visivel !== false);
+
+  const aleatorios = visiveis
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 4);
+
+  aleatorios.forEach(produto => {
+
+    const div = document.createElement("div");
+    div.className = "card aleatorio-adm";
+
+    div.innerHTML = `
+      <strong>${produto.nome || "Sem nome"}</strong>
+      <div>${produto.setor || "Sem setor"} - R$ ${produto.valor || "--"}</div>
+    `;
+
+    div.onclick = () => abrirProduto(produto.id);
+
+    produtosAleatoriosADM.appendChild(div);
+
+  });
+
+  produtosAleatoriosADM.classList.remove("hidden");
+
 }
 
 /* ================= DETALHES ================= */
 function abrirProduto(id) {
-  const p = produtos.find(prod => prod.id === id);
-  if (!p) return;
+
+  const produto = produtos.find(p => p.id === id);
+
+  if (!produto) {
+    return;
+  }
 
   app.classList.add("hidden");
   detalhesProduto.classList.remove("hidden");
 
   document.getElementById("detalheImagem").src =
-    p.imagem || "https://via.placeholder.com/200";
-  document.getElementById("detalheNome").innerText = p.nome || "";
-  document.getElementById("detalheSetor").innerText = p.setor || "";
-  document.getElementById("detalheValor").innerText = p.valor || "";
-  document.getElementById("detalheCorredor").innerText = p.corredor || "";
-  document.getElementById("detalheDescricao").innerText = p.descricao || "";
+    produto.imagem || "https://via.placeholder.com/200";
 
-  listarSugestoes(p);
+  document.getElementById("detalheNome").innerText =
+    produto.nome || "";
+
+  document.getElementById("detalheSetor").innerText =
+    produto.setor || "";
+
+  document.getElementById("detalheValor").innerText =
+    produto.valor || "";
+
+  document.getElementById("detalheCorredor").innerText =
+    produto.corredor || "";
+
+  document.getElementById("detalheDescricao").innerText =
+    produto.descricao || "";
+
+  listarSugestoes(produto);
+
 }
 
+/* ================= VOLTAR ================= */
 btnVoltar.onclick = () => {
+
   detalhesProduto.classList.add("hidden");
   app.classList.remove("hidden");
+
+  const sugestoes = document.getElementById("sugestoes");
+  if (sugestoes) {
+    sugestoes.innerHTML = "";
+  }
+
 };
 
 /* ================= SUGESTÕES ================= */
-function listarSugestoes(produto) {
+function listarSugestoes(produtoBase) {
+
   const sugestoes = document.getElementById("sugestoes");
   sugestoes.innerHTML = "";
 
-  if (!produto?.setor) return;
-
-  let relacionados = produtos.filter(p =>
-    p.visivel &&
-    p.setor?.toLowerCase() === produto.setor.toLowerCase() &&
-    p.id !== produto.id
-  );
-
-  relacionados = relacionados.sort(() => Math.random() - 0.5).slice(0, 9);
+  const relacionados = produtos
+    .filter(p =>
+      p.visivel !== false &&
+      p.setor === produtoBase.setor &&
+      p.id !== produtoBase.id
+    )
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 6);
 
   if (relacionados.length === 0) {
     sugestoes.innerHTML = "<span>Nenhum produto relacionado.</span>";
     return;
   }
 
-  relacionados.forEach(p => {
+  relacionados.forEach(produto => {
+
     const div = document.createElement("div");
     div.className = "card sugestao-card";
-    div.onclick = () => abrirProduto(p.id);
+
     div.innerHTML = `
-      <img src="${p.imagem || 'https://via.placeholder.com/60'}">
-      <div>
-        <strong>${p.nome}</strong>
-        <p>${p.descricao || ''}</p>
-      </div>
+      <img src="${produto.imagem || 'https://via.placeholder.com/60'}">
+      <strong>${produto.nome || "Sem nome"}</strong>
     `;
+
+    div.onclick = () => abrirProduto(produto.id);
+
     sugestoes.appendChild(div);
+
   });
+
 }
 
-/* ================= CONFIGURAÇÃO DO SITE ================= */
+/* ================= CONFIG ================= */
 function aplicarConfig() {
-  document.getElementById("siteNomeLobby").innerText = config.nomeSite;
-  document.getElementById("siteNomeTopo").innerText = config.nomeSite;
 
-  if (config.fundo) {
-    document.body.style.backgroundImage = `url(${config.fundo})`;
-    document.body.style.backgroundSize = "cover";
-  } else {
-    document.body.style.backgroundImage = "";
-  }
+  document.getElementById("siteNomeLobby").innerText =
+    config.nomeSite;
+
+  document.getElementById("siteNomeTopo").innerText =
+    config.nomeSite;
+
 }
-
-document.getElementById("salvarConfigBtn").onclick = () => {
-  const nome = document.getElementById("nomeSiteInput").value.trim();
-  const fundo = document.getElementById("fundoSiteInput").value.trim();
-
-  if (nome) config.nomeSite = nome;
-  config.fundo = fundo;
-
-  aplicarConfig();
-};
-
-/* ================= ADM ================= */
-btnNovoProduto.onclick = () => {
-  produtoEmEdicao = null;
-  limparFormNovoProduto();
-
-  // ESCONDE PAINEL ADM
-  painelADM.classList.add("hidden");
-
-};
-
-  // VOLTA PARA O ADM
-  painelADM.classList.remove("hidden");
-
-  produtoEmEdicao = null;
-};
-
-/* ================= ADM LISTA ================= */
-function listarADM() {
-  listaADM.innerHTML = "";
-
-  produtos.forEach(p => {
-    const div = document.createElement("div");
-    div.className = "adm-item";
-    div.innerHTML = `
-      <strong>${p.nome}</strong>
-      <button onclick="editarProdutoForm(${p.id})">Editar</button>
-      <button onclick="toggleProduto(${p.id})">
-        ${p.visivel ? "Ocultar" : "Mostrar"}
-      </button>
-    `;
-    listaADM.appendChild(div);
-  });
-}
-
-async function toggleProduto(id) {
-  const p = produtos.find(x => x.id === id);
-  if (!p) return;
-
-  p.visivel = !p.visivel;
-  await editProduto(p);
-
-  produtos = await fetchProdutos();
-  listarADM();
-  listarProdutos();
-}
-
-/* ================= UTIL ================= */
-
