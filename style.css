@@ -1,271 +1,65 @@
-/* =========================================================
-   RESET GLOBAL
-========================================================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+/* RESET GLOBAL */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background-color: #f4f7fa; color: #333; }
+.hidden { display: none !important; }
 
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* 🔒 trava rolagem lateral e vertical */
-}
-
-/* =========================================================
-   LOBBY BASE
-========================================================= */
+/* LOBBY */
 #lobby {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: fixed;
-  inset: 0;
-  background: #1e3c72;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+  width: 100vw; height: 100vh; position: fixed; inset: 0;
+  background: radial-gradient(circle, #1e3c72 0%, #12254a 100%);
+  display: flex; justify-content: center; align-items: center; z-index: 1000;
 }
-
-/* =========================================================
-   UTILITÁRIOS
-========================================================= */
-.hidden {
-  display: none !important;
-}
-
-.flex {
-  display: flex;
-}
-
-.center {
-  justify-content: center;
-  align-items: center;
-}
-
-.column {
-  flex-direction: column;
-}
-
-/* =========================================================
-   LOBBY CONTEÚDO
-========================================================= */
-.lobby-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 22px;
-}
-
-/* =========================================================
-   LOGO CIRCULAR
-========================================================= */
+.lobby-content { display: flex; flex-direction: column; align-items: center; gap: 20px; }
 .logo-circulo {
-  width: 120px;
-  height: 120px;
-  background: #2ecc71;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  width: 120px; height: 120px; background: #2ecc71; border-radius: 50%;
+  display: flex; justify-content: center; align-items: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
-
-.logo-circulo img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-}
-
-/* =========================================================
-   NOME DO SITE (LOBBY)
-========================================================= */
-#siteNomeLobby {
-  color: #ffffff;
-  font-size: 2.2rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* =========================================================
-   BOTÃO INICIAR
-========================================================= */
+.logo-circulo img { width: 60px; }
+#siteNomeLobby { color: #fff; font-size: 2.2rem; }
 #btnIniciar {
-  width: 240px;
-  height: 60px;
-  background: #2ecc71;
-  color: #000;
-  border: none;
-  border-radius: 999px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  width: 200px; padding: 15px; background: #2ecc71; border: none;
+  border-radius: 50px; font-weight: bold; cursor: pointer; transition: 0.3s;
 }
+#btnIniciar:hover { transform: scale(1.05); }
 
-#btnIniciar:hover {
-  transform: scale(1.05);
-}
+/* HEADER */
+header { background: #1e3c72; padding: 25px; color: #fff; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; }
+#header-content { display: flex; justify-content: center; align-items: center; position: relative; }
+#sairADM { position: absolute; left: 0; font-size: 1.5rem; cursor: pointer; }
+#siteNomeTopo, #tituloADM { font-size: 1.6rem; font-weight: bold; }
+#pesquisa { width: 100%; margin-top: 15px; padding: 12px; border-radius: 10px; border: none; }
 
-/* =========================================================
-   APP PRINCIPAL
-========================================================= */
-#app {
-  background: #ffffff;
-  min-height: 100vh;
-  border-radius: 18px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+/* CARDS */
+.card { background: #fff; padding: 15px; border-radius: 12px; margin: 10px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.btn-olho { background: #eee; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; }
+.olho-riscado { background: #ffdada; opacity: 0.5; }
 
-/* =========================================================
-   HEADER
-========================================================= */
-header {
-  background: #1e3c72;
-  padding: 20px;
-  color: #ffffff;
-}
+/* FICHA DO PRODUTO */
+.detalhes-nav { padding: 20px; }
+#btnVoltar { background: #1e3c72; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+.product-sheet { background: #fff; margin: 0 20px; border-radius: 25px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+.product-visual { background: #f8f9fa; padding: 30px; display: flex; justify-content: center; }
+.product-visual img { height: 200px; object-fit: contain; }
+.product-body { padding: 25px; }
+.setor-badge { background: #eef2ff; color: #1e3c72; padding: 5px 12px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+.info-card { background: #f4f7fa; padding: 12px; border-radius: 10px; }
+.info-card label { font-size: 0.7rem; color: #777; display: block; margin-bottom: 4px; }
+.value-text { font-weight: bold; color: #1e3c72; }
 
-header h1 {
-  font-size: 30px;
-  text-align: center;
-  margin-bottom: 12px;
-}
-
-#pesquisa {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: none;
-  outline: none;
-}
-
-/* =========================================================
-   LISTA DE PRODUTOS
-========================================================= */
-#listaProdutos {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
+/* GRID DE SUGESTÕES */
+.sugestoes-title { padding: 20px 20px 10px; color: #1e3c72; }
+.sugestoes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 12px;
+  padding: 0 20px 40px;
 }
-
-.card {
-  background: #ffffff;
-  border-radius: 14px;
-  padding: 15px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  cursor: pointer;
-  transition: transform 0.15s ease;
+.sugestao-item {
+  background: #fff; padding: 12px; border-radius: 15px; text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05); cursor: pointer;
 }
+.sugestao-item img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px; }
+.sugestao-item strong { font-size: 0.8rem; display: block; height: 35px; overflow: hidden; }
 
-.card:hover {
-  transform: scale(1.02);
-}
-
-.card strong {
-  font-size: 16px;
-}
-
-/* =========================================================
-   DETALHES DO PRODUTO
-========================================================= */
-#detalhesProduto {
-  background: #ffffff;
-  min-height: 100vh;
-  padding: 15px;
-}
-
-#btnVoltar {
-  background-color: #1e90ff;
-  color: #ffffff;
-  font-size: 18px;
-  padding: 10px 18px;
-  border-radius: 12px;
-  border: none;
-  cursor: pointer;
-  margin-bottom: 15px;
-}
-
-/* =========================================================
-   PAINEL ADM (VISUAL APENAS)
-========================================================= */
-#painelADM {
-  background: #ffffff;
-  padding: 15px;
-  border-top: 2px solid #1e3c72;
-}
-
-#painelADM h2,
-#painelADM h3 {
-  margin-bottom: 10px;
-}
-
-#painelADM input,
-#painelADM textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-/* =========================================================
-   FORMULÁRIO DE NOVO PRODUTO
-   ❌ DESATIVADO (NÃO USADO NO SISTEMA ATUAL)
-========================================================= */
-/*
-#formNovoProduto {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 480px;
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-*/
-
-/* =========================================================
-   RESPONSIVO
-========================================================= */
-@media (max-width: 480px) {
-
-  #siteNomeLobby {
-    font-size: 28px;
-  }
-
-  .logo-circulo {
-    width: 100px;
-    height: 100px;
-  }
-
-  .logo-circulo img {
-    width: 50px;
-    height: 50px;
-  }
-
-  #btnIniciar {
-    height: 52px;
-    font-size: 1.2rem;
-  }
-}
-
-/* =========================================================
-   FIM DO CSS
-========================================================= */
