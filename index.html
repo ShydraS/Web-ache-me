@@ -2,141 +2,85 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Ache-me</title>
+  <title>Web Ache-me | Catálogo Interativo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ======================================================
-     LOBBY
-====================================================== -->
 <div id="lobby">
   <div class="lobby-content">
-
-    <!-- NOME DO SITE -->
-    <h1 id="siteNomeLobby">Web Ache-me</h1>
-
-    <!-- LOGO -->
     <div class="logo-circulo">
       <img
         src="https://w7.pngwing.com/pngs/748/380/png-transparent-shopping-cart-computer-icons-graphy-shopping-cart-blue-service-photography.png"
-        alt="Carrinho"
+        alt="Logo"
       >
     </div>
-
-    <!-- BOTÃO INICIAR -->
+    <h1 id="siteNomeLobby">Web Ache-me</h1>
     <button id="btnIniciar">Iniciar</button>
-
   </div>
 </div>
 
-<!-- ======================================================
-     APP PRINCIPAL
-====================================================== -->
 <div id="app" class="hidden container">
-
-  <!-- PRODUTOS ALEATÓRIOS (ADM VISUAL) -->
-  <div id="produtosAleatoriosADM" class="hidden"></div>
-
-  <!-- ====================================================
-       HEADER
-  ==================================================== -->
   <header>
-
-    <!-- TÍTULO ADM -->
-    <h1 id="tituloADM" class="hidden">ADM</h1>
-
-    <!-- SAIR DO ADM -->
-    <div id="sairADM" class="hidden">←</div>
-
-    <!-- NOME DO SITE NO TOPO -->
-    <h1 id="siteNomeTopo">Ache-me</h1>
-
-    <!-- PESQUISA -->
-    <div class="search-wrapper">
-      <input
-        type="text"
-        id="pesquisa"
-        placeholder="Pesquisar nome, código ou setor"
-        autocomplete="off"
-      >
+    <div id="header-content">
+      <div id="sairADM" class="hidden">←</div>
+      <h1 id="tituloADM" class="hidden">MODO ADM</h1>
+      <h1 id="siteNomeTopo">Ache-me</h1>
     </div>
-
+    <div class="search-wrapper">
+      <input type="text" id="pesquisa" placeholder="Pesquisar..." autocomplete="off">
+    </div>
   </header>
 
-  <!-- ====================================================
-       LISTA DE PRODUTOS
-  ==================================================== -->
- <main>
+  <main>
     <div id="listaProdutos"></div>
+    <div id="painelADM" class="hidden">
+      <div class="adm-header-info">
+        <h3>Painel de Visibilidade</h3>
+        <p>Alterne a visibilidade dos itens clicando no ícone do olho.</p>
+      </div>
+      <div id="listaADM"></div>
+    </div>
   </main>
 </div>
   
-<!-- ======================================================
-     DETALHES DO PRODUTO
-====================================================== -->
 <div id="detalhesProduto" class="hidden container">
+  <div class="detalhes-nav">
+    <button id="btnVoltar">← Voltar</button>
+  </div>
 
-  <!-- VOLTAR -->
-  <button id="btnVoltar">← Voltar</button>
-
-  <div class="detalhes-container">
-
-    <!-- IMAGEM -->
-    <img id="detalheImagem" alt="Produto">
-
-    <!-- VISUALIZAÇÃO -->
-    <div class="detalhes-info" id="visualizacaoProduto">
-
-      <h2 id="detalheNome"></h2>
-
-      <p>
-        <strong>Setor:</strong>
-        <span id="detalheSetor"></span>
-      </p>
-
-      <p>
-        <strong>Valor:</strong>
-        R$ <span id="detalheValor"></span>
-      </p>
-
-      <p>
-        <strong>Corredor:</strong>
-        <span id="detalheCorredor"></span>
-      </p>
-
-      <p id="detalheDescricao"></p>
-
+  <div class="product-sheet">
+    <div class="product-visual">
+      <img id="detalheImagem" src="" alt="Produto">
     </div>
-
+    <div class="product-body">
+      <span id="detalheSetor" class="setor-badge"></span>
+      <h2 id="detalheNome"></h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <label>Preço</label>
+          <div class="value-text">R$ <span id="detalheValor"></span></div>
+        </div>
+        <div class="info-card">
+          <label>Corredor</label>
+          <div class="value-text"><span id="detalheCorredor"></span></div>
+        </div>
+      </div>
+      <div class="description-section">
+        <h4>Detalhes</h4>
+        <p id="detalheDescricao"></p>
+      </div>
+    </div>
   </div>
 
-  <!-- ====================================================
-       SUGESTÕES
-  ==================================================== -->
   <div id="areaSugestoes" class="hidden">
-    <h3>Sugestões do mesmo setor</h3>
-    <div id="sugestoes"></div>
+    <h3 class="sugestoes-title">Explore mais deste setor</h3>
+    <div id="sugestoes" class="sugestoes-grid"></div>
   </div>
-
 </div>
 
-<!-- ======================================================
-     FORMULÁRIOS / EDIÇÃO
-     ❌ DESATIVADOS NO SISTEMA ATUAL
-====================================================== -->
-<!--
-<div id="formNovoProduto"></div>
-<div id="edicaoProduto"></div>
--->
-
-<!-- ======================================================
-     SCRIPT
-====================================================== -->
-<script type="module" src="script.js"></script>
-
+<script src="script.js"></script>
 </body>
 </html>
+
