@@ -101,23 +101,6 @@
 
       <p id="detalheDescricao"></p>
 
-      <button id="btnEditarProduto" class="hidden">Editar produto</button>
-    </div>
-
-    <!-- EDIÇÃO (ADM) -->
-    <div class="detalhes-info hidden" id="edicaoProduto">
-      <input id="editNome" placeholder="Nome">
-      <input id="editSetor" placeholder="Setor">
-      <input id="editValor" placeholder="Valor">
-      <input id="editCorredor" placeholder="Corredor">
-      <textarea id="editDescricao" placeholder="Descrição"></textarea>
-
-      <button id="btnSalvarEdicao">Salvar</button>
-      <button id="btnCancelarEdicao">Cancelar</button>
-    </div>
-
-  </div>
-
   <!-- SUGESTÕES -->
   <div id="areaSugestoes" class="hidden">
     <h3>Sugestões do mesmo setor</h3>
@@ -125,26 +108,6 @@
   </div>
 
 </div>
-
-<!-- ================= FORMULÁRIO NOVO PRODUTO (ADM) ================= -->
-<div id="formNovoProduto" class="hidden container">
-
-  <h3>Adicionar Produto</h3>
-
-  <input id="novoNome" placeholder="Nome do produto" required>
-  <input id="novoSetor" placeholder="Setor" required>
-  <input id="novoValor" placeholder="Valor" required>
-  <input id="novoCorredor" placeholder="Corredor" required>
-  <input id="novoCodigo" placeholder="Código" required>
-  <textarea id="novoDescricao" placeholder="Descrição (opcional)"></textarea>
-  <input id="novoImagem" placeholder="URL da imagem">
-
-  <button id="btnSalvarNovo">Salvar Produto</button>
-  <button id="btnCancelarNovo">Cancelar</button>
-
-</div>
-
-<div class="overlay"></div>
 
 <!-- ================= SCRIPTS ================= -->
 <script type="module" src="script.js"></script>
