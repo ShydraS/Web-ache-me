@@ -44,7 +44,7 @@ const BANCO_DADOS_PADRAO = [
 { id: 27, nome: "Suco de Laranja 1L", setor: "Bebidas", valor: "6,49", corredor: "B-02", visivel: true, codigo: "BEB003", imagem: "https://cdn-icons-png.flaticon.com/512/3082/3082036.png", descricao: "Suco de laranja integral." },
 { id: 28, nome: "Água Mineral 1,5L", setor: "Bebidas", valor: "2,99", corredor: "B-02", visivel: true, codigo: "BEB004", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046782.png", descricao: "Água mineral natural." },
 { id: 29, nome: "Água com Gás 500ml", setor: "Bebidas", valor: "2,49", corredor: "B-03", visivel: true, codigo: "BEB005", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046782.png", descricao: "Água gaseificada." },
-{ id: 30, nome: "Energético Lata", setor: "Bebidas", valor: "7,99", corredor: "B-03", visivel: true, codigo: "BEB006", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046785.png", descricao: "Bebida energética." },
+{ id: 30, nome: "Energético Lata", setor: "Bebidas", valor: "7,99", corredor: "B-03", visivel: true, codigo: "BEB006", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046785.png", descricao: "Bebida energética."
 ];
 
 // 2. VARIÁVEIS DE ESTADO E PERSISTÊNCIA
