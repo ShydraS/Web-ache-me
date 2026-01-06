@@ -48,6 +48,7 @@ const BANCO_DADOS_PADRAO = [
 ];
 
 // 2. VARIÁVEIS DE ESTADO E PERSISTÊNCIA
+localStorage.clear(), console.log(localStorage);
 const SENHA_ADMIN = "123";
 let modoAdmAtivo = false;
 
