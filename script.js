@@ -48,7 +48,6 @@ const BANCO_DADOS_PADRAO = [
 ];
 
 // 2. VARIÁVEIS DE ESTADO E PERSISTÊNCIA
-let produtos = JSON.parse(localStorage.getItem('acheme_inventario')) || BANCO_DADOS_PADRAO;
 const SENHA_ADMIN = "123";
 let modoAdmAtivo = false;
 
