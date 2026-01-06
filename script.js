@@ -43,22 +43,37 @@ const BANCO_DADOS_PADRAO = [
 ];
 
 // 2. VARIÁVEIS DE ESTADO E PERSISTÊNCIA
-localStorage.clear(), console.log(localStorage);
+let produtos = JSON.parse(localStorage.getItem('acheme_inventario')) || BANCO_DADOS_PADRAO;
 const SENHA_ADMIN = "123";
 let modoAdmAtivo = false;
 
 /**
  * 3. INICIALIZAÇÃO SEGURA
  */
+Vou substituir isso
 document.addEventListener('DOMContentLoaded', () => {
-    const botaoIniciar = document.getElementById('btn-entrar');
-    if (botaoIniciar) {
-        botaoIniciar.onclick = () => {
-            desativarModoAdm();
-            navegarPara('tela-app');
-        };
-    }
+
+// Botão Iniciar do Lobby  
+const botaoIniciar = document.getElementById('btn-entrar');  
+if (botaoIniciar) {  
+    botaoIniciar.onclick = () => {  
+        desativarModoAdm(); // Garante que começa como cliente  
+        navegarPara('tela-app');  
+    };  
+}
+
+Por isso
+document.addEventListener('DOMContentLoaded', () => {
+const botaoIniciar = document.getElementById('btn-entrar');
+if (botaoIniciar) {
+botaoIniciar.onclick = () => {
+desativarModoAdm();
+navegarPara('tela-app');
+};
+}
 });
+
+E isso?
 
     // Configura o Campo de Busca
     const campoBusca = document.getElementById('campo-pesquisa');
