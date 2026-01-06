@@ -1,4 +1,3 @@
-alert("JS carregado");
 /**
  * ============================================================
  * WEB ACHE-ME - LÓGICA DE GERENCIAMENTO DE INVENTÁRIO PRO
