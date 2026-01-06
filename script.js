@@ -6,105 +6,45 @@
 
 // 1. BANCO DE DADOS DE PRODUTOS
 const BANCO_DADOS_PADRAO = [
-    { 
-        id: 2, 
-        nome: "Feijão Carioca 1kg", 
-        setor: "Mercearia", 
-        valor: "8,50", 
-        corredor: "A-01", 
-        visivel: true, 
-        codigo: "789102031", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/4815/4815349.png", 
-        descricao: "Feijão novo de cozimento rápido." 
-    },
-    { 
-        id: 3, 
-        nome: "Macarrão Espaguete", 
-        setor: "Mercearia", 
-        valor: "4,50", 
-        corredor: "A-02", 
-        visivel: true, 
-        codigo: "789102032", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/3480/3480618.png", 
-        descricao: "Massa de sêmola com ovos." 
-    },
-    { 
-        id: 4, 
-        nome: "Detergente Líquido", 
-        setor: "Limpeza", 
-        valor: "2,25", 
-        corredor: "L-10", 
-        visivel: true, 
-        codigo: "789102033", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png", 
-        descricao: "Alto poder desengordurante." 
-    },
-    { 
-        id: 5, 
-        nome: "Café Torrado 500g", 
-        setor: "Mercearia", 
-        valor: "16,90", 
-        corredor: "A-03", 
-        visivel: true, 
-        codigo: "789102034", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2935/2935413.png", 
-        descricao: "Café de torra média." 
-    },
-    { 
-        id: 6, 
-        nome: "Leite Integral 1L", 
-        setor: "Laticínios", 
-        valor: "5,80", 
-        corredor: "G-01", 
-        visivel: true, 
-        codigo: "789102035", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2304/2304928.png", 
-        descricao: "Leite UHT integral." 
-    },
-    { 
-        id: 7, 
-        nome: "Açúcar Refinado 1kg", 
-        setor: "Mercearia", 
-        valor: "4,15", 
-        corredor: "A-02", 
-        visivel: true, 
-        codigo: "789102036", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2316/2316934.png", 
-        descricao: "Açúcar extra fino." 
-    },
-    { 
-        id: 8, 
-        nome: "Óleo de Soja 900ml", 
-        setor: "Mercearia", 
-        valor: "7,40", 
-        corredor: "A-02", 
-        visivel: true, 
-        codigo: "789102037", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2554/2554041.png", 
-        descricao: "Óleo vegetal refinado." 
-    },
-    { 
-        id: 9, 
-        nome: "Papel Higiênico (12un)", 
-        setor: "Higiene", 
-        valor: "15,90", 
-        corredor: "H-05", 
-        visivel: true, 
-        codigo: "789102038", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png", 
-        descricao: "Folha dupla de alta maciez." 
-    },
-    { 
-        id: 10, 
-        nome: "Sabão em Pó 1kg", 
-        setor: "Limpeza", 
-        valor: "12,90", 
-        corredor: "L-11", 
-        visivel: true, 
-        codigo: "789102039", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png", 
-        descricao: "Remove manchas difíceis." 
-    }
+   // ================= MERCEARIA =================
+{ id: 1, nome: "Arroz Agulhinha 5kg", setor: "Mercearia", valor: "29,90", corredor: "M-01", visivel: true, codigo: "MER001", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029236.png", descricao: "Arroz tipo 1, grãos selecionados e polidos." },
+{ id: 2, nome: "Feijão Carioca 1kg", setor: "Mercearia", valor: "8,90", corredor: "M-01", visivel: true, codigo: "MER002", imagem: "https://cdn-icons-png.flaticon.com/512/590/590685.png", descricao: "Feijão carioca de alta qualidade." },
+{ id: 3, nome: "Macarrão Espaguete 500g", setor: "Mercearia", valor: "4,50", corredor: "M-02", visivel: true, codigo: "MER003", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046784.png", descricao: "Macarrão espaguete tradicional." },
+{ id: 4, nome: "Óleo de Soja 900ml", setor: "Mercearia", valor: "7,99", corredor: "M-02", visivel: true, codigo: "MER004", imagem: "https://cdn-icons-png.flaticon.com/512/3082/3082033.png", descricao: "Óleo de soja refinado." },
+{ id: 5, nome: "Açúcar Refinado 1kg", setor: "Mercearia", valor: "4,29", corredor: "M-03", visivel: true, codigo: "MER005", imagem: "https://cdn-icons-png.flaticon.com/512/992/992745.png", descricao: "Açúcar branco refinado." },
+{ id: 6, nome: "Farinha de Trigo 1kg", setor: "Mercearia", valor: "5,10", corredor: "M-03", visivel: true, codigo: "MER006", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075977.png", descricao: "Farinha ideal para pães e bolos." },
+
+// ================= HORTIFRUTI =================
+{ id: 7, nome: "Banana Prata (kg)", setor: "Hortifruti", valor: "5,99", corredor: "H-01", visivel: true, codigo: "HOR001", imagem: "https://cdn-icons-png.flaticon.com/512/2909/2909761.png", descricao: "Banana prata fresca." },
+{ id: 8, nome: "Maçã Gala (kg)", setor: "Hortifruti", valor: "7,49", corredor: "H-01", visivel: true, codigo: "HOR002", imagem: "https://cdn-icons-png.flaticon.com/512/415/415733.png", descricao: "Maçã gala selecionada." },
+{ id: 9, nome: "Tomate (kg)", setor: "Hortifruti", valor: "6,89", corredor: "H-02", visivel: true, codigo: "HOR003", imagem: "https://cdn-icons-png.flaticon.com/512/590/590685.png", descricao: "Tomate vermelho fresco." },
+{ id: 10, nome: "Batata Inglesa (kg)", setor: "Hortifruti", valor: "4,99", corredor: "H-02", visivel: true, codigo: "HOR004", imagem: "https://cdn-icons-png.flaticon.com/512/2909/2909806.png", descricao: "Batata inglesa lavada." },
+{ id: 11, nome: "Cenoura (kg)", setor: "Hortifruti", valor: "3,79", corredor: "H-03", visivel: true, codigo: "HOR005", imagem: "https://cdn-icons-png.flaticon.com/512/415/415682.png", descricao: "Cenoura crocante." },
+{ id: 12, nome: "Alface Crespa", setor: "Hortifruti", valor: "2,99", corredor: "H-03", visivel: true, codigo: "HOR006", imagem: "https://cdn-icons-png.flaticon.com/512/766/766020.png", descricao: "Alface fresca e higienizada." },
+
+// ================= LATICÍNIOS =================
+{ id: 13, nome: "Leite Integral 1L", setor: "Laticínios", valor: "4,99", corredor: "L-01", visivel: true, codigo: "LAT001", imagem: "https://cdn-icons-png.flaticon.com/512/2674/2674486.png", descricao: "Leite integral pasteurizado." },
+{ id: 14, nome: "Leite Desnatado 1L", setor: "Laticínios", valor: "4,89", corredor: "L-01", visivel: true, codigo: "LAT002", imagem: "https://cdn-icons-png.flaticon.com/512/2674/2674486.png", descricao: "Leite desnatado saudável." },
+{ id: 15, nome: "Queijo Mussarela (kg)", setor: "Laticínios", valor: "39,90", corredor: "L-02", visivel: true, codigo: "LAT003", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046751.png", descricao: "Queijo mussarela fatiado." },
+{ id: 16, nome: "Presunto Fatiado 200g", setor: "Laticínios", valor: "6,99", corredor: "L-02", visivel: true, codigo: "LAT004", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075974.png", descricao: "Presunto cozido fatiado." },
+{ id: 17, nome: "Iogurte Natural 170g", setor: "Laticínios", valor: "2,49", corredor: "L-03", visivel: true, codigo: "LAT005", imagem: "https://cdn-icons-png.flaticon.com/512/888/888034.png", descricao: "Iogurte natural tradicional." },
+{ id: 18, nome: "Manteiga 200g", setor: "Laticínios", valor: "8,79", corredor: "L-03", visivel: true, codigo: "LAT006", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075976.png", descricao: "Manteiga cremosa." },
+
+// ================= PADARIA =================
+{ id: 19, nome: "Pão Francês (kg)", setor: "Padaria", valor: "13,90", corredor: "P-01", visivel: true, codigo: "PAD001", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046786.png", descricao: "Pão francês crocante." },
+{ id: 20, nome: "Pão de Forma", setor: "Padaria", valor: "7,49", corredor: "P-01", visivel: true, codigo: "PAD002", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075972.png", descricao: "Pão de forma macio." },
+{ id: 21, nome: "Bolo de Chocolate", setor: "Padaria", valor: "15,90", corredor: "P-02", visivel: true, codigo: "PAD003", imagem: "https://cdn-icons-png.flaticon.com/512/590/590719.png", descricao: "Bolo de chocolate caseiro." },
+{ id: 22, nome: "Bolo de Milho", setor: "Padaria", valor: "14,90", corredor: "P-02", visivel: true, codigo: "PAD004", imagem: "https://cdn-icons-png.flaticon.com/512/590/590719.png", descricao: "Bolo de milho tradicional." },
+{ id: 23, nome: "Rosca Doce", setor: "Padaria", valor: "9,99", corredor: "P-03", visivel: true, codigo: "PAD005", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075978.png", descricao: "Rosca doce artesanal." },
+{ id: 24, nome: "Sonho Recheado", setor: "Padaria", valor: "4,50", corredor: "P-03", visivel: true, codigo: "PAD006", imagem: "https://cdn-icons-png.flaticon.com/512/590/590719.png", descricao: "Sonho com recheio cremoso." },
+
+// ================= BEBIDAS =================
+{ id: 25, nome: "Refrigerante Cola 2L", setor: "Bebidas", valor: "9,50", corredor: "B-01", visivel: true, codigo: "BEB001", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405479.png", descricao: "Refrigerante cola tradicional." },
+{ id: 26, nome: "Refrigerante Guaraná 2L", setor: "Bebidas", valor: "8,99", corredor: "B-01", visivel: true, codigo: "BEB002", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405479.png", descricao: "Refrigerante guaraná." },
+{ id: 27, nome: "Suco de Laranja 1L", setor: "Bebidas", valor: "6,49", corredor: "B-02", visivel: true, codigo: "BEB003", imagem: "https://cdn-icons-png.flaticon.com/512/3082/3082036.png", descricao: "Suco de laranja integral." },
+{ id: 28, nome: "Água Mineral 1,5L", setor: "Bebidas", valor: "2,99", corredor: "B-02", visivel: true, codigo: "BEB004", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046782.png", descricao: "Água mineral natural." },
+{ id: 29, nome: "Água com Gás 500ml", setor: "Bebidas", valor: "2,49", corredor: "B-03", visivel: true, codigo: "BEB005", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046782.png", descricao: "Água gaseificada." },
+{ id: 30, nome: "Energético Lata", setor: "Bebidas", valor: "7,99", corredor: "B-03", visivel: true, codigo: "BEB006", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046785.png", descricao: "Bebida energética." },
 ];
 
 // 2. VARIÁVEIS DE ESTADO E PERSISTÊNCIA
