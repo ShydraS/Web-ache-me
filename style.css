@@ -25,7 +25,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
-    -webkit-tap-highlight-color: transparent; /* Remove brilho azul ao clicar no mobile */
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -35,23 +35,43 @@ body {
     overflow-x: hidden;
 }
 
-/* Utilitários de Visibilidade */
-.view-hidden { display: none !important; }
-.view-active { display: block !important; }
+/* REGRAS DE SEPARAÇÃO (ADICIONADAS PARA CORRIGIR O VAZAMENTO DO ADM)
+   ================================================================== */
+.view-hidden { 
+    display: none !important; 
+}
+
+.view-active { 
+    display: block !important; 
+}
+
+/* Classe utilitária para esconder abas internas (Cliente vs ADM) */
+.hidden { 
+    display: none !important; 
+}
 
 /* ============================================================
-   2. TELA DE LOBBY (INTRODUÇÃO)
+   2. TELA DE LOBBY (TOTALMENTE CENTRALIZADA)
    ============================================================ */
 #tela-lobby {
     height: 100vh;
+    width: 100vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* Empilha os itens verticalmente */
+    justify-content: center; /* Centraliza no meio da altura */
+    align-items: center;     /* Centraliza no meio da largura */
     background: radial-gradient(circle at top left, var(--primary-navy), #0a111a);
     padding: 30px;
+    position: fixed; /* Garante que cubra a tela toda sem rolar */
+    top: 0;
+    left: 0;
+    z-index: 2000;
 }
 
 .lobby-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Garante que imagem, nome e botão fiquem alinhados */
     text-align: center;
     max-width: 400px;
     width: 100%;
@@ -63,7 +83,7 @@ body {
     height: 140px;
     background: var(--accent-emerald);
     border-radius: 40px;
-    margin: 0 auto 30px;
+    margin: 0 auto 30px; /* Mantém espaço abaixo da imagem */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,12 +102,14 @@ body {
     font-weight: 800;
     letter-spacing: -1.5px;
     margin-bottom: 8px;
+    width: 100%;
 }
 
 .marca-slogan {
     color: #a0aec0;
     font-size: 1.1rem;
     margin-bottom: 40px;
+    width: 100%;
 }
 
 .btn-principal {
@@ -197,7 +219,7 @@ body {
 }
 
 /* ============================================================
-   4. GRIDS E LISTAGENS
+   4. GRIDS E LISTAGENS (SEPARAÇÃO DE ABAS)
    ============================================================ */
 .conteudo-scrollable {
     padding: 20px;
@@ -205,9 +227,10 @@ body {
     margin: 0 auto;
 }
 
+/* Grid do Cliente */
 .grid-layout {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 15px;
 }
 
@@ -250,7 +273,12 @@ body {
     font-size: 1.2rem;
 }
 
-/* Painel ADM */
+/* Painel ADM (O que estava vazando na imagem) */
+#painel-adm {
+    width: 100%;
+    margin-top: 10px;
+}
+
 .lista-vertical {
     display: flex;
     flex-direction: column;
@@ -265,12 +293,22 @@ body {
     justify-content: space-between;
     align-items: center;
     box-shadow: var(--shadow-soft);
+    border: 1px solid #eee;
 }
 
 .item-off {
     opacity: 0.5;
     background: #f1f2f6;
     border-left: 4px solid var(--error-red);
+}
+
+.btn-visibilidade {
+    background: #eee;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
 }
 
 /* ============================================================
@@ -395,13 +433,14 @@ body {
 }
 
 /* ============================================================
-   6. GRID DE SUGESTÕES 3X3
+   6. GRID DE SUGESTÕES 3X3 (VERSÃO CORRIGIDA E TRAVADA)
    ============================================================ */
 .secao-sugestoes {
     padding: 30px 20px;
     background: white;
     border-radius: 40px 40px 0 0;
     box-shadow: 0 -10px 30px rgba(0,0,0,0.03);
+    margin-top: 20px;
 }
 
 .sugestao-header {
@@ -411,90 +450,119 @@ body {
     margin-bottom: 20px;
 }
 
-.tag-grid {
-    background: #f1f2f6;
-    padding: 4px 10px;
-    border-radius: 10px;
-    font-size: 0.7rem;
-    font-weight: 800;
-}
-
+/* O segredo está aqui: min-width 0 e o repeat fixo */
 .layout-sugestoes-3x3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 10px;
+    width: 100%;
 }
 
 .card-mini-sugestao {
     text-align: center;
-    padding: 10px;
+    padding: 12px 5px;
     background: var(--bg-light);
     border-radius: 15px;
     transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0; /* Impede que o texto largo quebre a coluna */
 }
 
 .card-mini-sugestao img {
-    width: 100%;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     object-fit: contain;
     margin-bottom: 8px;
 }
 
+/* ADICIONE ESTAS DUAS REGRAS ABAIXO PARA O TEXTO NÃO QUEBRAR O LAYOUT */
 .card-mini-sugestao strong {
-    display: block;
     font-size: 0.65rem;
-    white-space: nowrap;
+    line-height: 1.2;
+    height: 30px; /* Força o alinhamento em 2 linhas */
     overflow: hidden;
-    text-overflow: ellipsis;
+    display: block;
+    color: var(--text-main);
     margin-bottom: 4px;
 }
 
 .card-mini-sugestao span {
-    font-size: 0.8rem;
-    color: var(--accent-emerald);
+    font-size: 0.75rem;
     font-weight: 800;
+    color: var(--accent-emerald);
 }
 
 /* ============================================================
-   7. FOOTER E ANIMAÇÕES
+   7. FOOTER INTERATIVO (FORMULÁRIO DE FEEDBACK)
    ============================================================ */
 .footer-interativo {
-    padding: 40px 20px;
-    background: #f8f9fa;
+    background: #ffffff;
+    padding: 30px 20px;
+    margin: 20px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     text-align: center;
 }
 
-.form-sugestao {
-    margin-top: 20px;
+.footer-interativo h3 {
+    color: var(--primary-navy);
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
 }
 
+.footer-interativo p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+}
+
+/* Container do Input e Botão */
+.form-sugestao {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Campo de Texto Estilizado */
 #feedback-input {
     width: 100%;
     padding: 15px;
+    border: 2px solid #f1f2f6;
     border-radius: 12px;
-    border: 2px solid #eee;
-    margin-bottom: 15px;
+    background: #f8f9fa;
+    font-size: 0.9rem;
+    color: var(--text-main);
     outline: none;
+    transition: all 0.3s ease;
 }
 
+#feedback-input:focus {
+    border-color: var(--accent-emerald);
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.1);
+}
+
+/* Botão Enviar Estilo App */
 .btn-enviar-feedback {
     width: 100%;
-    background: var(--primary-navy);
+    padding: 16px;
+    background: var(--accent-emerald);
     color: white;
     border: none;
-    padding: 15px;
     border-radius: 12px;
+    font-size: 1rem;
     font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.3s;
+    box-shadow: 0 6px 15px rgba(39, 174, 96, 0.3);
 }
 
-/* Animações Keyframes */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Media Query para Telas Maiores (Desktop) */
-@media (min-width: 768px) {
-    .grid-layout { grid-template-columns: repeat(3, 1fr); }
-    .detalhes-container { max-width: 600px; margin: 0 auto; }
-}
+.btn-enviar-feedback:active {
+    transform: scale(0.96);
+    background: #219150;
+   }
+   
