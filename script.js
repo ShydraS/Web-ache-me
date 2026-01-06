@@ -1,14 +1,11 @@
 /**
  * ============================================================
- * WEB ACHE-ME - LÓGICA DE GERENCIAMENTO DE INVENTÁRIO
+ * WEB ACHE-ME - LÓGICA DE GERENCIAMENTO DE INVENTÁRIO PRO
  * ============================================================
- * Versão: 2.0 (GitHub Stable)
- * Funcionalidades: LocalStorage, Modo ADM, Busca Inteligente,
- * Navegação Single Page (SPA) e Grid 3x3.
  */
 
-// 1. BANCO DE DADOS INICIAL (ESTRUTURA COMPLETA)
-const BANCO_PADRAO = [
+// 1. BANCO DE DADOS DE PRODUTOS
+const BANCO_DADOS_PADRAO = [
     { 
         id: 1, 
         nome: "Arroz Agulhinha 5kg", 
@@ -18,7 +15,7 @@ const BANCO_PADRAO = [
         visivel: true, 
         codigo: "789102030", 
         imagem: "https://cdn-icons-png.flaticon.com/512/3504/3504803.png", 
-        descricao: "Arroz tipo 1, grãos selecionados e polidos de alta qualidade, ideal para o dia a dia da família." 
+        descricao: "Arroz tipo 1, grãos selecionados e polidos." 
     },
     { 
         id: 2, 
@@ -29,297 +26,341 @@ const BANCO_PADRAO = [
         visivel: true, 
         codigo: "789102031", 
         imagem: "https://cdn-icons-png.flaticon.com/512/4815/4815349.png", 
-        descricao: "Feijão novo de cozimento rápido e caldo grosso. Rico em ferro e proteínas." 
+        descricao: "Feijão novo de cozimento rápido." 
     },
     { 
         id: 3, 
-        nome: "Açúcar Refinado 1kg", 
+        nome: "Macarrão Espaguete", 
         setor: "Mercearia", 
-        valor: "4,20", 
+        valor: "4,50", 
         corredor: "A-02", 
         visivel: true, 
         codigo: "789102032", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2316/2316934.png", 
-        descricao: "Açúcar extra fino, dissolve rápido e é ideal para doces e bebidas." 
+        imagem: "https://cdn-icons-png.flaticon.com/512/3480/3480618.png", 
+        descricao: "Massa de sêmola com ovos." 
     },
     { 
         id: 4, 
+        nome: "Detergente Líquido", 
+        setor: "Limpeza", 
+        valor: "2,25", 
+        corredor: "L-10", 
+        visivel: true, 
+        codigo: "789102033", 
+        imagem: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png", 
+        descricao: "Alto poder desengordurante." 
+    },
+    { 
+        id: 5, 
         nome: "Café Torrado 500g", 
         setor: "Mercearia", 
         valor: "16,90", 
         corredor: "A-03", 
         visivel: true, 
-        codigo: "789102033", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2935/2935413.png", 
-        descricao: "Café com aroma intenso e moagem fina. Perfeito para o começo da manhã." 
-    },
-    { 
-        id: 5, 
-        nome: "Óleo de Soja 900ml", 
-        setor: "Mercearia", 
-        valor: "6,90", 
-        corredor: "A-02", 
-        visivel: true, 
         codigo: "789102034", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2554/2554041.png", 
-        descricao: "Óleo vegetal 100% puro, rico em vitamina E e livre de gorduras trans." 
+        imagem: "https://cdn-icons-png.flaticon.com/512/2935/2935413.png", 
+        descricao: "Café de torra média." 
     },
     { 
         id: 6, 
-        nome: "Detergente Neutro", 
-        setor: "Limpeza", 
-        valor: "2,45", 
-        corredor: "L-10", 
-        visivel: true, 
-        codigo: "789102035", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png", 
-        descricao: "Detergente com alto poder desengordurante e pH neutro para não agredir as mãos." 
-    },
-    { 
-        id: 7, 
-        nome: "Sabão em Pó 1kg", 
-        setor: "Limpeza", 
-        valor: "14,90", 
-        corredor: "L-11", 
-        visivel: true, 
-        codigo: "789102036", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png", 
-        descricao: "Limpeza profunda que preserva as cores dos tecidos e deixa um perfume duradouro." 
-    },
-    { 
-        id: 8, 
         nome: "Leite Integral 1L", 
         setor: "Laticínios", 
         valor: "5,80", 
         corredor: "G-01", 
         visivel: true, 
-        codigo: "789102037", 
+        codigo: "789102035", 
         imagem: "https://cdn-icons-png.flaticon.com/512/2304/2304928.png", 
-        descricao: "Leite UHT integral rico em cálcio, essencial para a saúde óssea." 
+        descricao: "Leite UHT integral." 
+    },
+    { 
+        id: 7, 
+        nome: "Açúcar Refinado 1kg", 
+        setor: "Mercearia", 
+        valor: "4,15", 
+        corredor: "A-02", 
+        visivel: true, 
+        codigo: "789102036", 
+        imagem: "https://cdn-icons-png.flaticon.com/512/2316/2316934.png", 
+        descricao: "Açúcar extra fino." 
+    },
+    { 
+        id: 8, 
+        nome: "Óleo de Soja 900ml", 
+        setor: "Mercearia", 
+        valor: "7,40", 
+        corredor: "A-02", 
+        visivel: true, 
+        codigo: "789102037", 
+        imagem: "https://cdn-icons-png.flaticon.com/512/2554/2554041.png", 
+        descricao: "Óleo vegetal refinado." 
     },
     { 
         id: 9, 
-        nome: "Biscoito Recheado", 
-        setor: "Mercearia", 
-        valor: "3,50", 
-        corredor: "A-04", 
+        nome: "Papel Higiênico (12un)", 
+        setor: "Higiene", 
+        valor: "15,90", 
+        corredor: "H-05", 
         visivel: true, 
         codigo: "789102038", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/3014/3014515.png", 
-        descricao: "Biscoito crocante com recheio cremoso de chocolate. O lanche favorito das crianças." 
+        imagem: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png", 
+        descricao: "Folha dupla de alta maciez." 
     },
     { 
         id: 10, 
-        nome: "Papel Higiênico", 
-        setor: "Higiene", 
-        valor: "18,90", 
-        corredor: "H-05", 
+        nome: "Sabão em Pó 1kg", 
+        setor: "Limpeza", 
+        valor: "12,90", 
+        corredor: "L-11", 
         visivel: true, 
         codigo: "789102039", 
         imagem: "https://cdn-icons-png.flaticon.com/512/2553/2553642.png", 
-        descricao: "Papel higiênico folha dupla, maciez superior e alta absorção." 
+        descricao: "Remove manchas difíceis." 
     }
 ];
 
-// 2. CONFIGURAÇÕES E ESTADO GLOBAL
-let db_produtos = JSON.parse(localStorage.getItem('web_acheme_db')) || BANCO_PADRAO;
-const SENHA_MESTRA = "123";
+// 2. VARIÁVEIS DE ESTADO E PERSISTÊNCIA
+let produtos = JSON.parse(localStorage.getItem('acheme_inventario')) || BANCO_DADOS_PADRAO;
+const SENHA_ADMIN = "123";
 let modoAdmAtivo = false;
 
-// 3. MAPEAMENTO DE ELEMENTOS DOM (CACHE)
-const dom = {
-    lobby: document.getElementById('tela-lobby'),
-    app: document.getElementById('tela-app'),
-    detalhes: document.getElementById('tela-detalhes'),
-    btnEntrar: document.getElementById('btn-entrar'),
-    btnSairAdm: document.getElementById('btn-sair-adm'),
-    campoPesquisa: document.getElementById('campo-pesquisa'),
-    gridCliente: document.getElementById('grid-cliente'),
-    painelAdm: document.getElementById('painel-adm'),
-    listaAdm: document.getElementById('lista-adm-itens'),
-    badgeAdm: document.getElementById('badge-adm'),
-    txtNomeProjeto: document.getElementById('nome-projeto')
-};
+/**
+ * 3. INICIALIZAÇÃO SEGURA
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // Botão Iniciar do Lobby
+    const botaoIniciar = document.getElementById('btn-entrar');
+    if (botaoIniciar) {
+        botaoIniciar.onclick = () => {
+            desativarModoAdm(); // Garante que começa como cliente
+            navegarPara('tela-app');
+        };
+    }
 
-// 4. SISTEMA DE NAVEGAÇÃO ENTRE TELAS
-function navegarPara(idTela) {
-    // Esconde todas as visualizações
-    dom.lobby.classList.add('view-hidden');
-    dom.app.classList.add('view-hidden');
-    dom.detalhes.classList.add('view-hidden');
+    // Configura o Campo de Busca
+    const campoBusca = document.getElementById('campo-pesquisa');
+    if (campoBusca) {
+        campoBusca.oninput = (e) => {
+            const valor = e.target.value.trim();
+            // Verifica se o usuário digitou a senha de administração
+            if (valor === SENHA_ADMIN) {
+                ativarModoAdm();
+            } else {
+                atualizarTelas(valor.toLowerCase());
+            }
+        };
+    }
 
-    // Mostra apenas a desejada
-    const telaDestino = document.getElementById(idTela);
-    telaDestino.classList.remove('view-hidden');
-    telaDestino.classList.add('view-active');
+    // Botão Sair do ADM (Ajustado para o novo layout de voltar)
+    const btnSairAdm = document.getElementById('btn-sair-adm');
+    if (btnSairAdm) {
+        btnSairAdm.onclick = () => {
+            desativarModoAdm();
+        };
+    }
 
-    // Scroll para o topo sempre que mudar de tela
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Configura o botão de Feedback no rodapé da página de detalhes
+    // Adicionamos o evento dinamicamente para garantir o alerta solicitado
+    const btnFeedback = document.querySelector('.btn-enviar-feedback');
+    if (btnFeedback) {
+        btnFeedback.onclick = () => {
+            const mensagem = "Muito obrigado pela sua atenção, mas essa função ainda não está disponível, mas futuramente ela estará";
+            alert(mensagem);
+            
+            // Limpa o campo de texto após o alerta
+            const inputFeedback = document.getElementById('feedback-input');
+            if(inputFeedback) inputFeedback.value = "";
+        };
+    }
+
+    atualizarTelas();
+});
+
+/**
+ * 4. SISTEMA DE NAVEGAÇÃO ENTRE TELAS (SPA)
+ */
+function navegarPara(idAlvo) {
+    const telas = ['tela-lobby', 'tela-app', 'tela-detalhes'];
+    
+    telas.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.classList.add('view-hidden');
+            el.classList.remove('view-active');
+        }
+    });
+
+    const telaAlvo = document.getElementById(idAlvo);
+    if (telaAlvo) {
+        telaAlvo.classList.remove('view-hidden');
+        telaAlvo.classList.add('view-active');
+        // Sempre volta para o topo ao trocar de tela
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 }
 
-// 5. INICIALIZAÇÃO DO APP
-dom.btnEntrar.addEventListener('click', () => {
-    navegarPara('tela-app');
-    atualizarInterface();
-});
-
-// 6. LÓGICA DE PESQUISA E LOGIN ADM
-dom.campoPesquisa.addEventListener('input', (event) => {
-    const termo = event.target.value.trim();
-
-    // Verificação de Senha ADM
-    if (termo === SENHA_MESTRA) {
-        ativarModoAdm();
-    } else {
-        atualizarInterface(termo.toLowerCase());
-    }
-});
-
+/**
+ * 5. CONTROLE DE MODO ADMINISTRADOR (SEPARAÇÃO DE TELAS)
+ */
 function ativarModoAdm() {
     modoAdmAtivo = true;
-    dom.campoPesquisa.value = "";
-    dom.campoPesquisa.placeholder = "Pesquisar no inventário...";
-    dom.btnSairAdm.classList.remove('hidden');
-    dom.badgeAdm.classList.remove('hidden');
-    dom.gridCliente.classList.add('hidden');
-    dom.painelAdm.classList.remove('hidden');
-    dom.txtNomeProjeto.innerText = "ADMINISTRAÇÃO";
-    atualizarInterface();
+    
+    // Configura o cabeçalho para o modo Administrativo
+    const inputBusca = document.getElementById('campo-pesquisa');
+    if (inputBusca) inputBusca.value = "";
+    
+    const tituloProjeto = document.getElementById('nome-projeto');
+    if (tituloProjeto) tituloProjeto.innerText = "PAINEL ADM";
+    
+    // Gerencia visibilidade dos elementos de navegação
+    document.getElementById('badge-adm').classList.remove('hidden');
+    document.getElementById('btn-sair-adm').classList.remove('hidden');
+    
+    // REGRA DE SEPARAÇÃO: Esconde o grid do cliente e mostra a lista do ADM
+    document.getElementById('grid-cliente').classList.add('hidden');
+    document.getElementById('painel-adm').classList.remove('hidden');
+    
+    atualizarTelas();
 }
 
-dom.btnSairAdm.addEventListener('click', () => {
+function desativarModoAdm() {
     modoAdmAtivo = false;
-    dom.campoPesquisa.value = "";
-    dom.campoPesquisa.placeholder = "Busque por produto...";
-    dom.btnSairAdm.classList.add('hidden');
-    dom.badgeAdm.classList.add('hidden');
-    dom.gridCliente.classList.remove('hidden');
-    dom.painelAdm.classList.add('hidden');
-    dom.txtNomeProjeto.innerText = "WEB ACHE-ME";
-    atualizarInterface();
-});
+    
+    // Retorna o cabeçalho para o modo Cliente
+    const inputBusca = document.getElementById('campo-pesquisa');
+    if (inputBusca) inputBusca.value = "";
+    
+    const tituloProjeto = document.getElementById('nome-projeto');
+    if (tituloProjeto) tituloProjeto.innerText = "WEB ACHE-ME";
+    
+    // Esconde elementos exclusivos do ADM
+    document.getElementById('badge-adm').classList.add('hidden');
+    document.getElementById('btn-sair-adm').classList.add('hidden');
+    
+    // REGRA DE SEPARAÇÃO: Mostra o grid do cliente e oculta o painel administrativo
+    document.getElementById('grid-cliente').classList.remove('hidden');
+    document.getElementById('painel-adm').classList.add('hidden');
+    
+    atualizarTelas();
+}
 
-// 7. RENDERIZAÇÃO DE INTERFACE
-function atualizarInterface(filtro = "") {
+/**
+ * 6. RENDERIZAÇÃO DINÂMICA
+ */
+function atualizarTelas(filtro = "") {
     if (modoAdmAtivo) {
-        renderizarPainelAdm(filtro);
+        renderizarListaAdm(filtro);
     } else {
         renderizarGridCliente(filtro);
     }
 }
 
-// Renderização para o Usuário Final (Cliente)
 function renderizarGridCliente(filtro) {
-    dom.gridCliente.innerHTML = "";
-    
-    const produtosVisiveis = db_produtos.filter(p => {
-        const matchesFiltro = p.nome.toLowerCase().includes(filtro) || 
-                              p.setor.toLowerCase().includes(filtro) ||
-                              p.corredor.toLowerCase().includes(filtro);
-        return p.visivel && matchesFiltro;
-    });
+    const grid = document.getElementById('grid-cliente');
+    if (!grid) return;
+    grid.innerHTML = "";
 
-    if (produtosVisiveis.length === 0) {
-        dom.gridCliente.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #999;">Nenhum produto encontrado.</p>`;
-        return;
-    }
+    const filtrados = produtos.filter(p => 
+        p.visivel && (p.nome.toLowerCase().includes(filtro) || p.setor.toLowerCase().includes(filtro))
+    );
 
-    produtosVisiveis.forEach(produto => {
+    filtrados.forEach(p => {
         const card = document.createElement('div');
         card.className = "card-item-cliente";
         card.innerHTML = `
-            <small>${produto.setor}</small>
-            <strong>${produto.nome}</strong>
-            <span class="card-preco-cliente">R$ ${produto.valor}</span>
+            <small>${p.setor}</small>
+            <strong>${p.nome}</strong>
+            <span class="card-preco-cliente">R$ ${p.valor}</span>
         `;
-        card.addEventListener('click', () => abrirDetalhes(produto));
-        dom.gridCliente.appendChild(card);
+        card.onclick = () => verDetalhes(p);
+        grid.appendChild(card);
     });
 }
 
-// Renderização para o Administrador
-function renderizarPainelAdm(filtro) {
-    dom.listaAdm.innerHTML = "";
-    
-    const todosProdutos = db_produtos.filter(p => p.nome.toLowerCase().includes(filtro));
+function renderizarListaAdm(filtro) {
+    const lista = document.getElementById('lista-adm-itens');
+    if (!lista) return;
+    lista.innerHTML = "";
 
-    todosProdutos.forEach(produto => {
+    produtos.filter(p => p.nome.toLowerCase().includes(filtro)).forEach(p => {
         const item = document.createElement('div');
-        item.className = `item-adm-card ${produto.visivel ? '' : 'item-off'}`;
+        item.className = `item-adm-card ${p.visivel ? '' : 'item-off'}`;
         item.innerHTML = `
             <div>
-                <strong>${produto.nome}</strong><br>
-                <small>Local: ${produto.corredor} | Cod: ${produto.codigo}</small>
+                <strong>${p.nome}</strong><br>
+                <small>COD: ${p.codigo} | LOCAL: ${p.corredor}</small>
             </div>
-            <button class="btn-visibilidade" onclick="alternarVisibilidade(${produto.id})">
-                ${produto.visivel ? '👁️ ATIVO' : '🙈 OCULTO'}
+            <button class="btn-visibilidade" onclick="alternarItem(${p.id})">
+                ${p.visivel ? '👁️ VISÍVEL' : '🙈 OCULTO'}
             </button>
         `;
-        dom.listaAdm.appendChild(item);
-    });
-}
-
-// 8. ALTERNAR VISIBILIDADE (ADM)
-function alternarVisibilidade(id) {
-    const index = db_produtos.findIndex(p => p.id === id);
-    if (index !== -1) {
-        db_produtos[index].visivel = !db_produtos[index].visivel;
-        
-        // Persistência no LocalStorage
-        localStorage.setItem('web_acheme_db', JSON.stringify(db_produtos));
-        
-        // Feedback visual
-        atualizarInterface(dom.campoPesquisa.value.toLowerCase());
-    }
-}
-
-// 9. LÓGICA DA PÁGINA DE DETALHES E GRID 3X3
-function abrirDetalhes(produto) {
-    // Preenche dados principais
-    document.getElementById('img-detalhe').src = produto.imagem;
-    document.getElementById('nome-detalhe').innerText = produto.nome;
-    document.getElementById('preco-detalhe').innerText = `R$ ${produto.valor}`;
-    document.getElementById('info-setor').innerText = produto.setor;
-    document.getElementById('info-corredor').innerText = produto.corredor;
-    document.getElementById('info-codigo').innerText = produto.codigo;
-    document.getElementById('texto-descricao').innerText = produto.descricao;
-
-    // Gera o Grid de Sugestões 3x3
-    gerarSugestoes(produto.id);
-
-    // Muda de tela
-    navegarPara('tela-detalhes');
-}
-
-function gerarSugestoes(idAtual) {
-    const gridSugestoes = document.getElementById('grid-sugestoes');
-    gridSugestoes.innerHTML = "";
-
-    // Filtra para não sugerir o produto que já está aberto e apenas os visíveis
-    // O sort() aleatório garante que as sugestões mudem
-    const sugestoes = db_produtos
-        .filter(p => p.id !== idAtual && p.visivel)
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 9); // Pega exatamente 9 itens
-
-    sugestoes.forEach(sug => {
-        const miniCard = document.createElement('div');
-        miniCard.className = "card-mini-sugestao";
-        miniCard.innerHTML = `
-            <img src="${sug.imagem}" alt="${sug.nome}">
-            <strong>${sug.nome}</strong>
-            <span>R$ ${sug.valor}</span>
-        `;
-        miniCard.addEventListener('click', () => abrirDetalhes(sug));
-        gridSugestoes.appendChild(miniCard);
+        lista.appendChild(item);
     });
 }
 
 /**
- * ============================================================
- * FIM DO SCRIPT
- * Dica: Coloque este ficheiro como 'script.js' na mesma pasta 
- * que o 'index.html' para que o GitHub Pages o reconheça.
- * ============================================================
+ * 7. GESTÃO DE DADOS
  */
+window.alternarItem = function(id) {
+    const p = produtos.find(item => item.id === id);
+    if (p) {
+        p.visivel = !p.visivel;
+        // Salva a alteração de visibilidade no banco local
+        localStorage.setItem('acheme_inventario', JSON.stringify(produtos));
+        
+        // Mantém a tela atualizada com o filtro que já estava sendo usado
+        const filtroAtual = document.getElementById('campo-pesquisa').value.toLowerCase();
+        atualizarTelas(filtroAtual);
+    }
+};
 
+/**
+ * 8. PÁGINA DE DETALHES E SUGESTÕES 3X3
+ */
+function verDetalhes(p) {
+    // Preenchimento dos dados do produto principal
+    document.getElementById('img-detalhe').src = p.imagem;
+    document.getElementById('nome-detalhe').innerText = p.nome;
+    document.getElementById('preco-detalhe').innerText = `R$ ${p.valor}`;
+    document.getElementById('info-setor').innerText = p.setor;
+    document.getElementById('info-corredor').innerText = p.corredor;
+    document.getElementById('info-codigo').innerText = p.codigo;
+    document.getElementById('texto-descricao').innerText = p.descricao;
+
+    // Gerenciamento das sugestões (Grid 3x3)
+    const gridSugestao = document.getElementById('grid-sugestoes');
+    if (gridSugestao) {
+        gridSugestao.innerHTML = "";
+
+        // Filtra outros produtos visíveis, embaralha e pega 9 para o grid 3x3
+        const sugestoes = produtos
+            .filter(item => item.id !== p.id && item.visivel)
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 9);
+
+        sugestoes.forEach(s => {
+            const mini = document.createElement('div');
+            mini.className = "card-mini-sugestao";
+            mini.innerHTML = `
+                <img src="${s.imagem}">
+                <strong>${s.nome}</strong>
+                <span>R$ ${s.valor}</span>
+            `;
+            mini.onclick = () => verDetalhes(s);
+            gridSugestao.appendChild(mini);
+        });
+    }
+
+    navegarPara('tela-detalhes');
+}
+
+/**
+ * 9. FUNÇÕES DE RETORNO
+ */
+window.voltarParaApp = function() {
+    navegarPara('tela-app');
+};
+
+// Expondo funções globais se necessário para botões em HTML dinâmico
+window.navegarPara = navegarPara;
+window.desativarModoAdm = desativarModoAdm;
