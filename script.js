@@ -7,17 +7,6 @@
 // 1. BANCO DE DADOS DE PRODUTOS
 const BANCO_DADOS_PADRAO = [
     { 
-        id: 1, 
-        nome: "Arroz Agulhinha 5kg", 
-        setor: "Mercearia", 
-        valor: "29,90", 
-        corredor: "A-01", 
-        visivel: true, 
-        codigo: "789102030", 
-        imagem: "https://cdn-icons-png.flaticon.com/512/3504/3504803.png", 
-        descricao: "Arroz tipo 1, grãos selecionados e polidos." 
-    },
-    { 
         id: 2, 
         nome: "Feijão Carioca 1kg", 
         setor: "Mercearia", 
