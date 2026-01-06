@@ -6,81 +6,67 @@
 // 1. BANCO DE DADOS DE PRODUTOS
 const BANCO_DADOS_PADRAO = [
    // ================= MERCEARIA =================
-{ id: 1, nome: "Arroz Agulhinha 5kg", setor: "Mercearia", valor: "29,90", corredor: "M-01", visivel: true, codigo: "MER001", imagem: "https://cdn-icons-png.flaticon.com/512/5029/5029236.png", descricao: "Arroz tipo 1, grãos selecionados e polidos." },
-{ id: 2, nome: "Feijão Carioca 1kg", setor: "Mercearia", valor: "8,90", corredor: "M-01", visivel: true, codigo: "MER002", imagem: "https://cdn-icons-png.flaticon.com/512/590/590685.png", descricao: "Feijão carioca de alta qualidade." },
-{ id: 3, nome: "Macarrão Espaguete 500g", setor: "Mercearia", valor: "4,50", corredor: "M-02", visivel: true, codigo: "MER003", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046784.png", descricao: "Macarrão espaguete tradicional." },
-{ id: 4, nome: "Óleo de Soja 900ml", setor: "Mercearia", valor: "7,99", corredor: "M-02", visivel: true, codigo: "MER004", imagem: "https://cdn-icons-png.flaticon.com/512/3082/3082033.png", descricao: "Óleo de soja refinado." },
-{ id: 5, nome: "Açúcar Refinado 1kg", setor: "Mercearia", valor: "4,29", corredor: "M-03", visivel: true, codigo: "MER005", imagem: "https://cdn-icons-png.flaticon.com/512/992/992745.png", descricao: "Açúcar branco refinado." },
-{ id: 6, nome: "Farinha de Trigo 1kg", setor: "Mercearia", valor: "5,10", corredor: "M-03", visivel: true, codigo: "MER006", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075977.png", descricao: "Farinha ideal para pães e bolos." },
+{ id: 1, nome: "Arroz Padim 1kg", setor: "Mercearia", valor: "3,99", corredor: "33", visivel: true, codigo: "0995253092", imagem: "https://supermercadoraizes.com.br/wp-content/uploads/2024/03/arroz.png", descricao: "Arroz padim branco 1kg, grãos selecionados e polidos." },
+{ id: 2, nome: "Feijão Kicaldo 1kg", setor: "Mercearia", valor: "5,90", corredor: "33", visivel: true, codigo: "9872636189", imagem: "https://kicaldo.com.br/wp-content/uploads/2020/07/Kicaldo-feijaocarioca.png", descricao: "Feijão kicaldo de alta qualidade." },
+{ id: 3, nome: "Macarrão Espaguete Fortazela 500g", setor: "Mercearia", valor: "2,59", corredor: "22", visivel: true, codigo: "9837362829", imagem: "https://marcafortaleza.com.br/wp-content/uploads/2018/09/mkp_Fortaleza_Massa_Semola_Espaguete-1412px-1.png", descricao: "Macarrão espaguete fortaleza tradicional." },
+{ id: 4, nome: "Óleo de Soja 900ml", setor: "Mercearia", valor: "7,99", corredor: "M-02", visivel: true, codigo: "MER004", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIjp3-NkThjfdzNZGgFm3CiScAh3DYCh4hVAUoUrF0Fw&s=10", descricao: "Óleo de soja refinado." },
+{ id: 5, nome: "Açúcar Refinado União 1kg", setor: "Mercearia", valor: "2,99", corredor: "M-03", visivel: true, codigo: "MER005", imagem: "https://uniao.com.br/public/_assets/images/produtos/acucar-refinado.png", descricao: "Açúcar branco União refinado." },
+{ id: 6, nome: "Farinha de Trigo Finna 1kg", setor: "Mercearia", valor: "5,10", corredor: "M-03", visivel: true, codigo: "MER006", imagem: "https://finna.com.br/wp-content/uploads/2014/06/mockup-finna-tradicional-1kg-plastico.png", descricao: "Farinha de trigo finna tradicional, ideal para pães e bolos." },
 // ================= HORTIFRUTI =================
-{ id: 7, nome: "Banana Prata (kg)", setor: "Hortifruti", valor: "5,99", corredor: "H-01", visivel: true, codigo: "HOR001", imagem: "https://cdn-icons-png.flaticon.com/512/2909/2909761.png", descricao: "Banana prata fresca." },
-{ id: 8, nome: "Maçã Gala (kg)", setor: "Hortifruti", valor: "7,49", corredor: "H-01", visivel: true, codigo: "HOR002", imagem: "https://cdn-icons-png.flaticon.com/512/415/415733.png", descricao: "Maçã gala selecionada." },
-{ id: 9, nome: "Tomate (kg)", setor: "Hortifruti", valor: "6,89", corredor: "H-02", visivel: true, codigo: "HOR003", imagem: "https://cdn-icons-png.flaticon.com/512/590/590685.png", descricao: "Tomate vermelho fresco." },
-{ id: 10, nome: "Batata Inglesa (kg)", setor: "Hortifruti", valor: "4,99", corredor: "H-02", visivel: true, codigo: "HOR004", imagem: "https://cdn-icons-png.flaticon.com/512/2909/2909806.png", descricao: "Batata inglesa lavada." },
-{ id: 11, nome: "Cenoura (kg)", setor: "Hortifruti", valor: "3,79", corredor: "H-03", visivel: true, codigo: "HOR005", imagem: "https://cdn-icons-png.flaticon.com/512/415/415682.png", descricao: "Cenoura crocante." },
-{ id: 12, nome: "Alface Crespa", setor: "Hortifruti", valor: "2,99", corredor: "H-03", visivel: true, codigo: "HOR006", imagem: "https://cdn-icons-png.flaticon.com/512/766/766020.png", descricao: "Alface fresca e higienizada." },
+{ id: 7, nome: "Banana (kg)", setor: "Hortifruti", valor: "5,99", corredor: "H-01", visivel: true, codigo: "HOR001", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxE5Zz7RImNZt4RZBZB34R_FcaFgqLLmlAoE-VLFj_tA&s=10", descricao: "Banana fresca." },
+{ id: 8, nome: "Maçã Gala (kg)", setor: "Hortifruti", valor: "7,49", corredor: "H-01", visivel: true, codigo: "HOR002", imagem: "https://www.naturaldaterra.com.br/_next/image?url=https%3A%2F%2Fnaturalterra.vtexassets.com%2Farquivos%2Fids%2F171268%2FMaca-Gala-Organica-Unidade.jpg%3Fv%3D638671094704900000%26format%3Dwebp&w=1440&q=75", descricao: "Maçã selecionada." },
+{ id: 9, nome: "Tomate (kg)", setor: "Hortifruti", valor: "6,89", corredor: "H-02", visivel: true, codigo: "HOR003", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROPsMH_DetbFUQ4nMbGrESSDKg0IsL8I5hKyhiVtMxgLADApb72Z4JRfM&s=10", descricao: "Tomate vermelho fresco." },
+{ id: 10, nome: "Batata (kg)", setor: "Hortifruti", valor: "4,99", corredor: "H-02", visivel: true, codigo: "HOR004", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIcD0n6NpghRBHURI16cV23LGcSQf7mIXdhUXb6WK4jQ&s=10", descricao: "Batata inglesa lavada." },
+{ id: 11, nome: "Cenoura (kg)", setor: "Hortifruti", valor: "3,79", corredor: "H-03", visivel: true, codigo: "HOR005", imagem: "https://png.pngtree.com/png-vector/20241225/ourmid/pngtree-fresh-organic-carrots-in-a-neat-stack-png-image_14812590.png", descricao: "Cenoura crocante." },
+{ id: 12, nome: "Alface", setor: "Hortifruti", valor: "2,99", corredor: "H-03", visivel: true, codigo: "HOR006", imagem: "https://sitioaborigene.com.br/wp-content/uploads/2021/11/alface-lisa.png", descricao: "Alface fresca e higienizada." },
 // ================= LATICÍNIOS =================
-{ id: 13, nome: "Leite Integral 1L", setor: "Laticínios", valor: "4,99", corredor: "L-01", visivel: true, codigo: "LAT001", imagem: "https://cdn-icons-png.flaticon.com/512/2674/2674486.png", descricao: "Leite integral pasteurizado." },
-{ id: 14, nome: "Leite Desnatado 1L", setor: "Laticínios", valor: "4,89", corredor: "L-01", visivel: true, codigo: "LAT002", imagem: "https://cdn-icons-png.flaticon.com/512/2674/2674486.png", descricao: "Leite desnatado saudável." },
-{ id: 15, nome: "Queijo Mussarela (kg)", setor: "Laticínios", valor: "39,90", corredor: "L-02", visivel: true, codigo: "LAT003", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046751.png", descricao: "Queijo mussarela fatiado." },
-{ id: 16, nome: "Presunto Fatiado 200g", setor: "Laticínios", valor: "6,99", corredor: "L-02", visivel: true, codigo: "LAT004", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075974.png", descricao: "Presunto cozido fatiado." },
-{ id: 17, nome: "Iogurte Natural 170g", setor: "Laticínios", valor: "2,49", corredor: "L-03", visivel: true, codigo: "LAT005", imagem: "https://cdn-icons-png.flaticon.com/512/888/888034.png", descricao: "Iogurte natural tradicional." },
-{ id: 18, nome: "Manteiga 200g", setor: "Laticínios", valor: "8,79", corredor: "L-03", visivel: true, codigo: "LAT006", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075976.png", descricao: "Manteiga cremosa." },
+{ id: 13, nome: "Leite Integral Italac 1L", setor: "Laticínios", valor: "4,99", corredor: "L-01", visivel: true, codigo: "LAT001", imagem: "https://supermercadobomdemais.com.br/wp-content/uploads/2020/05/Leite-Integral-Italac-1l.png", descricao: "Leite integral pasteurizado." },
+{ id: 14, nome: "Leite Desnatado Betania 1L", setor: "Laticínios", valor: "4,89", corredor: "L-01", visivel: true, codigo: "LAT002", imagem: "https://redemix.vteximg.com.br/arquivos/ids/213937-1000-1000/7898403782394.jpg?v=638350624515570000", descricao: "Leite desnatado saudável." },
+{ id: 15, nome: "Queijo Mussarela Italac (kg)", setor: "Laticínios", valor: "39,90", corredor: "L-02", visivel: true, codigo: "LAT003", imagem: "https://arasuper.com.br/uploads/produtos/17130_arasuper_queijo-muss-italac-pca-kg.jpg", descricao: "Queijo mussarela fatiado." },
+{ id: 16, nome: "Presunto Sadia 200g", setor: "Laticínios", valor: "6,99", corredor: "L-02", visivel: true, codigo: "LAT004", imagem: "https://redemix.vteximg.com.br/arquivos/ids/217727-1000-1000/14893-29580-e-48720.png?v=638503350424700000", descricao: "Presunto cozido fatiado." },
+{ id: 17, nome: "Iogurte Natural Itambe 170g", setor: "Laticínios", valor: "2,49", corredor: "L-03", visivel: true, codigo: "LAT005", imagem: "https://www.itambe.com.br/portal/Images/Produto/af3ditambeiogurteintegral170gsimpl_full.png", descricao: "Iogurte natural tradicional." },
+{ id: 18, nome: "Manteiga Delicia 200g", setor: "Laticínios", valor: "8,79", corredor: "L-03", visivel: true, codigo: "LAT006", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjZUb59DdGw1QVlyu2Rg9Nr5UqAMPUuDlIyamsUwOAZA&s=10", descricao: "Manteiga cremosa." },
 // ================= PADARIA =================
-{ id: 19, nome: "Pão Francês (kg)", setor: "Padaria", valor: "13,90", corredor: "P-01", visivel: true, codigo: "PAD001", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046786.png", descricao: "Pão francês crocante." },
-{ id: 20, nome: "Pão de Forma", setor: "Padaria", valor: "7,49", corredor: "P-01", visivel: true, codigo: "PAD002", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075972.png", descricao: "Pão de forma macio." },
-{ id: 21, nome: "Bolo de Chocolate", setor: "Padaria", valor: "15,90", corredor: "P-02", visivel: true, codigo: "PAD003", imagem: "https://cdn-icons-png.flaticon.com/512/590/590719.png", descricao: "Bolo de chocolate caseiro." },
-{ id: 22, nome: "Bolo de Milho", setor: "Padaria", valor: "14,90", corredor: "P-02", visivel: true, codigo: "PAD004", imagem: "https://cdn-icons-png.flaticon.com/512/590/590719.png", descricao: "Bolo de milho tradicional." },
-{ id: 23, nome: "Rosca Doce", setor: "Padaria", valor: "9,99", corredor: "P-03", visivel: true, codigo: "PAD005", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075978.png", descricao: "Rosca doce artesanal." },
-{ id: 24, nome: "Sonho Recheado", setor: "Padaria", valor: "4,50", corredor: "P-03", visivel: true, codigo: "PAD006", imagem: "https://cdn-icons-png.flaticon.com/512/590/590719.png", descricao: "Sonho com recheio cremoso." },
+{ id: 19, nome: "Pão Francês (kg)", setor: "Padaria", valor: "13,90", corredor: "P-01", visivel: true, codigo: "PAD001", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXlWY4bsvTYIXKkMMCUq3SwkWI2tmWFAADgDiH5tCbxg&s=10", descricao: "Pão francês crocante." },
+{ id: 20, nome: "Pão de Forma Visconti", setor: "Padaria", valor: "7,49", corredor: "P-01", visivel: true, codigo: "PAD002", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2VFIAAEPp6syJiDTcPpda1x2CuWX7UqjFycUXlfL2SsWxWsESua354jQw&s=10", descricao: "Pão de forma macio." },
+{ id: 21, nome: "Bolo de Chocolate", setor: "Padaria", valor: "15,90", corredor: "P-02", visivel: true, codigo: "PAD003", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtkoviF3P2IWb0fG_Ovh0H83yG6vIXPKLPiZRvUVTylGFXUuacjqEVpFI&s=10", descricao: "Bolo de chocolate caseiro." },
+{ id: 22, nome: "Bolo de Milho", setor: "Padaria", valor: "14,90", corredor: "P-02", visivel: true, codigo: "PAD004", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrk5qF7PxtcIiw_idR1tdZnbd0HoWn5yfhk5Dg67Cw1lFp7xaxgr5OoheG&s=10", descricao: "Bolo de milho tradicional." },
+{ id: 23, nome: "Rosca Doce", setor: "Padaria", valor: "9,99", corredor: "P-03", visivel: true, codigo: "PAD005", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlwVdexbCMT74cspXP12MpiXOWBMP2QoCH7h1iv5_Bi97HcHmp9KsgQRZe&s=10", descricao: "Rosca doce artesanal." },
+{ id: 24, nome: "Sonho Recheado", setor: "Padaria", valor: "4,50", corredor: "P-03", visivel: true, codigo: "PAD006", imagem: "https://phygital-files.mercafacil.com/peruzzo/uploads/produto/padaria_sonho_doce_leite_kg_988fd121-c3c5-41a7-a940-9ec37ed9db7a.jpg", descricao: "Sonho com recheio cremoso." },
 // ================= BEBIDAS =================
-{ id: 25, nome: "Refrigerante Cola 2L", setor: "Bebidas", valor: "9,50", corredor: "B-01", visivel: true, codigo: "BEB001", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405479.png", descricao: "Refrigerante cola tradicional." },
-{ id: 26, nome: "Refrigerante Guaraná 2L", setor: "Bebidas", valor: "8,99", corredor: "B-01", visivel: true, codigo: "BEB002", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405479.png", descricao: "Refrigerante guaraná." },
-{ id: 27, nome: "Suco de Laranja 1L", setor: "Bebidas", valor: "6,49", corredor: "B-02", visivel: true, codigo: "BEB003", imagem: "https://cdn-icons-png.flaticon.com/512/3082/3082036.png", descricao: "Suco de laranja integral." },
-{ id: 28, nome: "Água Mineral 1,5L", setor: "Bebidas", valor: "2,99", corredor: "B-02", visivel: true, codigo: "BEB004", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046782.png", descricao: "Água mineral natural." },
-{ id: 29, nome: "Água com Gás 500ml", setor: "Bebidas", valor: "2,49", corredor: "B-03", visivel: true, codigo: "BEB005", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046782.png", descricao: "Água gaseificada." },
-{ id: 30, nome: "Energético Lata", setor: "Bebidas", valor: "7,99", corredor: "B-03", visivel: true, codigo: "BEB006", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046785.png", descricao: "Bebida energética." },
+{ id: 25, nome: "Refrigerante Cola Original 2L", setor: "Bebidas", valor: "9,50", corredor: "B-01", visivel: true, codigo: "BEB001", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8LXugXV5UHLNNypLBMaGPqYmSFIStI5B_mE6p14wmpg&s=10", descricao: "Refrigerante cola tradicional." },
+{ id: 26, nome: "Refrigerante Guaraná Antarctica 2L", setor: "Bebidas", valor: "8,99", corredor: "B-01", visivel: true, codigo: "BEB002", imagem: "https://supermercadobomdemais.com.br/wp-content/uploads/2020/05/Refrigerante-Guaran%C3%A1-Antarctica-2l.png", descricao: "Refrigerante guaraná." },
+{ id: 27, nome: "Suco de Laranja Del Valle 1,5L", setor: "Bebidas", valor: "6,49", corredor: "B-02", visivel: true, codigo: "BEB003", imagem: "https://coopsp.vtexassets.com/arquivos/ids/249065-800-auto?v=638941437451300000&width=800&height=auto&aspect=true", descricao: "Suco de laranja integral." },
+{ id: 28, nome: "Água Mineral Indaia 1,5L", setor: "Bebidas", valor: "2,99", corredor: "B-02", visivel: true, codigo: "BEB004", imagem: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7N6d5kZYXKgOCxf2sq2T5ihEiw_EhLaGAzrk7jkSoba-xG02oH2MPALo&s=10", descricao: "Água mineral natural." },
+{ id: 29, nome: "Água com Gás Indaia 500ml", setor: "Bebidas", valor: "2,49", corredor: "B-03", visivel: true, codigo: "BEB005", imagem: "https://cdn.shopify.com/s/files/1/0579/9742/6861/files/image-removebg-preview_1_cbdc38fa-89cd-44e0-a4dd-4338ba6123c7.png?v=1693486710&width=480", descricao: "Água gaseificada." },
+{ id: 30, nome: "Energético Bayle Melancia", setor: "Bebidas", valor: "7,99", corredor: "B-03", visivel: true, codigo: "BEB006", imagem: "https://redemix.vteximg.com.br/arquivos/ids/222730-1000-1000/energetico_baly_energy_drink_melancia_2l_1029_1_b24a6ba45d76a3d31f1521280ed1686a.png?v=638836249367530000", descricao: "Bebida energética." },
 ];
 
 // 2. VARIÁVEIS DE ESTADO E PERSISTÊNCIA
-let produtos = JSON.parse(localStorage.getItem('acheme_inventario')) || BANCO_DADOS_PADRAO;
+let produtos = BANCO_DADOS_PADRAO.map(p => ({ ...p }));
+localStorage.setItem('acheme_inventario', JSON.stringify(produtos));
 const SENHA_ADMIN = "123";
 let modoAdmAtivo = false;
 
 /**
  * 3. INICIALIZAÇÃO SEGURA
  */
-Vou substituir isso
 document.addEventListener('DOMContentLoaded', () => {
 
-// Botão Iniciar do Lobby  
-const botaoIniciar = document.getElementById('btn-entrar');  
-if (botaoIniciar) {  
-    botaoIniciar.onclick = () => {  
-        desativarModoAdm(); // Garante que começa como cliente  
-        navegarPara('tela-app');  
-    };  
-}
+    // BOTÃO INICIAR
+    const botaoIniciar = document.getElementById('btn-entrar');
+    if (botaoIniciar) {
+        botaoIniciar.onclick = () => {
+            desativarModoAdm();
+            navegarPara('tela-app');
+        };
+    }
 
-Por isso
-document.addEventListener('DOMContentLoaded', () => {
-const botaoIniciar = document.getElementById('btn-entrar');
-if (botaoIniciar) {
-botaoIniciar.onclick = () => {
-desativarModoAdm();
-navegarPara('tela-app');
-};
-}
-});
-
-E isso?
-
-    // Configura o Campo de Busca
+    // CAMPO DE BUSCA
     const campoBusca = document.getElementById('campo-pesquisa');
     if (campoBusca) {
         campoBusca.oninput = (e) => {
             const valor = e.target.value.trim();
-            // Verifica se o usuário digitou a senha de administração
             if (valor === SENHA_ADMIN) {
                 ativarModoAdm();
             } else {
@@ -89,7 +75,7 @@ E isso?
         };
     }
 
-    // Botão Sair do ADM (Ajustado para o novo layout de voltar)
+    // BOTÃO SAIR ADM
     const btnSairAdm = document.getElementById('btn-sair-adm');
     if (btnSairAdm) {
         btnSairAdm.onclick = () => {
@@ -97,20 +83,17 @@ E isso?
         };
     }
 
-    // Configura o botão de Feedback no rodapé da página de detalhes
-    // Adicionamos o evento dinamicamente para garantir o alerta solicitado
+    // BOTÃO FEEDBACK
     const btnFeedback = document.querySelector('.btn-enviar-feedback');
     if (btnFeedback) {
         btnFeedback.onclick = () => {
-            const mensagem = "Muito obrigado pela sua atenção, mas essa função ainda não está disponível, mas futuramente ela estará";
-            alert(mensagem);
-            
-            // Limpa o campo de texto após o alerta
+            alert("Muito obrigado pela sua atenção, mas essa função ainda não está disponível, mas futuramente ela estará");
             const inputFeedback = document.getElementById('feedback-input');
-            if(inputFeedback) inputFeedback.value = "";
+            if (inputFeedback) inputFeedback.value = "";
         };
     }
 
+    // PRIMEIRO RENDER
     atualizarTelas();
 });
 
