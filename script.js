@@ -3,7 +3,6 @@
  * WEB ACHE-ME - LÓGICA DE GERENCIAMENTO DE INVENTÁRIO PRO
  * ============================================================
  */
-
 // 1. BANCO DE DADOS DE PRODUTOS
 const BANCO_DADOS_PADRAO = [
    // ================= MERCEARIA =================
@@ -13,7 +12,6 @@ const BANCO_DADOS_PADRAO = [
 { id: 4, nome: "Óleo de Soja 900ml", setor: "Mercearia", valor: "7,99", corredor: "M-02", visivel: true, codigo: "MER004", imagem: "https://cdn-icons-png.flaticon.com/512/3082/3082033.png", descricao: "Óleo de soja refinado." },
 { id: 5, nome: "Açúcar Refinado 1kg", setor: "Mercearia", valor: "4,29", corredor: "M-03", visivel: true, codigo: "MER005", imagem: "https://cdn-icons-png.flaticon.com/512/992/992745.png", descricao: "Açúcar branco refinado." },
 { id: 6, nome: "Farinha de Trigo 1kg", setor: "Mercearia", valor: "5,10", corredor: "M-03", visivel: true, codigo: "MER006", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075977.png", descricao: "Farinha ideal para pães e bolos." },
-
 // ================= HORTIFRUTI =================
 { id: 7, nome: "Banana Prata (kg)", setor: "Hortifruti", valor: "5,99", corredor: "H-01", visivel: true, codigo: "HOR001", imagem: "https://cdn-icons-png.flaticon.com/512/2909/2909761.png", descricao: "Banana prata fresca." },
 { id: 8, nome: "Maçã Gala (kg)", setor: "Hortifruti", valor: "7,49", corredor: "H-01", visivel: true, codigo: "HOR002", imagem: "https://cdn-icons-png.flaticon.com/512/415/415733.png", descricao: "Maçã gala selecionada." },
@@ -21,7 +19,6 @@ const BANCO_DADOS_PADRAO = [
 { id: 10, nome: "Batata Inglesa (kg)", setor: "Hortifruti", valor: "4,99", corredor: "H-02", visivel: true, codigo: "HOR004", imagem: "https://cdn-icons-png.flaticon.com/512/2909/2909806.png", descricao: "Batata inglesa lavada." },
 { id: 11, nome: "Cenoura (kg)", setor: "Hortifruti", valor: "3,79", corredor: "H-03", visivel: true, codigo: "HOR005", imagem: "https://cdn-icons-png.flaticon.com/512/415/415682.png", descricao: "Cenoura crocante." },
 { id: 12, nome: "Alface Crespa", setor: "Hortifruti", valor: "2,99", corredor: "H-03", visivel: true, codigo: "HOR006", imagem: "https://cdn-icons-png.flaticon.com/512/766/766020.png", descricao: "Alface fresca e higienizada." },
-
 // ================= LATICÍNIOS =================
 { id: 13, nome: "Leite Integral 1L", setor: "Laticínios", valor: "4,99", corredor: "L-01", visivel: true, codigo: "LAT001", imagem: "https://cdn-icons-png.flaticon.com/512/2674/2674486.png", descricao: "Leite integral pasteurizado." },
 { id: 14, nome: "Leite Desnatado 1L", setor: "Laticínios", valor: "4,89", corredor: "L-01", visivel: true, codigo: "LAT002", imagem: "https://cdn-icons-png.flaticon.com/512/2674/2674486.png", descricao: "Leite desnatado saudável." },
@@ -29,7 +26,6 @@ const BANCO_DADOS_PADRAO = [
 { id: 16, nome: "Presunto Fatiado 200g", setor: "Laticínios", valor: "6,99", corredor: "L-02", visivel: true, codigo: "LAT004", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075974.png", descricao: "Presunto cozido fatiado." },
 { id: 17, nome: "Iogurte Natural 170g", setor: "Laticínios", valor: "2,49", corredor: "L-03", visivel: true, codigo: "LAT005", imagem: "https://cdn-icons-png.flaticon.com/512/888/888034.png", descricao: "Iogurte natural tradicional." },
 { id: 18, nome: "Manteiga 200g", setor: "Laticínios", valor: "8,79", corredor: "L-03", visivel: true, codigo: "LAT006", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075976.png", descricao: "Manteiga cremosa." },
-
 // ================= PADARIA =================
 { id: 19, nome: "Pão Francês (kg)", setor: "Padaria", valor: "13,90", corredor: "P-01", visivel: true, codigo: "PAD001", imagem: "https://cdn-icons-png.flaticon.com/512/1046/1046786.png", descricao: "Pão francês crocante." },
 { id: 20, nome: "Pão de Forma", setor: "Padaria", valor: "7,49", corredor: "P-01", visivel: true, codigo: "PAD002", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075972.png", descricao: "Pão de forma macio." },
@@ -37,7 +33,6 @@ const BANCO_DADOS_PADRAO = [
 { id: 22, nome: "Bolo de Milho", setor: "Padaria", valor: "14,90", corredor: "P-02", visivel: true, codigo: "PAD004", imagem: "https://cdn-icons-png.flaticon.com/512/590/590719.png", descricao: "Bolo de milho tradicional." },
 { id: 23, nome: "Rosca Doce", setor: "Padaria", valor: "9,99", corredor: "P-03", visivel: true, codigo: "PAD005", imagem: "https://cdn-icons-png.flaticon.com/512/3075/3075978.png", descricao: "Rosca doce artesanal." },
 { id: 24, nome: "Sonho Recheado", setor: "Padaria", valor: "4,50", corredor: "P-03", visivel: true, codigo: "PAD006", imagem: "https://cdn-icons-png.flaticon.com/512/590/590719.png", descricao: "Sonho com recheio cremoso." },
-
 // ================= BEBIDAS =================
 { id: 25, nome: "Refrigerante Cola 2L", setor: "Bebidas", valor: "9,50", corredor: "B-01", visivel: true, codigo: "BEB001", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405479.png", descricao: "Refrigerante cola tradicional." },
 { id: 26, nome: "Refrigerante Guaraná 2L", setor: "Bebidas", valor: "8,99", corredor: "B-01", visivel: true, codigo: "BEB002", imagem: "https://cdn-icons-png.flaticon.com/512/2405/2405479.png", descricao: "Refrigerante guaraná." },
@@ -56,15 +51,14 @@ let modoAdmAtivo = false;
  * 3. INICIALIZAÇÃO SEGURA
  */
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // Botão Iniciar do Lobby
     const botaoIniciar = document.getElementById('btn-entrar');
     if (botaoIniciar) {
         botaoIniciar.onclick = () => {
-            desativarModoAdm(); // Garante que começa como cliente
+            desativarModoAdm();
             navegarPara('tela-app');
         };
     }
+});
 
     // Configura o Campo de Busca
     const campoBusca = document.getElementById('campo-pesquisa');
